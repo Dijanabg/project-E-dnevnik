@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Max;
@@ -38,10 +40,9 @@ public class OdelenjeEntity {
 	@NotNull(message = "Broj odelenja mora biti unet.")
 	private Integer odelenje;
 	
-	@Column(name = "skolska_godina")
-	@NotNull(message = "Skolska godina mora biti unesena.")
-	@Min(value = 2000, message = "Godiste generacije mora biti vece od {value}.")
-	@Max(value = 2100, message = "Godiste generacije mora biti manje od  {value}.")
+	@ManyToOne
+	@JoinColumn(name = "skolska_godina_id") // Ovo predstavlja ime kolone u tabeli 'odelenje' koja referencira 'id' kolonu u tabeli 'skolska_godina'
+	@NotNull(message = "Školska godina mora biti unesena.")
 	private SkolskaGodinaEntity skolskaGodina;
 
 	@Version
