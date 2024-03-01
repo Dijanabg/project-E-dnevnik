@@ -1,13 +1,20 @@
 package com.iktpreobuka.ednevnik.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
@@ -34,9 +41,20 @@ public class PredmetEntity {
 	@Column(name = "polugodiste")
 	private EPolugodisteEntity epolugodiste;
 	
-	@Column(name = "verzija")
 	@Version
 	private Integer version;
+	
+	@JsonBackReference
+	@OneToMany (mappedBy = "predmet", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	protected List<NastavnikPredmetEntity> nastavnici = new ArrayList<>();
+
+	public List<NastavnikPredmetEntity> getNastavnici() {
+		return nastavnici;
+	}
+
+	public void setNastavnici(List<NastavnikPredmetEntity> nastavnici) {
+		this.nastavnici = nastavnici;
+	}
 
 	public PredmetEntity() {
 		super();

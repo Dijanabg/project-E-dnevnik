@@ -1,8 +1,17 @@
 package com.iktpreobuka.ednevnik.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,6 +19,14 @@ import jakarta.persistence.Table;
 @Table(name = "ucenik")
 public class UcenikEntity extends KorisnikEntity{
 
+	@JsonManagedReference
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "roditelj")
+	private RoditeljEntity roditelj;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "ucenik", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	protected List<NastavnikPredmetUcenikEntity> nastavnici;
 	public UcenikEntity() {
 		super();
 	}
