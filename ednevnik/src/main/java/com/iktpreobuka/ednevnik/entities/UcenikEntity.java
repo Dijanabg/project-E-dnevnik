@@ -24,6 +24,11 @@ public class UcenikEntity extends KorisnikEntity{
 	@JoinColumn(name = "roditelj")
 	private RoditeljEntity roditelj;
 	
+	@JsonManagedReference
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn	(name = "odelenje")
+	private OdelenjeEntity odelenje;
+	
 	@JsonBackReference
 	@OneToMany(mappedBy = "ucenik", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<NastavnikPredmetUcenikEntity> nastavnici;

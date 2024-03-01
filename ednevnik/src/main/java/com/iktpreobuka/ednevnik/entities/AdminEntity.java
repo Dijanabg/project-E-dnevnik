@@ -10,4 +10,8 @@ import jakarta.persistence.Table;
 @Table(name = "admin")
 public class AdminEntity extends KorisnikEntity{
 
+	public AdminEntity() {
+		super();
+	}
+
 }

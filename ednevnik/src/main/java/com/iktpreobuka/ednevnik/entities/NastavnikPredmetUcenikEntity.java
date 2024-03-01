@@ -27,4 +27,8 @@ public class NastavnikPredmetUcenikEntity {
 	@JoinColumn(name = "ucenik")
 	private UcenikEntity ucenik;
 	
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "nastavnikPredmet")
+	private NastavnikPredmetEntity nastavnikPredmet;
+	
 }

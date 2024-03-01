@@ -1,14 +1,21 @@
 package com.iktpreobuka.ednevnik.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Max;
@@ -48,9 +55,33 @@ public class OdelenjeEntity {
 	@Version
 	@Column(name = "verzija")
 	protected Integer verzija;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "odelenje", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	protected List<UcenikEntity> ucenici = new ArrayList<>();
+
+	@JsonBackReference
+	@OneToMany(mappedBy = "razred", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	private List <NastavnikOdelenjeEntity> nastavnici = new ArrayList<>();
 
 	public OdelenjeEntity() {
 		super();
+	}
+
+	public OdelenjeEntity(Integer id, boolean aktivno,
+			@Min(value = 1, message = "Broj razreda moze biti najmanje {value}") @Max(value = 8, message = "Broj razreda moze biti najvise {value}") @NotNull(message = "Razred mora biti unet.") Integer razred,
+			@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}") @Max(value = 10, message = "Broj odelenja moze biti najvise {value}") @NotNull(message = "Broj odelenja mora biti unet.") Integer odelenje,
+			@NotNull(message = "Školska godina mora biti unesena.") SkolskaGodinaEntity skolskaGodina, Integer verzija,
+			List<UcenikEntity> ucenici, List<NastavnikOdelenjeEntity> nastavnici) {
+		super();
+		this.id = id;
+		this.aktivno = aktivno;
+		this.razred = razred;
+		this.odelenje = odelenje;
+		this.skolskaGodina = skolskaGodina;
+		this.verzija = verzija;
+		this.ucenici = ucenici;
+		this.nastavnici = nastavnici;
 	}
 
 	public Integer getId() {
@@ -85,7 +116,6 @@ public class OdelenjeEntity {
 		this.odelenje = odelenje;
 	}
 
-	
 	public SkolskaGodinaEntity getSkolskaGodina() {
 		return skolskaGodina;
 	}
@@ -102,10 +132,27 @@ public class OdelenjeEntity {
 		this.verzija = verzija;
 	}
 
+	public List<UcenikEntity> getUcenici() {
+		return ucenici;
+	}
+
+	public void setUcenici(List<UcenikEntity> ucenici) {
+		this.ucenici = ucenici;
+	}
+
+	public List<NastavnikOdelenjeEntity> getNastavnici() {
+		return nastavnici;
+	}
+
+	public void setNastavnici(List<NastavnikOdelenjeEntity> nastavnici) {
+		this.nastavnici = nastavnici;
+	}
+
 	@Override
 	public String toString() {
 		return "OdelenjeEntity [id=" + id + ", aktivno=" + aktivno + ", razred=" + razred + ", odelenje=" + odelenje
-				+ ", skolskaGodina=" + skolskaGodina + ", verzija=" + verzija + "]";
+				+ ", skolskaGodina=" + skolskaGodina + ", verzija=" + verzija + ", ucenici=" + ucenici + ", nastavnici="
+				+ nastavnici + "]";
 	}
 
 	
