@@ -35,8 +35,8 @@ public class NastavnikEntity extends KorisnikEntity{
 	private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();;
 	
 	@JsonBackReference
-	@OneToMany(mappedBy = "profesor", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	private List<NastavnikPredmetUcenikEntity> djaci = new ArrayList<>();
+	@OneToMany(mappedBy = "ucenik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	private List<NastavnikPredmetUcenikEntity> ucenici = new ArrayList<>();
 	
 	@JsonBackReference
 	@OneToMany(mappedBy = "ocenjivac", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -47,13 +47,13 @@ public class NastavnikEntity extends KorisnikEntity{
 	}
 
 	public NastavnikEntity(List<NastavnikPredmetEntity> predajePredmet, OdelenjeEntity odelenje,
-			List<NastavnikOdelenjeEntity> nastavnikOdelenje, List<NastavnikPredmetUcenikEntity> djaci,
+			List<NastavnikOdelenjeEntity> nastavnikOdelenje, List<NastavnikPredmetUcenikEntity> ucenici,
 			List<OcenaEntity> ocene) {
 		super();
 		this.predajePredmet = predajePredmet;
 		this.odelenje = odelenje;
 		this.nastavnikOdelenje = nastavnikOdelenje;
-		this.djaci = djaci;
+		this.ucenici = ucenici;
 		this.ocene = ocene;
 	}
 
@@ -81,12 +81,12 @@ public class NastavnikEntity extends KorisnikEntity{
 		this.nastavnikOdelenje = nastavnikOdelenje;
 	}
 
-	public List<NastavnikPredmetUcenikEntity> getDjaci() {
-		return djaci;
+	public List<NastavnikPredmetUcenikEntity> getUcenici() {
+		return ucenici;
 	}
 
-	public void setDjaci(List<NastavnikPredmetUcenikEntity> djaci) {
-		this.djaci = djaci;
+	public void setUcenici(List<NastavnikPredmetUcenikEntity> ucenici) {
+		this.ucenici = ucenici;
 	}
 
 	public List<OcenaEntity> getOcene() {
@@ -100,7 +100,7 @@ public class NastavnikEntity extends KorisnikEntity{
 	@Override
 	public String toString() {
 		return "NastavnikEntity [predajePredmet=" + predajePredmet + ", odelenje=" + odelenje + ", nastavnikOdelenje="
-				+ nastavnikOdelenje + ", djaci=" + djaci + ", ocene=" + ocene + "]";
+				+ nastavnikOdelenje + ", djaci=" + ucenici + ", ocene=" + ocene + "]";
 	}
 
 }
