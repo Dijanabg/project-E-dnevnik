@@ -66,6 +66,10 @@ public class OcenaEntity {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn	(name = "ucenik")
 	private UcenikEntity ucenik;
+	
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "nastavnikPredmetUcenik")
+	private NastavnikPredmetUcenikEntity nastavnikPredmetUcenik;
 
 	public OcenaEntity() {
 		super();
