@@ -15,7 +15,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -32,12 +31,6 @@ public class KorisnikEntity {
 	@Column(name = "korisnicko_ime", unique = true)
 	@NotBlank(message = "Korisnicko ime ne moze biti prazno polje")
 	private String korisnickoIme;
-
-	@Column(name = "email", unique = true)
-	@NotNull(message = "Email must be provided.")
-	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
-	message="Email is not valid.")
-	private String email;
 	
 	@Column(name = "sifra")
 	@NotNull(message = "Password must be provided.")
@@ -49,16 +42,7 @@ public class KorisnikEntity {
 	@Enumerated(EnumType.STRING)
 	private ERoleEntity rola;
 	
-	@Column(name = "ime")
-	@NotNull(message = "Ime mora biti uneto.")
-	private String ime;
-
-	@Column(name = "prezime")
-	@NotNull(message = "Prezime mora biti uneto.")
-	private String prezime;
-
 	@Column(name = "aktivno")
-	
 	private boolean aktivno;
 	
 	@Version
@@ -84,14 +68,6 @@ public class KorisnikEntity {
 		this.korisnickoIme = korisnickoIme;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getSifra() {
 		return sifra;
 	}
@@ -106,22 +82,6 @@ public class KorisnikEntity {
 
 	public void setRola(ERoleEntity rola) {
 		this.rola = rola;
-	}
-
-	public String getIme() {
-		return ime;
-	}
-
-	public void setIme(String ime) {
-		this.ime = ime;
-	}
-
-	public String getPrezime() {
-		return prezime;
-	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
 	}
 
 	public boolean isAktivno() {
@@ -142,8 +102,9 @@ public class KorisnikEntity {
 
 	@Override
 	public String toString() {
-		return "KorisnikEntity [id=" + id + ", korisnickoIme=" + korisnickoIme + ", email=" + email + ", sifra=" + sifra
-				+ ", rola=" + rola + ", ime=" + ime + ", prezime=" + prezime + ", aktivno=" + aktivno + ", version="
-				+ version + "]";
+		return "KorisnikEntity [id=" + id + ", korisnickoIme=" + korisnickoIme + ", sifra=" + sifra + ", rola=" + rola
+				+ ", aktivno=" + aktivno + ", version=" + version + "]";
 	}
+
+	
 }
