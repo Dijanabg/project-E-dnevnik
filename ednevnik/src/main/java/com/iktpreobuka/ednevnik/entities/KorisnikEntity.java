@@ -1,20 +1,21 @@
 package com.iktpreobuka.ednevnik.entities;
 
-import com.iktpreobuka.ednevnik.entities.enums.ERoleEntity;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -30,6 +31,8 @@ public class KorisnikEntity {
 	
 	@Column(name = "korisnicko_ime", unique = true)
 	@NotBlank(message = "Korisnicko ime ne moze biti prazno polje")
+	@Size(min=5, max=10, message = "Korisničko ime mora biti između {min} i {max} karaktera dugacko.")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Korisničko ime može sadržati samo slova i brojeve.")
 	private String korisnickoIme;
 	
 	@Column(name = "sifra")
@@ -37,17 +40,16 @@ public class KorisnikEntity {
 	@Size(min=5, max=10, message = "Password must be between {min} and {max} characters long.")
 	private String sifra;
 	
-	@Column(name = "rola")
-	@NotNull(message = "Uloga(rola) mora biti dodeljena.")
-	@Enumerated(EnumType.STRING)
-	private ERoleEntity rola;
-	
 	@Column(name = "aktivno")
 	private boolean aktivno;
 	
 	@Version
 	private Integer version;
 
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "role")
+	private RoleEntity role;
+	
 	public KorisnikEntity() {
 		super();
 	}
@@ -76,14 +78,6 @@ public class KorisnikEntity {
 		this.sifra = sifra;
 	}
 
-	public ERoleEntity getRola() {
-		return rola;
-	}
-
-	public void setRola(ERoleEntity rola) {
-		this.rola = rola;
-	}
-
 	public boolean isAktivno() {
 		return aktivno;
 	}
@@ -102,8 +96,8 @@ public class KorisnikEntity {
 
 	@Override
 	public String toString() {
-		return "KorisnikEntity [id=" + id + ", korisnickoIme=" + korisnickoIme + ", sifra=" + sifra + ", rola=" + rola
-				+ ", aktivno=" + aktivno + ", version=" + version + "]";
+		return "KorisnikEntity [id=" + id + ", korisnickoIme=" + korisnickoIme + ", sifra=" + sifra + ", aktivno="
+				+ aktivno + ", version=" + version + "]";
 	}
 
 	

@@ -16,11 +16,11 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "admin")
-public class AdminEntity extends KorisnikEntity{
+public class AdminEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "nastavnik_id")
+	@Column(name = "admin_id")
     private Integer id;
 
     @OneToOne
