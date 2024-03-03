@@ -54,13 +54,14 @@ public class OcenaEntity {
 	@Version
 	private Integer verzija;
 	
-	
+	//nastavnik koji daje ocenu
 	@NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
 	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "ocenjivac")
 	private NastavnikEntity ocenjivac;
 	
+	//ucenik koji dobija ocenu
 	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn	(name = "ucenik")

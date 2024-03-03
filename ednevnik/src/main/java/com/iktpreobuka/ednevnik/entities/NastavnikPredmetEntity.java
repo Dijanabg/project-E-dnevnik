@@ -21,6 +21,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -31,6 +32,9 @@ public class NastavnikPredmetEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
+	
+	@Version
+	private Integer version;
 	
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -53,6 +57,7 @@ public class NastavnikPredmetEntity {
 	@NotNull(message = "Polugodiste mora biti uneto.")
 	private EPolugodisteEntity polugodiste;
 	
+	//nastavnici koji predaju predmet uceniku
 	@JsonIgnore
 	@OneToMany(mappedBy = "nastavnikPredmet", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<NastavnikPredmetUcenikEntity> nastavnikPredmetUcenik = new ArrayList<>();

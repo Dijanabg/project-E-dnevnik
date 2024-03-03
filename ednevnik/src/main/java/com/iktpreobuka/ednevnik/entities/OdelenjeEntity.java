@@ -56,10 +56,12 @@ public class OdelenjeEntity {
 	@Column(name = "verzija")
 	protected Integer verzija;
 	
+	//ucenici u odelenju
 	@JsonBackReference
 	@OneToMany(mappedBy = "odelenje", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<UcenikEntity> ucenici = new ArrayList<>();
 
+	//nastavnici koji predaju odelenju
 	@JsonBackReference
 	@OneToMany(mappedBy = "razred", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	private List <NastavnikOdelenjeEntity> nastavnici = new ArrayList<>();

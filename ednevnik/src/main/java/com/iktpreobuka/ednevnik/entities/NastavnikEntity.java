@@ -51,24 +51,28 @@ public class NastavnikEntity {
 	message="Email is not valid.")
 	private String email;
 	
+	//predaje predmet
 	@JsonBackReference
 	@OneToMany(mappedBy = "nastavnik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private List<NastavnikPredmetEntity> predajePredmet = new ArrayList<>();
 	
+	//odelenje u kojem predaje !!!!!!!!!!ne znam dal mi treba
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn (name = "odelenje")
 	private OdelenjeEntity odelenje;
 	
-	
+	//predaje odelenju veza
 	@JsonBackReference
 	@OneToMany(mappedBy = "predavac", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();;
 	
+	//predaje ucenicima !!! ne znam dal treba
 //	@JsonBackReference
 //	@OneToMany(mappedBy = "profesor", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 //	private List<NastavnikPredmetUcenikEntity> ucenici = new ArrayList<>();
 	
+	//ocene nastavnika !!! ne znam dal treba
 	@JsonBackReference
 	@OneToMany(mappedBy = "ocenjivac", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private List<OcenaEntity> ocene = new ArrayList<>();

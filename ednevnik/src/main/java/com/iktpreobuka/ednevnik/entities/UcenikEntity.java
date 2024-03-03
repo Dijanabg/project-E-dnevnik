@@ -51,16 +51,19 @@ public class UcenikEntity {
 	message="Email is not valid.")
 	private String email;
 	
+	//roditelj ucenika
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "roditelj")
 	private RoditeljEntity roditelj;
 	
+	//odelenje ucenika
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn	(name = "odelenje")
 	private OdelenjeEntity odelenje;
 	
+	//nastavnici uceniku
 	@JsonBackReference
 	@OneToMany(mappedBy = "ucenik", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<NastavnikPredmetUcenikEntity> nastavnici;

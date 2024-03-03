@@ -44,6 +44,7 @@ public class PredmetEntity {
 	@Version
 	private Integer version;
 	
+	//nastavnici koji predaju predmet
 	@JsonBackReference
 	@OneToMany (mappedBy = "predmet", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<NastavnikPredmetEntity> nastavnici = new ArrayList<>();

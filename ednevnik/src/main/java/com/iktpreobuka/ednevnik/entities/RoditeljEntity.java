@@ -51,6 +51,7 @@ public class RoditeljEntity{
 	message="Email is not valid.")
 	private String email;
 	
+	//deca kojima je roditelj
 	@JsonBackReference
 	//@JsonIgnore
 	@OneToMany(mappedBy = "roditelj", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
