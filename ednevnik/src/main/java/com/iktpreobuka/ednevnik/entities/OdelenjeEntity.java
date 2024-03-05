@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -35,12 +36,6 @@ public class OdelenjeEntity {
 	@Column(name = "aktivno")
 	private boolean aktivno = Boolean.FALSE;
 	
-	@Column(name = "razred")
-	@Min(value = 1, message = "Broj razreda moze biti najmanje {value}")
-	@Max(value = 8, message = "Broj razreda moze biti najvise {value}")
-	@NotNull(message = "Razred mora biti unet.")
-	private Integer razred;
-	
 	@Column(name = "odelenje")
 	@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")
 	@Max(value = 10, message = "Broj odelenja moze biti najvise {value}")
@@ -53,8 +48,13 @@ public class OdelenjeEntity {
 	private SkolskaGodinaEntity skolskaGodina;
 
 	@Version
-	@Column(name = "verzija")
 	protected Integer verzija;
+	
+	//razred
+	@JsonManagedReference
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn	(name = "razred")
+	private RazredEntity razred;
 	
 	//ucenici u odelenju
 	@JsonBackReference
@@ -71,14 +71,13 @@ public class OdelenjeEntity {
 	}
 
 	public OdelenjeEntity(Integer id, boolean aktivno,
-			@Min(value = 1, message = "Broj razreda moze biti najmanje {value}") @Max(value = 8, message = "Broj razreda moze biti najvise {value}") @NotNull(message = "Razred mora biti unet.") Integer razred,
+			@NotNull(message = "Razred mora biti unet.") Integer razred,
 			@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}") @Max(value = 10, message = "Broj odelenja moze biti najvise {value}") @NotNull(message = "Broj odelenja mora biti unet.") Integer odelenje,
 			@NotNull(message = "Školska godina mora biti unesena.") SkolskaGodinaEntity skolskaGodina, Integer verzija,
 			List<UcenikEntity> ucenici, List<NastavnikOdelenjeEntity> nastavnici) {
 		super();
 		this.id = id;
 		this.aktivno = aktivno;
-		this.razred = razred;
 		this.odelenje = odelenje;
 		this.skolskaGodina = skolskaGodina;
 		this.verzija = verzija;
@@ -100,14 +99,6 @@ public class OdelenjeEntity {
 
 	public void setAktivno(boolean aktivno) {
 		this.aktivno = aktivno;
-	}
-
-	public Integer getRazred() {
-		return razred;
-	}
-
-	public void setRazred(Integer razred) {
-		this.razred = razred;
 	}
 
 	public Integer getOdelenje() {
@@ -152,7 +143,7 @@ public class OdelenjeEntity {
 
 	@Override
 	public String toString() {
-		return "OdelenjeEntity [id=" + id + ", aktivno=" + aktivno + ", razred=" + razred + ", odelenje=" + odelenje
+		return "OdelenjeEntity [id=" + id + ", aktivno=" + aktivno + ", odelenje=" + odelenje
 				+ ", skolskaGodina=" + skolskaGodina + ", verzija=" + verzija + ", ucenici=" + ucenici + ", nastavnici="
 				+ nastavnici + "]";
 	}
