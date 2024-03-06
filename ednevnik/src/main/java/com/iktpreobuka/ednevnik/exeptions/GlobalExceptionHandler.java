@@ -27,17 +27,17 @@ public class GlobalExceptionHandler {
         return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
     }
 	
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public ErrorMessage handleAllExceptions(Exception ex) {
-	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
-	}
+//	@ExceptionHandler(Exception.class)
+//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//	public ErrorMessage handleAllExceptions(Exception ex) {
+//	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
+//	}
 
-	@ExceptionHandler(DataAccessException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ErrorMessage handleDataAccessException(DataAccessException ex) {
-	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "Greška prilikom pristupa podacima.");
-	}
+//	@ExceptionHandler(DataAccessException.class)
+//	@ResponseStatus(HttpStatus.BAD_REQUEST)
+//	public ErrorMessage handleDataAccessException(DataAccessException ex) {
+//	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "Greška prilikom pristupa podacima.");
+//	}
 	
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

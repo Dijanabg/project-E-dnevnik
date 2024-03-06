@@ -7,8 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -19,7 +18,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)//dodaje podklase kao tabele
 @Table(name = "korisnik")
 public class KorisnikEntity {
 
@@ -47,7 +45,7 @@ public class KorisnikEntity {
 	private Integer version;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "role")
+	@JoinColumn(name = "role_id") // Ovo treba da odgovara nazivu kolone u bazi
 	private RoleEntity role;
 	
 	public KorisnikEntity() {
@@ -92,6 +90,14 @@ public class KorisnikEntity {
 
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+
+	public RoleEntity getRole() {
+		return role;
+	}
+
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 
 	@Override

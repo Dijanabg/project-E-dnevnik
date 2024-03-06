@@ -32,6 +32,6 @@ public class NastavnikOdelenjeEntity {
 	
 	@JsonManagedReference
 	@ManyToOne (fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	@JoinColumn (name = "razred")
-	private OdelenjeEntity razred;
+	@JoinColumn (name = "odelenje")
+	private OdelenjeEntity odelenje;
 }
