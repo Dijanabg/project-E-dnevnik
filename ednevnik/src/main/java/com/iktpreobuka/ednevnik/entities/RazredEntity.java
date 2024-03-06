@@ -37,4 +37,44 @@ public class RazredEntity {
 	@JsonBackReference
 	@OneToMany(mappedBy = "odelenje", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	protected List<OdelenjeEntity> odelenja = new ArrayList<>();
+
+	public RazredEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public RazredEntity(Integer id,
+			@Min(value = 1, message = "Broj razreda moze biti najmanje {value}") @Max(value = 8, message = "Broj razreda moze biti najvise {value}") @NotNull(message = "Razred mora biti unet.") Integer razred,
+			List<OdelenjeEntity> odelenja) {
+		super();
+		this.id = id;
+		this.razred = razred;
+		this.odelenja = odelenja;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getRazred() {
+		return razred;
+	}
+
+	public void setRazred(Integer razred) {
+		this.razred = razred;
+	}
+
+	public List<OdelenjeEntity> getOdelenja() {
+		return odelenja;
+	}
+
+	public void setOdelenja(List<OdelenjeEntity> odelenja) {
+		this.odelenja = odelenja;
+	}
+	
+	
 }
