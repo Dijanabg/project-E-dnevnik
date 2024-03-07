@@ -71,15 +71,22 @@ public class NastavnikServiceImpl implements NastavnikService{
 
         KorisnikEntity korisnikEntity = korisnikRepository.findById(nastavnik.getKorisnik().getId())
                 .orElseThrow(() -> new EntityNotFoundException("Korisnik nije pronađen!"));
-
+        
         // Ažuriranje korisničkih podataka
         korisnikMapper.updateKorisnikEntityFromDto(nastavnikDTO.getKorisnik(), korisnikEntity);
+        Integer newRoleId = nastavnikDTO.getKorisnik().getRolaId();
+        if (newRoleId != null && !newRoleId.equals(korisnikEntity.getRole().getId())) {
+            RoleEntity newRole = roleRepository.findById(newRoleId)
+                    .orElseThrow(() -> new EntityNotFoundException("Role sa ID-om " + newRoleId + " nije pronađena!"));
+            korisnikEntity.setRole(newRole);
+        }
         korisnikRepository.save(korisnikEntity);
 
         // Ažuriranje nastavničkih podataka
         nastavnikMapper.updateNastavnikEntityFromDto(nastavnikDTO, nastavnik);
+        nastavnik.setKorisnik(korisnikEntity);
         nastavnikRepository.save(nastavnik);
-
+        
         return nastavnikMapper.toDto(nastavnik);
     }
     

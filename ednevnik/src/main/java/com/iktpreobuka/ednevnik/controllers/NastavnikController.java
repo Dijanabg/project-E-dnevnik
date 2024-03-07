@@ -45,8 +45,8 @@ public class NastavnikController {
 
 	    @PutMapping("/{id}")
 	    public ResponseEntity<NastavnikDTO> updateNastavnik(@PathVariable Integer id, @Validated @RequestBody NastavnikDTO nastavnikDTO) {
-	        NastavnikDTO updatedNastavnik = nastavnikService.updateNastavnik(id, nastavnikDTO);
-	        return updatedNastavnik != null ? ResponseEntity.ok(nastavnikService.findById(id)) : ResponseEntity.notFound().build();
+	    	NastavnikDTO updatedNastavnik = nastavnikService.updateNastavnik(id, nastavnikDTO);
+	        return ResponseEntity.ok(updatedNastavnik);
 	    }
 
 	    @DeleteMapping("/{id}")
