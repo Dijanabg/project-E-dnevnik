@@ -115,13 +115,15 @@ public class RoditeljEntity{
 		this.email = email;
 	}
 
-	public List<UcenikEntity> getDete() {
-		return dete;
-	}
+	public void addDete(UcenikEntity dete) {
+        this.dete.add(dete);
+        dete.setRoditelj(this);
+    }
 
-	public void setDete(List<UcenikEntity> dete) {
-		this.dete = dete;
-	}
+    public void removeDete(UcenikEntity dete) {
+        this.dete.remove(dete);
+        dete.setRoditelj(null);
+    }
 
 	@Override
 	public String toString() {

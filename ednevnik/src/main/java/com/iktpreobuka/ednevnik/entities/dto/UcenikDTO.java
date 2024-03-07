@@ -5,23 +5,17 @@ public class UcenikDTO {
     private String ime;
     private String prezime;
     private String email;
-    private Integer korisnikId;
-    private Integer roditeljId;
-    private Integer odelenjeId;
+    private KorisnikDTO korisnik;
 	public UcenikDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public UcenikDTO(Integer id, String ime, String prezime, String email, Integer korisnikId, Integer roditeljId,
-			Integer odelenjeId) {
+	public UcenikDTO(Integer id, String ime, String prezime, String email, KorisnikDTO korisnik) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
-		this.korisnikId = korisnikId;
-		this.roditeljId = roditeljId;
-		this.odelenjeId = odelenjeId;
+		this.korisnik = korisnik;
 	}
 	public Integer getId() {
 		return id;
@@ -47,29 +41,17 @@ public class UcenikDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getKorisnikId() {
-		return korisnikId;
+	public KorisnikDTO getKorisnik() {
+		return korisnik;
 	}
-	public void setKorisnikId(Integer korisnikId) {
-		this.korisnikId = korisnikId;
-	}
-	public Integer getRoditeljId() {
-		return roditeljId;
-	}
-	public void setRoditeljId(Integer roditeljId) {
-		this.roditeljId = roditeljId;
-	}
-	public Integer getOdelenjeId() {
-		return odelenjeId;
-	}
-	public void setOdelenjeId(Integer odelenjeId) {
-		this.odelenjeId = odelenjeId;
+	public void setKorisnik(KorisnikDTO korisnik) {
+		this.korisnik = korisnik;
 	}
 	@Override
 	public String toString() {
-		return "UcenikDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnikId="
-				+ korisnikId + ", roditeljId=" + roditeljId + ", odelenjeId=" + odelenjeId + "]";
+		return "UcenikDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnik="
+				+ korisnik + "]";
 	}
-    
+	
     
 }

@@ -9,17 +9,19 @@ public class RoditeljDTO {
     private String ime;
     private String prezime;
     private String email;
+    private KorisnikDTO korisnik;
     private List<Integer> deteIds = new ArrayList<>();
 	public RoditeljDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public RoditeljDTO(Integer id, String ime, String prezime, String email, List<Integer> deteIds) {
+	public RoditeljDTO(Integer id, String ime, String prezime, String email, KorisnikDTO korisnik,
+			List<Integer> deteIds) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
+		this.korisnik = korisnik;
 		this.deteIds = deteIds;
 	}
 	public Integer getId() {
@@ -46,6 +48,12 @@ public class RoditeljDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public KorisnikDTO getKorisnik() {
+		return korisnik;
+	}
+	public void setKorisnik(KorisnikDTO korisnik) {
+		this.korisnik = korisnik;
+	}
 	public List<Integer> getDeteIds() {
 		return deteIds;
 	}
@@ -54,8 +62,9 @@ public class RoditeljDTO {
 	}
 	@Override
 	public String toString() {
-		return "RoditeljDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", deteIds="
-				+ deteIds + "]";
+		return "RoditeljDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnik="
+				+ korisnik + ", deteIds=" + deteIds + "]";
 	}
+	
     
 }
