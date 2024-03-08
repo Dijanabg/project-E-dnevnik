@@ -8,7 +8,8 @@ public class OdelenjeDTO {
 	private Integer id;
     
 	private boolean aktivno;
-    
+	
+	@NotNull(message = "Razred mora biti unesena.")
     private Integer razred;
     
     @Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")

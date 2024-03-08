@@ -19,7 +19,7 @@ import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.RazredService;
 
 @RestController
-@RequestMapping("/razred")
+@RequestMapping("/ednevnik/razred")
 public class RazredController {
 
 	@Autowired

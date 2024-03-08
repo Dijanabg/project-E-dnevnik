@@ -19,7 +19,7 @@ import com.iktpreobuka.ednevnik.services.SkolskaGodinaService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/skolskaGodina")
+@RequestMapping("/ednevnik/skolskaGodina")
 public class SkolskaGodinaController {
 	
 	@Autowired
