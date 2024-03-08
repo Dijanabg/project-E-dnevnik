@@ -1,8 +1,13 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class SkolskaGodinaDTO {
 	private Integer id;
-    private String oznaka;
+	
+	@NotBlank(message = "Oznaka skolske godine ne moze biti prazno polje")
+	private String oznaka;
+	
 	public SkolskaGodinaDTO() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,11 +1,20 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class PredmetDTO {
 	private Integer id;
-    private String nazivPredmeta;
-    private Integer casovaNedeljno;
-    private String epolugodiste; //  enumeracija se u DTO prenosi kao String za jednostavnost
-    private Integer version;
+    
+	@NotBlank(message = "Naziv predmeta mora biti unet.")
+	private String nazivPredmeta;
+    
+	@NotNull(message = "Fond casova mora biti unet.")
+	private Integer casovaNedeljno;
+    
+	private String epolugodiste; //  enumeracija se u DTO prenosi kao String za jednostavnost
+    
+	private Integer version;
     
 	public PredmetDTO() {
 		super();

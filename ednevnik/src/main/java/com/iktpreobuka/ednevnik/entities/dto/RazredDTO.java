@@ -1,13 +1,17 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.iktpreobuka.ednevnik.security.Views;
+
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 public class RazredDTO {
-	@JsonView(Views.Public.class)
+	
 	private Integer id;
 	
-	@JsonView(Views.Public.class)
+	@Min(value = 1, message = "Broj razreda moze biti najmanje {value}")
+	@Max(value = 8, message = "Broj razreda moze biti najvise {value}")
+	@NotNull(message = "Razred mora biti unet.")
 	private Integer razred;
 	
 	public RazredDTO() {

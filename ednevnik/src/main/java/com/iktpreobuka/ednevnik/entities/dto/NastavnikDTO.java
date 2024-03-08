@@ -1,9 +1,20 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class NastavnikDTO {
 	private Integer id;
+	
+	@NotNull(message = "Ime mora biti uneto.")
     private String ime;
+
+	@NotNull(message = "Prezime mora biti uneto.")
     private String prezime;
+	
+	@NotNull(message = "Email must be provided.")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+	message="Email is not valid.")
     private String email;
     private KorisnikDTO korisnik;
     

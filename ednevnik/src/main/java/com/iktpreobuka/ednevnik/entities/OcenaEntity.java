@@ -5,8 +5,10 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.enums.EAktivnostEntity;
 import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -35,27 +37,29 @@ public class OcenaEntity {
 	private Integer id;
 	
 	@Column(name = "vrednost_ocene")
-	@NotNull(message = "Morate uneti ocenu.")
-	@Size(min=1, max=5, message = "Vrednost ocene mora biti izmedju {min} i {max} karaktera duga.")
+	@JsonView(Views.Public.class)
 	private Integer vrednostOcene;
 	
 	@Column(name = "datum")
 	@JsonFormat(
 			shape = JsonFormat.Shape.STRING,
 			pattern = "dd-MM-yyyy")
+	@JsonView(Views.Public.class)
 	private Date datum;
 	
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Public.class)
 	private EAktivnostEntity aktivnost;
 
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Public.class)
 	private EPolugodisteEntity semestar;
 	
 	@Version
 	private Integer verzija;
 	
 	//nastavnik koji daje ocenu
-	@NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
+	
 	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "ocenjivac")

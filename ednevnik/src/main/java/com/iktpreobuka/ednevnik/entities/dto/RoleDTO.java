@@ -1,8 +1,14 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class RoleDTO {
+	
 	private Integer id;
-    private String name;
+	
+	@NotBlank(message = "Rola ne moze biti prazno polje")
+	private String name;
+	
 	public RoleDTO() {
 		super();
 		// TODO Auto-generated constructor stub

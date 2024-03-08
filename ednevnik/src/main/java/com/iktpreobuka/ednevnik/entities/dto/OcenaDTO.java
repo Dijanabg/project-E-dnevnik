@@ -1,11 +1,20 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class OcenaDTO {
 	private Integer id;
+
+	@NotNull(message = "Morate uneti ocenu.")
+	@Size(min=1, max=5, message = "Vrednost ocene mora biti izmedju {min} i {max} karaktera duga.")
     private Integer vrednostOcene;
+	
     private String datum; // Formatiran kao String za jednostavniji rad
     private String aktivnost;
-    private String semestar;
+    @NotNull(message = "Morate uneti polugodište!")
+    private String polugodiste;
+    @NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
     private Integer ocenjivacId;
     private String ocenjivacIme; // ??
     private Integer ucenikId;
@@ -16,7 +25,7 @@ public class OcenaDTO {
 		super();
 
 	}
-	public OcenaDTO(Integer id, Integer vrednostOcene, String datum, String aktivnost, String semestar,
+	public OcenaDTO(Integer id, Integer vrednostOcene, String datum, String aktivnost, String polugodiste,
 			Integer ocenjivacId, String ocenjivacIme, Integer ucenikId, String ucenikIme,
 			Integer nastavnikPredmetUcenikId) {
 		super();
@@ -24,7 +33,7 @@ public class OcenaDTO {
 		this.vrednostOcene = vrednostOcene;
 		this.datum = datum;
 		this.aktivnost = aktivnost;
-		this.semestar = semestar;
+		this.polugodiste = polugodiste;
 		this.ocenjivacId = ocenjivacId;
 		this.ocenjivacIme = ocenjivacIme;
 		this.ucenikId = ucenikId;
@@ -55,11 +64,11 @@ public class OcenaDTO {
 	public void setAktivnost(String aktivnost) {
 		this.aktivnost = aktivnost;
 	}
-	public String getSemestar() {
-		return semestar;
+	public String getPolugodiste() {
+		return polugodiste;
 	}
-	public void setSemestar(String semestar) {
-		this.semestar = semestar;
+	public void setPolugodiste(String polugodiste) {
+		this.polugodiste = polugodiste;
 	}
 	public Integer getOcenjivacId() {
 		return ocenjivacId;
@@ -94,7 +103,7 @@ public class OcenaDTO {
 	@Override
 	public String toString() {
 		return "OcenaDTO [id=" + id + ", vrednostOcene=" + vrednostOcene + ", datum=" + datum + ", aktivnost="
-				+ aktivnost + ", semestar=" + semestar + ", ocenjivacId=" + ocenjivacId + ", ocenjivacIme="
+				+ aktivnost + ", semestar=" + polugodiste + ", ocenjivacId=" + ocenjivacId + ", ocenjivacIme="
 				+ ocenjivacIme + ", ucenikId=" + ucenikId + ", ucenikIme=" + ucenikIme + ", nastavnikPredmetUcenikId="
 				+ nastavnikPredmetUcenikId + "]";
 	}

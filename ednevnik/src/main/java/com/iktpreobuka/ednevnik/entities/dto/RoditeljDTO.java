@@ -3,12 +3,23 @@ package com.iktpreobuka.ednevnik.entities.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class RoditeljDTO {
 
 	private Integer id;
-    private String ime;
-    private String prezime;
-    private String email;
+    
+	@NotNull(message = "Ime mora biti uneto.")
+	private String ime;
+	
+	@NotNull(message = "Prezime mora biti uneto.")
+	private String prezime;
+    
+	@NotNull(message = "Email must be provided.")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+	message="Email is not valid.")
+	private String email;
     private KorisnikDTO korisnik;
     private List<Integer> deteIds = new ArrayList<>();
 	public RoditeljDTO() {

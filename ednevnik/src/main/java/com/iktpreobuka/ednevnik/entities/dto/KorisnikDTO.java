@@ -1,9 +1,22 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class KorisnikDTO {
 	private Integer id;
+	
+	@NotBlank(message = "Korisnicko ime ne moze biti prazno polje")
+	@Size(min=5, max=10, message = "Korisničko ime mora biti između {min} i {max} karaktera dugacko.")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Korisničko ime može sadržati samo slova i brojeve.")
     private String korisnickoIme;
+	
+	@NotNull(message = "Password must be provided.")
+	@Size(min=5, max=10, message = "Password must be between {min} and {max} characters long.")
     private String sifra;
+	
     private Integer rolaId;
     
 	public KorisnikDTO() {

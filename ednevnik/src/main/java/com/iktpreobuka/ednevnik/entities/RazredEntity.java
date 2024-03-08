@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,9 +31,7 @@ public class RazredEntity {
 	private Integer id;
 	
 	@Column(name = "razred")
-	@Min(value = 1, message = "Broj razreda moze biti najmanje {value}")
-	@Max(value = 8, message = "Broj razreda moze biti najvise {value}")
-	@NotNull(message = "Razred mora biti unet.")
+	@JsonView(Views.Public.class)
 	private Integer razred;
 	
 	@JsonBackReference

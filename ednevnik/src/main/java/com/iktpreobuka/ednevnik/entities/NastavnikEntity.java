@@ -33,17 +33,12 @@ public class NastavnikEntity {
     private KorisnikEntity korisnik;
     
     @Column(name = "ime")
-	@NotNull(message = "Ime mora biti uneto.")
 	private String ime;
 
 	@Column(name = "prezime")
-	@NotNull(message = "Prezime mora biti uneto.")
 	private String prezime;
 	
 	@Column(name = "email", unique = true)
-	@NotNull(message = "Email must be provided.")
-	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
-	message="Email is not valid.")
 	private String email;
 	
 	//predaje predmet

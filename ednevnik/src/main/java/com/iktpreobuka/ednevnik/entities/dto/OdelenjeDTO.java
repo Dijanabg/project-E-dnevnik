@@ -1,11 +1,24 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class OdelenjeDTO {
 	private Integer id;
-    private boolean aktivno;
+    
+	private boolean aktivno;
+    
     private Integer razred;
-    private Integer odelenje;
-    private Integer skolskaGodinaId; // Samo ID školske godine, da se izbegne ciklična zavisnost
+    
+    @Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")
+	@Max(value = 10, message = "Broj odelenja moze biti najvise {value}")
+	@NotNull(message = "Broj odelenja mora biti unet.")
+	private Integer odelenje;
+    
+    @NotNull(message = "Školska godina mora biti unesena.")
+	private Integer skolskaGodinaId; // Samo ID školske godine, da se izbegne ciklična zavisnost
+    
     private Integer verzija;
     
 	public OdelenjeDTO() {

@@ -13,7 +13,6 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)//dodaje podklase kao tabele
@@ -26,7 +25,6 @@ public class RoleEntity {
 	private Integer id;
 	
 	@Column(name = "role_name", unique = true)
-	@NotBlank(message = "Rola ne moze biti prazno polje")
 	private String name;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

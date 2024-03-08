@@ -29,11 +29,9 @@ public class AdminEntity{
     private KorisnikEntity korisnik;
     
     @Column(name = "ime")
-	@NotNull(message = "Ime mora biti uneto.")
 	private String ime;
 
 	@Column(name = "prezime")
-	@NotNull(message = "Prezime mora biti uneto.")
 	private String prezime;
 	
 	public AdminEntity() {

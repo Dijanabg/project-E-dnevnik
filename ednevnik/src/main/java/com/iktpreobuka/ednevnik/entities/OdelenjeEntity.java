@@ -37,14 +37,10 @@ public class OdelenjeEntity {
 	private boolean aktivno = Boolean.FALSE;
 	
 	@Column(name = "odelenje")
-	@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")
-	@Max(value = 10, message = "Broj odelenja moze biti najvise {value}")
-	@NotNull(message = "Broj odelenja mora biti unet.")
 	private Integer odelenje;
 	
 	@ManyToOne
 	@JoinColumn(name = "skolska_godina_id") // Ovo predstavlja ime kolone u tabeli 'odelenje' koja referencira 'id' kolonu u tabeli 'skolska_godina'
-	@NotNull(message = "Školska godina mora biti unesena.")
 	private SkolskaGodinaEntity skolskaGodina;
 
 	@Version

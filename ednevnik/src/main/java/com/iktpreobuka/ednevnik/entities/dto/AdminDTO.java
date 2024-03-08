@@ -1,9 +1,15 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class AdminDTO {
 	private Integer id;
-    private String ime;
-    private String prezime;
+    
+	@NotNull(message = "Ime mora biti uneto.")
+	private String ime;
+    
+	@NotNull(message = "Prezime mora biti uneto.")
+	private String prezime;
     
 	public AdminDTO() {
 		super();

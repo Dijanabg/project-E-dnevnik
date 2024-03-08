@@ -17,8 +17,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -31,11 +29,9 @@ public class PredmetEntity {
 	private Integer id;
 	
 	@Column(name = "naziv_predmeta")
-	@NotBlank(message = "Naziv predmeta mora biti unet.")
 	private String nazivPredmeta;
 	
 	@Column(name = "fond")
-	@NotNull(message = "Fond casova mora biti unet.")
 	private Integer casovaNedeljno;
 	
 	@Column(name = "polugodiste")

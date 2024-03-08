@@ -28,7 +28,6 @@ public class SkolskaGodinaEntity {
 	private Integer id;
 	
 	@Column(name = "oznaka")
-	@NotBlank(message = "Oznaka skolske godine ne moze biti prazno polje")
 	private String oznaka;
 	
 	@OneToMany(mappedBy = "skolskaGodina")
