@@ -1,5 +1,8 @@
 package com.iktpreobuka.ednevnik.mappers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,5 +53,13 @@ public class KorisnikMapper {
         if (dto.getSifra() != null) {
             entity.setSifra(dto.getSifra());
         }
+        if (dto.getRolaId() != null) {
+            RoleEntity role = roleRepository.findById(dto.getRolaId()).orElse(null);
+            entity.setRole(role);
+        }
+    }
+	
+	public List<KorisnikDTO> toDtoList(List<KorisnikEntity> entityList) {
+        return entityList.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

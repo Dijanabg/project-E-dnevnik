@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,44 +19,41 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "odelenje")
+@Table(name = "odelenje", uniqueConstraints = {
+	    @UniqueConstraint(columnNames = {"razred_id", "odelenje"})
+	})
 public class OdelenjeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "odelenje_id")
+	@JsonView(Views.Admin.class)
 	private Integer id;
-	
-	@Column(name = "aktivno")
-	private boolean aktivno = Boolean.FALSE;
 	
 	@Column(name = "odelenje")
 	private Integer odelenje;
-	
-	@ManyToOne
-	@JoinColumn(name = "skolska_godina_id") // Ovo predstavlja ime kolone u tabeli 'odelenje' koja referencira 'id' kolonu u tabeli 'skolska_godina'
-	private SkolskaGodinaEntity skolskaGodina;
 
 	@Version
-	protected Integer verzija;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "razredni_staresina_id")
-    private NastavnikEntity razredniStaresina;
+	protected Integer version;
 	
 	//razred
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn	(name = "razred")
+	@JoinColumn	(name = "razred_id")
+	@JsonView(Views.Public.class)
 	private RazredEntity razred;
+	
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "razredniStaresina")
+	@JsonView(Views.Public.class)
+	private NastavnikEntity razredniStaresina;
 	
 	//ucenici u odelenju
 	@JsonBackReference
@@ -72,19 +71,14 @@ public class OdelenjeEntity {
 	}
 
 
-	public OdelenjeEntity(Integer id, boolean aktivno,
-			@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}") @Max(value = 10, message = "Broj odelenja moze biti najvise {value}") @NotNull(message = "Broj odelenja mora biti unet.") Integer odelenje,
-			@NotNull(message = "Školska godina mora biti unesena.") SkolskaGodinaEntity skolskaGodina, Integer verzija,
-			NastavnikEntity razredniStaresina, RazredEntity razred, List<UcenikEntity> ucenici,
-			List<NastavnikOdelenjeEntity> nastavnici) {
+	public OdelenjeEntity(Integer id, Integer odelenje, Integer version, RazredEntity razred,
+			NastavnikEntity razredniStaresina, List<UcenikEntity> ucenici, List<NastavnikOdelenjeEntity> nastavnici) {
 		super();
 		this.id = id;
-		this.aktivno = aktivno;
 		this.odelenje = odelenje;
-		this.skolskaGodina = skolskaGodina;
-		this.verzija = verzija;
-		this.razredniStaresina = razredniStaresina;
+		this.version = version;
 		this.razred = razred;
+		this.razredniStaresina = razredniStaresina;
 		this.ucenici = ucenici;
 		this.nastavnici = nastavnici;
 	}
@@ -100,16 +94,6 @@ public class OdelenjeEntity {
 	}
 
 
-	public boolean isAktivno() {
-		return aktivno;
-	}
-
-
-	public void setAktivno(boolean aktivno) {
-		this.aktivno = aktivno;
-	}
-
-
 	public Integer getOdelenje() {
 		return odelenje;
 	}
@@ -120,33 +104,13 @@ public class OdelenjeEntity {
 	}
 
 
-	public SkolskaGodinaEntity getSkolskaGodina() {
-		return skolskaGodina;
+	public Integer getVersion() {
+		return version;
 	}
 
 
-	public void setSkolskaGodina(SkolskaGodinaEntity skolskaGodina) {
-		this.skolskaGodina = skolskaGodina;
-	}
-
-
-	public Integer getVerzija() {
-		return verzija;
-	}
-
-
-	public void setVerzija(Integer verzija) {
-		this.verzija = verzija;
-	}
-
-
-	public NastavnikEntity getRazredniStaresina() {
-		return razredniStaresina;
-	}
-
-
-	public void setRazredniStaresina(NastavnikEntity razredniStaresina) {
-		this.razredniStaresina = razredniStaresina;
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 
@@ -157,6 +121,16 @@ public class OdelenjeEntity {
 
 	public void setRazred(RazredEntity razred) {
 		this.razred = razred;
+	}
+
+
+	public NastavnikEntity getRazredniStaresina() {
+		return razredniStaresina;
+	}
+
+
+	public void setRazredniStaresina(NastavnikEntity razredniStaresina) {
+		this.razredniStaresina = razredniStaresina;
 	}
 
 
@@ -178,5 +152,14 @@ public class OdelenjeEntity {
 	public void setNastavnici(List<NastavnikOdelenjeEntity> nastavnici) {
 		this.nastavnici = nastavnici;
 	}
+
+
+	@Override
+	public String toString() {
+		return "OdelenjeEntity [id=" + id + ", odelenje=" + odelenje + ", version=" + version + ", razred=" + razred
+				+ ", razredniStaresina=" + razredniStaresina + ", ucenici=" + ucenici + ", nastavnici=" + nastavnici
+				+ "]";
+	}
+
 
 }

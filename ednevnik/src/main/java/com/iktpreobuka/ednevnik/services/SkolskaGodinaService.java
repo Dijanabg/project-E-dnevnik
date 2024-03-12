@@ -1,17 +1,20 @@
 package com.iktpreobuka.ednevnik.services;
 
-import com.iktpreobuka.ednevnik.entities.SkolskaGodinaEntity;
+import java.util.List;
+
 import com.iktpreobuka.ednevnik.entities.dto.SkolskaGodinaDTO;
 
 public interface SkolskaGodinaService {
-	
+
+	List<SkolskaGodinaDTO> findAll();
+
+	SkolskaGodinaDTO save(SkolskaGodinaDTO skolskaGodinaDTO);
+
 	SkolskaGodinaDTO findById(Integer id);
+
+	SkolskaGodinaDTO update(Integer id, SkolskaGodinaDTO skolskaGodinaDTO);
+
+	void deleteById(Integer id);
 	
-    Iterable<SkolskaGodinaEntity> findAll();
-    
-    SkolskaGodinaDTO saveSkolskaGodina(SkolskaGodinaDTO skolskaGodinaDTO);
-    
-    SkolskaGodinaDTO updateSkolskaGodina(Integer id, SkolskaGodinaDTO skolskaGodinaDTO);
-    
-    void deleteSkolskaGodina(Integer id);
+	
 }

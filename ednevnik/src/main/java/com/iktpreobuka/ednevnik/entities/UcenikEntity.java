@@ -2,9 +2,11 @@ package com.iktpreobuka.ednevnik.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,12 +17,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.Version;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -28,59 +27,66 @@ import jakarta.validation.constraints.Pattern;
 public class UcenikEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ucenik_id")
+	@JsonView(Views.Admin.class)
     private Integer id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private KorisnikEntity korisnik;
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "korisnik_id", unique = true)
+    private KorisnikEntity korisnikUcenik;
     
     @Column(name = "ime")
+    @JsonView(Views.Public.class)
 	private String ime;
 
 	@Column(name = "prezime")
+	@JsonView(Views.Public.class)
 	private String prezime;
     
 	@Column(name = "email", unique = true)
+	@JsonView(Views.Public.class)
 	private String email;
 	
 	//roditelj ucenika
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "roditelj")
+	@JoinColumn(name = "roditelj_id", unique = true)
+	@JsonView(Views.Private.class)
 	private RoditeljEntity roditelj;
+	
+	@Version
+	protected Integer version;
 	
 	//odelenje ucenika
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn	(name = "odelenje")
+	@JsonView(Views.Public.class)
+	@JoinColumn(name = "odelenje_id")
 	private OdelenjeEntity odelenje;
-	
-	//nastavnici uceniku
-	@JsonBackReference
-	@OneToMany(mappedBy = "ucenik", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	protected List<NastavnikPredmetUcenikEntity> nastavnici;
 
+	//ocene ucenika
+	@OneToMany(mappedBy = "ucenik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@JsonView(Views.Private.class)
+	private List<OcenaEntity> ocene;
+	
 	public UcenikEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public UcenikEntity(Integer id, KorisnikEntity korisnik, @NotNull(message = "Ime mora biti uneto.") String ime,
-			@NotNull(message = "Prezime mora biti uneto.") String prezime,
-			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
-			RoditeljEntity roditelj, OdelenjeEntity odelenje, List<NastavnikPredmetUcenikEntity> nastavnici) {
+	public UcenikEntity(Integer id, KorisnikEntity korisnikUcenik, String ime, String prezime, String email,
+			RoditeljEntity roditelj, Integer version, OdelenjeEntity odelenje, List<OcenaEntity> ocene) {
 		super();
 		this.id = id;
-		this.korisnik = korisnik;
+		this.korisnikUcenik = korisnikUcenik;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
 		this.roditelj = roditelj;
+		this.version = version;
 		this.odelenje = odelenje;
-		this.nastavnici = nastavnici;
+		this.ocene = ocene;
 	}
 
 	public Integer getId() {
@@ -91,12 +97,12 @@ public class UcenikEntity {
 		this.id = id;
 	}
 
-	public KorisnikEntity getKorisnik() {
-		return korisnik;
+	public KorisnikEntity getKorisnikUcenik() {
+		return korisnikUcenik;
 	}
 
-	public void setKorisnik(KorisnikEntity korisnik) {
-		this.korisnik = korisnik;
+	public void setKorisnikUcenik(KorisnikEntity korisnikUcenik) {
+		this.korisnikUcenik = korisnikUcenik;
 	}
 
 	public String getIme() {
@@ -131,6 +137,14 @@ public class UcenikEntity {
 		this.roditelj = roditelj;
 	}
 
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 	public OdelenjeEntity getOdelenje() {
 		return odelenje;
 	}
@@ -139,21 +153,20 @@ public class UcenikEntity {
 		this.odelenje = odelenje;
 	}
 
-	public List<NastavnikPredmetUcenikEntity> getNastavnici() {
-		return nastavnici;
+	public List<OcenaEntity> getOcene() {
+		return ocene;
 	}
 
-	public void setNastavnici(List<NastavnikPredmetUcenikEntity> nastavnici) {
-		this.nastavnici = nastavnici;
+	public void setOcene(List<OcenaEntity> ocene) {
+		this.ocene = ocene;
 	}
 
 	@Override
 	public String toString() {
-		return "UcenikEntity [id=" + id + ", korisnik=" + korisnik + ", ime=" + ime + ", prezime=" + prezime
-				+ ", email=" + email + ", roditelj=" + roditelj + ", odelenje=" + odelenje + ", nastavnici="
-				+ nastavnici + "]";
+		return "UcenikEntity [id=" + id + ", korisnikUcenik=" + korisnikUcenik + ", ime=" + ime + ", prezime=" + prezime
+				+ ", email=" + email + ", roditelj=" + roditelj + ", version=" + version + ", odelenje=" + odelenje
+				+ ", ocene=" + ocene + "]";
 	}
-	
-	
 
+	
 }

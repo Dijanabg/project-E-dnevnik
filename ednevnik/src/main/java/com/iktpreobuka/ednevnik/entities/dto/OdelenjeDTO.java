@@ -6,10 +6,8 @@ import jakarta.validation.constraints.NotNull;
 
 public class OdelenjeDTO {
 	private Integer id;
-    
-	private boolean aktivno;
 	
-	@NotNull(message = "Razred mora biti unesena.")
+	@NotNull(message = "Razred mora biti unet.")
     private Integer razred;
     
     @Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")
@@ -17,24 +15,23 @@ public class OdelenjeDTO {
 	@NotNull(message = "Broj odelenja mora biti unet.")
 	private Integer odelenje;
     
-    @NotNull(message = "Školska godina mora biti unesena.")
-	private Integer skolskaGodinaId; // Samo ID školske godine, da se izbegne ciklična zavisnost
+    private Integer version;
     
-    private Integer verzija;
+    private NastavnikDTO razredniStaresina;
     
 	public OdelenjeDTO() {
 		super();
 	}
 
-	public OdelenjeDTO(Integer id, boolean aktivno, Integer razred, Integer odelenje, Integer skolskaGodinaId,
-			Integer verzija) {
+	public OdelenjeDTO(Integer id, @NotNull(message = "Razred mora biti unet.") Integer razred,
+			@Min(value = 1, message = "Broj odelenja moze biti najmanje {value}") @Max(value = 10, message = "Broj odelenja moze biti najvise {value}") @NotNull(message = "Broj odelenja mora biti unet.") Integer odelenje,
+			Integer version, NastavnikDTO razredniStaresina) {
 		super();
 		this.id = id;
-		this.aktivno = aktivno;
 		this.razred = razred;
 		this.odelenje = odelenje;
-		this.skolskaGodinaId = skolskaGodinaId;
-		this.verzija = verzija;
+		this.version = version;
+		this.razredniStaresina = razredniStaresina;
 	}
 
 	public Integer getId() {
@@ -43,14 +40,6 @@ public class OdelenjeDTO {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public boolean isAktivno() {
-		return aktivno;
-	}
-
-	public void setAktivno(boolean aktivno) {
-		this.aktivno = aktivno;
 	}
 
 	public Integer getRazred() {
@@ -69,27 +58,27 @@ public class OdelenjeDTO {
 		this.odelenje = odelenje;
 	}
 
-	public Integer getSkolskaGodinaId() {
-		return skolskaGodinaId;
+	public Integer getVersion() {
+		return version;
 	}
 
-	public void setSkolskaGodinaId(Integer skolskaGodinaId) {
-		this.skolskaGodinaId = skolskaGodinaId;
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
-	public Integer getVerzija() {
-		return verzija;
+	public NastavnikDTO getRazredniStaresina() {
+		return razredniStaresina;
 	}
 
-	public void setVerzija(Integer verzija) {
-		this.verzija = verzija;
+	public void setRazredniStaresina(NastavnikDTO razredniStaresina) {
+		this.razredniStaresina = razredniStaresina;
 	}
 
 	@Override
 	public String toString() {
-		return "OdelenjeDTO [id=" + id + ", aktivno=" + aktivno + ", razred=" + razred + ", odelenje=" + odelenje
-				+ ", skolskaGodinaId=" + skolskaGodinaId + ", verzija=" + verzija + "]";
+		return "OdelenjeDTO [id=" + id + ", razred=" + razred + ", odelenje=" + odelenje + ", version=" + version
+				+ ", razredniStaresina=" + razredniStaresina + "]";
 	}
-    
-    
+
+	
 }

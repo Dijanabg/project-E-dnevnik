@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.RoditeljEntity;
-import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
+import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
 
 @Component
 public class RoditeljMapper {
 
 	@Autowired
-	private KorisnikMapper korisnikMapper;
+	private KorisnikRepository korisnikRepository;
 	
 	public RoditeljEntity toEntity(RoditeljDTO dto) {
 		RoditeljEntity entity = new RoditeljEntity();
@@ -23,9 +23,9 @@ public class RoditeljMapper {
         entity.setIme(dto.getIme());
         entity.setPrezime(dto.getPrezime());
         entity.setEmail(dto.getEmail());
-        if (dto.getKorisnik() != null) {
-            KorisnikEntity korisnikEntity = korisnikMapper.toEntity(dto.getKorisnik());
-            entity.setKorisnik(korisnikEntity);
+        if (dto.getKorisnikId() != null) {
+            KorisnikEntity korisnik = korisnikRepository.findById(dto.getKorisnikId()).orElse(null);
+            entity.setKorisnikRoditelj(korisnik);
         }
         return entity;
 	}
@@ -37,9 +37,8 @@ public class RoditeljMapper {
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
         
-        if (entity.getKorisnik() != null) {
-            KorisnikDTO korisnikDTO = korisnikMapper.toDto(entity.getKorisnik());
-            dto.setKorisnik(korisnikDTO);
+        if (entity.getKorisnikRoditelj() != null) {
+            dto.setKorisnikId(entity.getKorisnikRoditelj().getId());
         }
         
         return dto;

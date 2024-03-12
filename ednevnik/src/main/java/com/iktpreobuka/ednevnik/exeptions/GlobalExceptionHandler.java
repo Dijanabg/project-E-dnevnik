@@ -3,6 +3,7 @@ package com.iktpreobuka.ednevnik.exeptions;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
@@ -53,6 +54,16 @@ public class GlobalExceptionHandler {
 	                             .collect(Collectors.joining(", "));
 	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), errorMessage);
 	}
+	
+//	@ExceptionHandler(DataIntegrityViolationException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public ErrorMessage handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+//        // Provera specifičnog uzroka može biti složena i zavisna od upotrebljenog DBMS-a (MySQL, PostgreSQL, itd.)
+//        // Sledeća poruka je opšta. Možete razmotriti parsiranje poruke izuzetka da biste dobili detaljnije informacije.
+//        String message = "Operacija nije uspela zbog kršenja ograničenja integriteta podataka. Molimo proverite unos.";
+//        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
+//    }
+	
     // Klasa za formatiranje poruke o grešci
     public static class ErrorMessage {
         private int statusCode;

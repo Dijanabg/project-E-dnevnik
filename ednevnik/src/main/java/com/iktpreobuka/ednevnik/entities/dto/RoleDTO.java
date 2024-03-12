@@ -1,23 +1,27 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class RoleDTO {
 	
 	private Integer id;
 	
 	@NotBlank(message = "Rola ne moze biti prazno polje")
+	@Size(min = 3, max = 20, message = "Ime role mora biti između {min} i {max} karaktera.")
 	private String name;
 	
 	public RoleDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public RoleDTO(Integer id, String name) {
+	
+	public RoleDTO(Integer id,
+			@NotBlank(message = "Rola ne moze biti prazno polje") @Size(min = 3, max = 20, message = "Ime role mora biti između {min} i {max} karaktera.") String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+
 	public Integer getId() {
 		return id;
 	}

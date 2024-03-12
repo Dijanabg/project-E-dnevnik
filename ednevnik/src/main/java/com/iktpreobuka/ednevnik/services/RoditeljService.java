@@ -3,18 +3,29 @@ package com.iktpreobuka.ednevnik.services;
 import java.util.List;
 
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
+import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 
 public interface RoditeljService {
+
+	List<RoditeljDTO> findAll();
+
+	RoditeljDTO save(RoditeljDTO roditeljDTO);
+
+	RoditeljDTO findById(Integer id);
+
+	RoditeljDTO update(Integer id, RoditeljDTO roditeljDTO);
 	
-	RoditeljDTO saveRoditelj(RoditeljDTO roditeljDTO);
+	void deleteById(Integer id);
+
+	RoditeljDTO addDeteToRoditelj(Integer roditeljId, Integer deteId);
+
+	void removeDeteFromRoditelj(Integer roditeljId, Integer deteId);
+
+	RoditeljDTO createRoditeljWithDete(RoditeljDTO roditeljDTO);
+
+	List<UcenikDTO> findDecaByRoditeljId(Integer roditeljId);
+
 	
-    List<RoditeljDTO> findAll();
-    
-    RoditeljDTO findById(Integer id);
-    
-    RoditeljDTO updateNastavnik(Integer roditeljId, RoditeljDTO roditeljDTO);
-    
-    void delete(Integer id);
-    
-    List<RoditeljDTO> findByImeAndPrezime(String ime, String prezime);
+	
+	
 }

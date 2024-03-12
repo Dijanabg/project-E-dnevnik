@@ -8,4 +8,6 @@ import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 
 public interface UcenikRepository extends CrudRepository<UcenikEntity, Integer>{
 	List<UcenikEntity> findByImeAndPrezime(String ime, String prezime);
+	
+	 List<UcenikEntity> findByRoditeljId(Integer roditeljId);
 }

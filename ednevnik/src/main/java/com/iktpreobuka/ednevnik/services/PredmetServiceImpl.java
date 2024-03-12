@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iktpreobuka.ednevnik.entities.PredmetEntity;
+import com.iktpreobuka.ednevnik.entities.RazredEntity;
 import com.iktpreobuka.ednevnik.entities.dto.PredmetDTO;
-import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
 import com.iktpreobuka.ednevnik.mappers.PredmetMapper;
 import com.iktpreobuka.ednevnik.repositories.PredmetRepository;
+import com.iktpreobuka.ednevnik.repositories.RazredRepository;
 
 @Service
 public class PredmetServiceImpl implements PredmetService{
@@ -19,52 +20,62 @@ public class PredmetServiceImpl implements PredmetService{
     private PredmetRepository predmetRepository;
 
     @Autowired
+    private RazredRepository razredRepository;
+
+    @Autowired
     private PredmetMapper predmetMapper;
-    
-	@Override
-	@Transactional
-	public PredmetDTO savePredmet(PredmetDTO predmetDTO) {
-		PredmetEntity predmetEntity = predmetMapper.toEntity(predmetDTO);
+
+    @Override
+    public List<PredmetDTO> getAllPredmeti() {
+        List<PredmetEntity> predmetEntities = (List<PredmetEntity>) predmetRepository.findAll();
+        return predmetMapper.toDtoList(predmetEntities);
+    }
+
+    // Dodavanje predmeta
+    @Override
+    @Transactional
+    public PredmetDTO save(PredmetDTO predmetDTO) {
+        PredmetEntity predmetEntity = predmetMapper.toEntity(predmetDTO);
         predmetEntity = predmetRepository.save(predmetEntity);
         return predmetMapper.toDto(predmetEntity);
-	}
+    }
 
-	@Override
-	public List<PredmetDTO> findAll() {
-		List<PredmetEntity> predmeti = (List<PredmetEntity>) predmetRepository.findAll();
-		return predmetMapper.toDtoList(predmeti);
-	}
-
-	@Override
-	public PredmetDTO findById(Integer id) {
-		PredmetEntity predmetEntity = predmetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Predmet nije pronadjen!")); 
+    @Override
+    public PredmetDTO findById(Integer id) {
+        PredmetEntity predmetEntity = predmetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Predmet not found"));
         return predmetMapper.toDto(predmetEntity);
-	}
+    }
 
-	@Override
-	@Transactional
-	public PredmetDTO updatePredmet(Integer id, PredmetDTO predmetDTO) {
-		PredmetEntity predmet = predmetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Predmet not found!")); // Consider a more specific exception
-        
-        // azuriranje
-        predmet.setNazivPredmeta(predmetDTO.getNazivPredmeta());
-        predmet.setCasovaNedeljno(predmetDTO.getCasovaNedeljno());
-        // da li treba polugodiste?
-        
-        if (predmetDTO.getEpolugodiste() != null && !predmetDTO.getEpolugodiste().isEmpty()) {
-            predmet.setEpolugodiste(EPolugodisteEntity.valueOf(predmetDTO.getEpolugodiste()));
+    // Azuriranje predmeta
+    @Override
+    @Transactional
+    public PredmetDTO update(Integer id, PredmetDTO predmetDTO) {
+        PredmetEntity existingPredmet = predmetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Predmet not found"));
+        // Mapirajte promene iz DTO u postojeći entitet, osim ID-a
+        existingPredmet.setNazivPredmeta(predmetDTO.getNazivPredmeta());
+        existingPredmet.setCasovaNedeljno(predmetDTO.getCasovaNedeljno());
+        // Ažurirajte referencu na razred ako je promenjena
+        if (predmetDTO.getRazredId() != null && !existingPredmet.getRazred().getId().equals(predmetDTO.getRazredId())) {
+            RazredEntity razred = razredRepository.findById(predmetDTO.getRazredId())
+                    .orElseThrow(() -> new RuntimeException("Razred not found"));
+            existingPredmet.setRazred(razred);
         }
-        
-        predmet = predmetRepository.save(predmet);
-        return predmetMapper.toDto(predmet);
-	}
+        existingPredmet = predmetRepository.save(existingPredmet);
+        return predmetMapper.toDto(existingPredmet);
+    }
 
-	@Override
-	public void delete(Integer id) {
-		predmetRepository.deleteById(id);
-		
-	}
-
+    @Override
+    public void delete(Integer id) {
+        PredmetEntity predmetEntity = predmetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Predmet not found"));
+        predmetRepository.delete(predmetEntity);
+    }
+    
+    @Override
+    public List<PredmetDTO> findPredmetiByRazredId(Integer razredId) {
+        List<PredmetEntity> predmeti = predmetRepository.findByRazredId(razredId);
+        return predmetMapper.toDtoList(predmeti);
+    }
 }

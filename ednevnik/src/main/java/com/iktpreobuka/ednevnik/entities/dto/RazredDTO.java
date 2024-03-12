@@ -14,21 +14,40 @@ public class RazredDTO {
 	@NotNull(message = "Razred mora biti unet.")
 	private Integer razred;
 	
+	@NotNull(message = "Školska godina mora biti uneta.")
+    private Integer skolskaGodinaId;
+	
 	public RazredDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Integer getRazred() {
 		return razred;
 	}
+
 	public void setRazred(Integer razred) {
 		this.razred = razred;
+	}
+
+	public Integer getSkolskaGodinaId() {
+		return skolskaGodinaId;
+	}
+
+	public void setSkolskaGodinaId(Integer skolskaGodinaId) {
+		this.skolskaGodinaId = skolskaGodinaId;
+	}
+
+	@Override
+	public String toString() {
+		return "RazredDTO [id=" + id + ", razred=" + razred + ", skolskaGodinaId=" + skolskaGodinaId + "]";
 	}
 	
 }

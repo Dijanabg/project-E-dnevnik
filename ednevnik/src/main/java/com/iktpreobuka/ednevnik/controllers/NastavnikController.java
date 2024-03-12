@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
@@ -25,40 +24,34 @@ public class NastavnikController {
 		@Autowired
 		private NastavnikService nastavnikService;
 		
-	    @PostMapping
-	    public ResponseEntity<NastavnikDTO> saveNastavnik(@Validated @RequestBody NastavnikDTO nastavnikDTO) {
-	        NastavnikDTO savedNastavnik = nastavnikService.saveNastavnik(nastavnikDTO);
-	        return new ResponseEntity<>(savedNastavnik, HttpStatus.CREATED);
-	    }
-
-	    @GetMapping
-	    public ResponseEntity<List<NastavnikDTO>> findAll() {
+		@GetMapping
+	    public ResponseEntity<List<NastavnikDTO>> getAllNastavnici() {
 	        List<NastavnikDTO> nastavnici = nastavnikService.findAll();
 	        return new ResponseEntity<>(nastavnici, HttpStatus.OK);
 	    }
 
 	    @GetMapping("/{id}")
-	    public ResponseEntity<NastavnikDTO> findById(@PathVariable Integer id) {
+	    public ResponseEntity<NastavnikDTO> getNastavnikById(@PathVariable Integer id) {
 	        NastavnikDTO nastavnikDTO = nastavnikService.findById(id);
-	        return nastavnikDTO != null ? ResponseEntity.ok(nastavnikDTO) : ResponseEntity.notFound().build();
+	        return new ResponseEntity<>(nastavnikDTO, HttpStatus.OK);
+	    }
+
+	    @PostMapping
+	    public ResponseEntity<NastavnikDTO> createNastavnik(@Validated @RequestBody NastavnikDTO nastavnikDTO) {
+	        NastavnikDTO newNastavnikDTO = nastavnikService.save(nastavnikDTO);
+	        return new ResponseEntity<>(newNastavnikDTO, HttpStatus.CREATED);
 	    }
 
 	    @PutMapping("/{id}")
-	    public ResponseEntity<NastavnikDTO> updateNastavnik(@PathVariable Integer id, @Validated @RequestBody NastavnikDTO nastavnikDTO) {
-	    	NastavnikDTO updatedNastavnik = nastavnikService.updateNastavnik(id, nastavnikDTO);
-	        return ResponseEntity.ok(updatedNastavnik);
+	    public ResponseEntity<NastavnikDTO> updateNastavnik(@PathVariable Integer id,@Validated @RequestBody NastavnikDTO nastavnikDTO) {
+	        NastavnikDTO updatedNastavnikDTO = nastavnikService.update(id, nastavnikDTO);
+	        return new ResponseEntity<>(updatedNastavnikDTO, HttpStatus.OK);
 	    }
 
 	    @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> deleteNastavnik(@PathVariable Integer id) {
-	        nastavnikService.delete(id);
-	        return ResponseEntity.noContent().build();
-	    }
-	    
-	    @GetMapping("/pretraga")
-	    public ResponseEntity<List<NastavnikDTO>> findByImeAndPrezime(@RequestParam String ime, @RequestParam String prezime) {
-	        List<NastavnikDTO> nastavnici = nastavnikService.findByImeAndPrezime(ime, prezime);
-	        return ResponseEntity.ok(nastavnici);
+	        nastavnikService.deleteById(id);
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	    }
 	
 }

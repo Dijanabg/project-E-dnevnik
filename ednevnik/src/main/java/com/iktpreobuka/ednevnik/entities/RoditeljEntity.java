@@ -15,12 +15,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.Version;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -28,14 +26,13 @@ import jakarta.validation.constraints.Pattern;
 public class RoditeljEntity{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roditelj_id")
     private Integer id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private KorisnikEntity korisnik;
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "korisnik_id", unique = true)
+    private KorisnikEntity korisnikRoditelj;
     
     @Column(name = "ime")
 	private String ime;
@@ -46,6 +43,9 @@ public class RoditeljEntity{
 	@Column(name = "email", unique = true)
 	private String email;
 	
+	@Version
+	protected Integer version;
+	
 	//deca kojima je roditelj
 	@JsonBackReference
 	//@JsonIgnore
@@ -54,19 +54,17 @@ public class RoditeljEntity{
 
 	public RoditeljEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public RoditeljEntity(Integer id, KorisnikEntity korisnik, @NotNull(message = "Ime mora biti uneto.") String ime,
-			@NotNull(message = "Prezime mora biti uneto.") String prezime,
-			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
-			List<UcenikEntity> dete) {
+	public RoditeljEntity(Integer id, KorisnikEntity korisnikRoditelj, String ime, String prezime, String email,
+			Integer version, List<UcenikEntity> dete) {
 		super();
 		this.id = id;
-		this.korisnik = korisnik;
+		this.korisnikRoditelj = korisnikRoditelj;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
+		this.version = version;
 		this.dete = dete;
 	}
 
@@ -78,12 +76,12 @@ public class RoditeljEntity{
 		this.id = id;
 	}
 
-	public KorisnikEntity getKorisnik() {
-		return korisnik;
+	public KorisnikEntity getKorisnikRoditelj() {
+		return korisnikRoditelj;
 	}
 
-	public void setKorisnik(KorisnikEntity korisnik) {
-		this.korisnik = korisnik;
+	public void setKorisnikRoditelj(KorisnikEntity korisnikRoditelj) {
+		this.korisnikRoditelj = korisnikRoditelj;
 	}
 
 	public String getIme() {
@@ -110,22 +108,29 @@ public class RoditeljEntity{
 		this.email = email;
 	}
 
-	public void addDete(UcenikEntity dete) {
-        this.dete.add(dete);
-        dete.setRoditelj(this);
-    }
+	public Integer getVersion() {
+		return version;
+	}
 
-    public void removeDete(UcenikEntity dete) {
-        this.dete.remove(dete);
-        dete.setRoditelj(null);
-    }
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public List<UcenikEntity> getDete() {
+		return dete;
+	}
+
+	public void setDete(List<UcenikEntity> dete) {
+		this.dete = dete;
+	}
 
 	@Override
 	public String toString() {
-		return "RoditeljEntity [id=" + id + ", korisnik=" + korisnik + ", ime=" + ime + ", prezime=" + prezime
-				+ ", email=" + email + ", dete=" + dete + "]";
+		return "RoditeljEntity [id=" + id + ", korisnikRoditelj=" + korisnikRoditelj + ", ime=" + ime + ", prezime="
+				+ prezime + ", email=" + email + ", version=" + version + ", dete=" + dete + "]";
 	}
-	
+
 	
 
+	
 }

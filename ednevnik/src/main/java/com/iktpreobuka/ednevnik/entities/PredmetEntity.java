@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,17 +16,20 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "predmet")
+@Table(name = "predmet", uniqueConstraints = {@UniqueConstraint(columnNames = {"naziv_predmeta", "razred_id"})})
 public class PredmetEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "predmet_id")
 	private Integer id;
 	
@@ -34,15 +39,20 @@ public class PredmetEntity {
 	@Column(name = "fond")
 	private Integer casovaNedeljno;
 	
-	@Column(name = "polugodiste")
-	private EPolugodisteEntity epolugodiste;
-	
 	@Version
 	private Integer version;
+	
+	//predmeti po razredu
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Admin.class)
+	@JoinColumn(name = "razred_id", nullable = false)
+	private RazredEntity razred;
 	
 	//nastavnici koji predaju predmet
 	@JsonBackReference
 	@OneToMany (mappedBy = "predmet", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JsonView(Views.Public.class)
+	@JsonIgnore
 	protected List<NastavnikPredmetEntity> nastavnici = new ArrayList<>();
 
 	public List<NastavnikPredmetEntity> getNastavnici() {
@@ -57,14 +67,17 @@ public class PredmetEntity {
 		super();
 	}
 
-	public PredmetEntity(Integer id, String nazivPredmeta, Integer casovaNedeljno, EPolugodisteEntity epolugodiste,
-			Integer version) {
+	
+
+	public PredmetEntity(Integer id, String nazivPredmeta, Integer casovaNedeljno,
+			Integer version, RazredEntity razred, List<NastavnikPredmetEntity> nastavnici) {
 		super();
 		this.id = id;
 		this.nazivPredmeta = nazivPredmeta;
 		this.casovaNedeljno = casovaNedeljno;
-		this.epolugodiste = epolugodiste;
 		this.version = version;
+		this.razred = razred;
+		this.nastavnici = nastavnici;
 	}
 
 	public Integer getId() {
@@ -91,14 +104,6 @@ public class PredmetEntity {
 		this.casovaNedeljno = casovaNedeljno;
 	}
 
-	public EPolugodisteEntity getEpolugodiste() {
-		return epolugodiste;
-	}
-
-	public void setEpolugodiste(EPolugodisteEntity epolugodiste) {
-		this.epolugodiste = epolugodiste;
-	}
-
 	public Integer getVersion() {
 		return version;
 	}
@@ -107,11 +112,20 @@ public class PredmetEntity {
 		this.version = version;
 	}
 
+	public RazredEntity getRazred() {
+		return razred;
+	}
+
+	public void setRazred(RazredEntity razred) {
+		this.razred = razred;
+	}
+
 	@Override
 	public String toString() {
 		return "PredmetEntity [id=" + id + ", nazivPredmeta=" + nazivPredmeta + ", casovaNedeljno=" + casovaNedeljno
-				+ ", epolugodiste=" + epolugodiste + ", version=" + version + "]";
+				+ ", version=" + version + ", razred=" + razred + ", nastavnici="
+				+ nastavnici + "]";
 	}
-	
+
 	
 }

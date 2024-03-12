@@ -8,25 +8,24 @@ import org.springframework.stereotype.Component;
 
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
-import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
+import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
 
 @Component
 public class NastavnikMapper {
 	@Autowired
-	private KorisnikMapper korisnikMapper;
+	private KorisnikRepository korisnikRepository;
+
 	public  NastavnikEntity toEntity(NastavnikDTO dto) {
 		NastavnikEntity entity = new NastavnikEntity();
 		entity.setId(dto.getId());
         entity.setIme(dto.getIme());
         entity.setPrezime(dto.getPrezime());
         entity.setEmail(dto.getEmail());
-        //nije mi prikazivalo podatke iz korisnika
-        if (dto.getKorisnik() != null) {
-            KorisnikEntity korisnikEntity = korisnikMapper.toEntity(dto.getKorisnik());
-            entity.setKorisnik(korisnikEntity);
-            
-            // korisnikEntity.setNastavnik(entity); // dal ovo treba pojma nemam, mozda :)
+        
+        if (dto.getKorisnikId() != null) {
+            KorisnikEntity korisnik = korisnikRepository.findById(dto.getKorisnikId()).orElse(null);
+            entity.setKorisnikNastavnik(korisnik);
         }
         return entity;
     }
@@ -38,9 +37,8 @@ public class NastavnikMapper {
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
         
-        if (entity.getKorisnik() != null) {
-            KorisnikDTO korisnikDTO = korisnikMapper.toDto(entity.getKorisnik());
-            dto.setKorisnik(korisnikDTO);
+        if (entity.getKorisnikNastavnik() != null) {
+            dto.setKorisnikId(entity.getKorisnikNastavnik().getId());
         }
         
         return dto;

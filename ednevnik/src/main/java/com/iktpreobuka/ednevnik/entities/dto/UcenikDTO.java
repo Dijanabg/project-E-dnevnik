@@ -16,18 +16,21 @@ public class UcenikDTO {
 	message="Email is not valid.")
     private String email;
 	
-    private KorisnikDTO korisnik;
-    
+	private Integer korisnikId;
+
 	public UcenikDTO() {
 		super();
 	}
-	public UcenikDTO(Integer id, String ime, String prezime, String email, KorisnikDTO korisnik) {
+	public UcenikDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
+			@NotNull(message = "Prezime mora biti uneto.") String prezime,
+			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
+			Integer korisnikId) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
-		this.korisnik = korisnik;
+		this.korisnikId = korisnikId;
 	}
 	public Integer getId() {
 		return id;
@@ -53,17 +56,17 @@ public class UcenikDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public KorisnikDTO getKorisnik() {
-		return korisnik;
+	public Integer getKorisnikId() {
+		return korisnikId;
 	}
-	public void setKorisnik(KorisnikDTO korisnik) {
-		this.korisnik = korisnik;
+	public void setKorisnikId(Integer korisnikId) {
+		this.korisnikId = korisnikId;
 	}
 	@Override
 	public String toString() {
-		return "UcenikDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnik="
-				+ korisnik + "]";
+		return "UcenikDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnikId="
+				+ korisnikId + "]";
 	}
 	
-    
+	
 }

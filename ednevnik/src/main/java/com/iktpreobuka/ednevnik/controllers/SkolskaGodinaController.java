@@ -1,8 +1,11 @@
 package com.iktpreobuka.ednevnik.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iktpreobuka.ednevnik.entities.SkolskaGodinaEntity;
 import com.iktpreobuka.ednevnik.entities.dto.SkolskaGodinaDTO;
 import com.iktpreobuka.ednevnik.services.SkolskaGodinaService;
 
@@ -23,36 +25,41 @@ import jakarta.validation.Valid;
 public class SkolskaGodinaController {
 	
 	@Autowired
-	private SkolskaGodinaService skolskaGodinaService;
+    private SkolskaGodinaService skolskaGodinaService;
 
+    // Dohvatanje svih školskih godina
+    @GetMapping
+    public ResponseEntity<List<SkolskaGodinaDTO>> getAllSkolskeGodine() {
+        List<SkolskaGodinaDTO> skolskeGodine = skolskaGodinaService.findAll();
+        return new ResponseEntity<>(skolskeGodine, HttpStatus.OK);
+    }
+
+    // Dohvatanje školske godine po ID
     @GetMapping("/{id}")
     public ResponseEntity<SkolskaGodinaDTO> getSkolskaGodinaById(@PathVariable Integer id) {
         SkolskaGodinaDTO skolskaGodinaDTO = skolskaGodinaService.findById(id);
-        return ResponseEntity.ok(skolskaGodinaDTO);
+        return new ResponseEntity<>(skolskaGodinaDTO, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<Iterable<SkolskaGodinaEntity>> getAllSkolskeGodine() {
-    	Iterable<SkolskaGodinaEntity> skGod = skolskaGodinaService.findAll();
-        return ResponseEntity.ok(skGod);
-    }
-
+    // Dodavanje nove školske godine
     @PostMapping
-    public ResponseEntity<SkolskaGodinaDTO> createSkolskaGodina(@Valid @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
-        SkolskaGodinaDTO createdSkolskaGodina = skolskaGodinaService.saveSkolskaGodina(skolskaGodinaDTO);
-        return new ResponseEntity<>(createdSkolskaGodina, HttpStatus.CREATED);
+    public ResponseEntity<SkolskaGodinaDTO> addSkolskaGodina(@Validated @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
+        SkolskaGodinaDTO novaSkolskaGodina = skolskaGodinaService.save(skolskaGodinaDTO);
+        return new ResponseEntity<>(novaSkolskaGodina, HttpStatus.CREATED);
     }
 
+    // Ažuriranje postojeće školske godine
     @PutMapping("/{id}")
     public ResponseEntity<SkolskaGodinaDTO> updateSkolskaGodina(@PathVariable Integer id, @Valid @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
-        SkolskaGodinaDTO updatedSkolskaGodina = skolskaGodinaService.updateSkolskaGodina(id, skolskaGodinaDTO);
-        return ResponseEntity.ok(updatedSkolskaGodina);
+        SkolskaGodinaDTO azuriranaSkolskaGodina = skolskaGodinaService.update(id, skolskaGodinaDTO);
+        return new ResponseEntity<>(azuriranaSkolskaGodina, HttpStatus.OK);
     }
 
+    // Brisanje školske godine
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSkolskaGodina(@PathVariable Integer id) {
-        skolskaGodinaService.deleteSkolskaGodina(id);
-        return ResponseEntity.noContent().build();
-    }    
+        skolskaGodinaService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

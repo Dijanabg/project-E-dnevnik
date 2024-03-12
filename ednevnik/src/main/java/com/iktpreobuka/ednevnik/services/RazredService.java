@@ -1,16 +1,19 @@
 package com.iktpreobuka.ednevnik.services;
 
-import com.iktpreobuka.ednevnik.entities.RazredEntity;
+import java.util.List;
+
 import com.iktpreobuka.ednevnik.entities.dto.RazredDTO;
 
 public interface RazredService {
+
+	List<RazredDTO> findAll();
+
+	RazredDTO save(RazredDTO razredDTO);
+
 	RazredDTO findById(Integer id);
-	
-	Iterable<RazredEntity> findAll();
-	
-	RazredEntity saveRazred(RazredDTO razredDTO);
 
-    RazredEntity updateRazred(Integer id, RazredDTO razredDTO);
+	RazredDTO update(Integer id, RazredDTO razredDTO);
 
-    void deleteRazred(Integer id);
+	void deleteById(Integer id);
+	
 }

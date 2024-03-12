@@ -11,22 +11,25 @@ public class PredmetDTO {
     
 	@NotNull(message = "Fond casova mora biti unet.")
 	private Integer casovaNedeljno;
-    
-	private String epolugodiste; //  enumeracija se u DTO prenosi kao String za jednostavnost
-    
+   
 	private Integer version;
     
+	@NotNull(message = "Razred mora biti unet.")
+	private Integer razredId;
+	
 	public PredmetDTO() {
 		super();
 	}
 
-	public PredmetDTO(Integer id, String nazivPredmeta, Integer casovaNedeljno, String epolugodiste, Integer version) {
+	public PredmetDTO(Integer id, @NotBlank(message = "Naziv predmeta mora biti unet.") String nazivPredmeta,
+			@NotNull(message = "Fond casova mora biti unet.") Integer casovaNedeljno, Integer version,
+			Integer razredId) {
 		super();
 		this.id = id;
 		this.nazivPredmeta = nazivPredmeta;
 		this.casovaNedeljno = casovaNedeljno;
-		this.epolugodiste = epolugodiste;
 		this.version = version;
+		this.razredId = razredId;
 	}
 
 	public Integer getId() {
@@ -53,14 +56,6 @@ public class PredmetDTO {
 		this.casovaNedeljno = casovaNedeljno;
 	}
 
-	public String getEpolugodiste() {
-		return epolugodiste;
-	}
-
-	public void setEpolugodiste(String epolugodiste) {
-		this.epolugodiste = epolugodiste;
-	}
-
 	public Integer getVersion() {
 		return version;
 	}
@@ -69,10 +64,19 @@ public class PredmetDTO {
 		this.version = version;
 	}
 
+	public Integer getRazredId() {
+		return razredId;
+	}
+
+	public void setRazredId(Integer razredId) {
+		this.razredId = razredId;
+	}
+
 	@Override
 	public String toString() {
 		return "PredmetDTO [id=" + id + ", nazivPredmeta=" + nazivPredmeta + ", casovaNedeljno=" + casovaNedeljno
-				+ ", epolugodiste=" + epolugodiste + ", version=" + version + "]";
+				+ ", version=" + version + ", razredId=" + razredId + "]";
 	}
 
+	
 }

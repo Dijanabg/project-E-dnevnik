@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class KorisnikDTO {
+	
 	private Integer id;
 	
 	@NotBlank(message = "Korisnicko ime ne moze biti prazno polje")

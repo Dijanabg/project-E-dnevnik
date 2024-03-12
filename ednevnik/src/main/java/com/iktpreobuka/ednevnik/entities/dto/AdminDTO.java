@@ -10,16 +10,20 @@ public class AdminDTO {
     
 	@NotNull(message = "Prezime mora biti uneto.")
 	private String prezime;
-    
+	
+	private Integer korisnikId;
+	
 	public AdminDTO() {
 		super();
 	}
 
-	public AdminDTO(Integer id, String ime, String prezime) {
+	public AdminDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
+			@NotNull(message = "Prezime mora biti uneto.") String prezime, Integer korisnikId) {
 		super();
 		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
+		this.korisnikId = korisnikId;
 	}
 
 	public Integer getId() {
@@ -46,10 +50,18 @@ public class AdminDTO {
 		this.prezime = prezime;
 	}
 
+	public Integer getKorisnikId() {
+		return korisnikId;
+	}
+
+	public void setKorisnikId(Integer korisnikId) {
+		this.korisnikId = korisnikId;
+	}
+
 	@Override
 	public String toString() {
-		return "AdminDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + "]";
+		return "AdminDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnikId=" + korisnikId + "]";
 	}
-    
-    
+
+	
 }

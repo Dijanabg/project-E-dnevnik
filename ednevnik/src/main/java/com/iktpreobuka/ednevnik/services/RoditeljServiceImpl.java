@@ -1,130 +1,138 @@
 package com.iktpreobuka.ednevnik.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.RoditeljEntity;
-import com.iktpreobuka.ednevnik.entities.RoleEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
-import com.iktpreobuka.ednevnik.mappers.KorisnikMapper;
+import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.RoditeljMapper;
-import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
+import com.iktpreobuka.ednevnik.mappers.UcenikMapper;
 import com.iktpreobuka.ednevnik.repositories.RoditeljRepository;
-import com.iktpreobuka.ednevnik.repositories.RoleRepository;
 import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
 public class RoditeljServiceImpl implements RoditeljService{
 
 	@Autowired
-	private RoditeljRepository roditeljRepository;
-	
-	@Autowired
-	private UcenikRepository ucenikRepository;
-	
-	@Autowired
-	private KorisnikRepository korisnikRepository;
-	@Autowired
+    private RoditeljRepository roditeljRepository;
+
+    @Autowired
+    private UcenikRepository ucenikRepository;
+
+    @Autowired
     private RoditeljMapper roditeljMapper;
-	
-	@Autowired
-    private KorisnikMapper korisnikMapper;
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Override
+    
+    @Autowired
+    private UcenikMapper ucenikMapper;
+
+    @Override
     @Transactional
     public List<RoditeljDTO> findAll() {
-        List<RoditeljEntity> entities = (List<RoditeljEntity>) roditeljRepository.findAll();
-        return roditeljMapper.toDtoList(entities);
+        List<RoditeljEntity> roditelji = (List<RoditeljEntity>) roditeljRepository.findAll();
+        return roditeljMapper.toDtoList(roditelji);
     }
 
-	@Override
-	public RoditeljDTO saveRoditelj(RoditeljDTO roditeljDTO) {
-		KorisnikEntity korisnikEntity = korisnikMapper.toEntity(roditeljDTO.getKorisnik());
-    	Integer roleId = roditeljDTO.getKorisnik().getRolaId();
-    	if(roleId == null) {
-    	    throw new IllegalArgumentException("Role ID must not be null");
-    	}
-        RoleEntity roleEntity = roleRepository.findById(roleId)
-                .orElseThrow(() -> new EntityNotFoundException("Role nije pronađena!"));
-        korisnikEntity.setRole(roleEntity);
-
-        korisnikRepository.save(korisnikEntity);
-        
+    @Override
+    @Transactional
+    public RoditeljDTO save(RoditeljDTO roditeljDTO) {
         RoditeljEntity roditeljEntity = roditeljMapper.toEntity(roditeljDTO);
-        
-        roditeljEntity.setKorisnik(korisnikEntity); // Postavljanje veze sa korisničkim entitetom
-        
-        roditeljRepository.save(roditeljEntity);
-     
-        // povezivanje roditelja i njihove dece
-        if (roditeljDTO.getDeteIds() != null && !roditeljDTO.getDeteIds().isEmpty()) {
-            for (Integer deteId : roditeljDTO.getDeteIds()) {
-                UcenikEntity ucenikEntity = ucenikRepository.findById(deteId)
-                    .orElseThrow(() -> new EntityNotFoundException("Učenik sa ID-em " + deteId + " nije pronađen!"));
-                ucenikEntity.setRoditelj(roditeljEntity); // Pretpostavimo da postoji setter u UcenikEntity za postavljanje roditelja
-                ucenikRepository.save(ucenikEntity);
+        roditeljEntity = roditeljRepository.save(roditeljEntity);
+        List<UcenikEntity> deca = new ArrayList<>();
+        roditeljEntity = roditeljRepository.save(roditeljEntity);
+        if(roditeljDTO.getDeteIds() != null && !roditeljDTO.getDeteIds().isEmpty()) {
+            for(Integer deteId : roditeljDTO.getDeteIds()) {
+                UcenikEntity dete = ucenikRepository.findById(deteId).orElseThrow(() -> new RuntimeException("Dete sa ID-em " + deteId + " nije pronađeno."));
+                dete.setRoditelj(roditeljEntity);
+                ucenikRepository.save(dete);
             }
         }
-        
+        ucenikRepository.saveAll(deca);
         return roditeljMapper.toDto(roditeljEntity);
-	}
+    }
+    
+    @Override
+    @Transactional
+    public RoditeljDTO createRoditeljWithDete(RoditeljDTO roditeljDTO) {
+        // Konvertujemo RoditeljDTO u RoditeljEntity
+        RoditeljEntity roditeljEntity = roditeljMapper.toEntity(roditeljDTO);
 
-	@Override
-	public RoditeljDTO findById(Integer id) {
-		Optional<RoditeljEntity> entityOptional = roditeljRepository.findById(id);
-		return entityOptional.map(roditeljMapper::toDto).orElse(null);
-	}
+        // Čuvanje roditelja u bazi
+        roditeljEntity = roditeljRepository.save(roditeljEntity);
 
-	@Override
-	@Transactional
-	public RoditeljDTO updateNastavnik(Integer roditeljId, RoditeljDTO roditeljDTO) {
-		 RoditeljEntity roditelj = roditeljRepository.findById(roditeljId)
-	            .orElseThrow(() -> new EntityNotFoundException("Roditelj sa ID-em " + roditeljId + " nije pronađen!"));
-	    
-	    // Ažuriranje korisničkih podataka
-		 KorisnikEntity korisnikEntity = korisnikRepository.findById(roditelj.getKorisnik().getId())
-	                .orElseThrow(() -> new EntityNotFoundException("Korisnik nije pronađen!"));
-	        
-	    // Ažuriranje korisničkih podataka
-	     korisnikMapper.updateKorisnikEntityFromDto(roditeljDTO.getKorisnik(), korisnikEntity);
-	     Integer newRoleId = roditeljDTO.getKorisnik().getRolaId();
-	     if (newRoleId != null && !newRoleId.equals(korisnikEntity.getRole().getId())) {
-	         RoleEntity newRole = roleRepository.findById(newRoleId)
-	                    .orElseThrow(() -> new EntityNotFoundException("Role sa ID-om " + newRoleId + " nije pronađena!"));
-	         korisnikEntity.setRole(newRole);
-	     }
-	     korisnikRepository.save(korisnikEntity);
-	    
-	    // Ažuriranje veza sa decom
-	     for (Integer deteId : roditeljDTO.getDeteIds()) {
-	         UcenikEntity dete = ucenikRepository.findById(deteId)
-	                 .orElseThrow(() -> new EntityNotFoundException("Učenik sa ID-em " + deteId + " nije pronađen!"));
-	         roditelj.addDete(dete); // Pretpostavka da postoji metoda addDete u RoditeljEntity
-	     }
-	     roditelj = roditeljRepository.save(roditelj);
-	    // Vraćanje ažuriranog DTO objekta
-	    return roditeljMapper.toDto(roditelj);
-	}
+        // Dodajemo roditelja deci (Ucenici) na osnovu deteIds i ažuriramo ih
+        for (Integer deteId : roditeljDTO.getDeteIds()) {
+            UcenikEntity dete = ucenikRepository.findById(deteId)
+                    .orElseThrow(() -> new RuntimeException("Dete not found!")); // Promenite RuntimeException u odgovarajući exception
+            dete.setRoditelj(roditeljEntity);
+            ucenikRepository.save(dete); // Ovo će ažurirati roditeljId u Ucenik entitetima
+        }
 
-	@Override
-	public void delete(Integer id) {
-		roditeljRepository.deleteById(id);
-	}
+        return roditeljMapper.toDto(roditeljEntity);
+    }
+    @Override
+    @Transactional
+    public RoditeljDTO findById(Integer id) {
+        RoditeljEntity roditelj = roditeljRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Roditelj sa ID-om " + id + " nije pronađen."));
+        return roditeljMapper.toDto(roditelj);
+    }
 
-	@Override
-	public List<RoditeljDTO> findByImeAndPrezime(String ime, String prezime) {
-		List<RoditeljEntity> roditeljiEntities = roditeljRepository.findByImeAndPrezime(ime, prezime);
-		return roditeljMapper.toDtoList(roditeljiEntities);
-	}
+    @Override
+    @Transactional
+    public RoditeljDTO update(Integer id, RoditeljDTO roditeljDTO) {
+        RoditeljEntity roditeljEntity = roditeljRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Roditelj sa ID-om " + id + " nije pronađen."));
+        roditeljMapper.updateRoditeljEntityFromDto(roditeljDTO, roditeljEntity);
+        roditeljEntity = roditeljRepository.save(roditeljEntity);
+        return roditeljMapper.toDto(roditeljEntity);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        roditeljRepository.deleteById(id);
+    }
+	
+    @Override
+    @Transactional
+    public RoditeljDTO addDeteToRoditelj(Integer roditeljId, Integer deteId) {
+        RoditeljEntity roditelj = roditeljRepository.findById(roditeljId)
+                .orElseThrow(() -> new ResourceNotFoundException("Roditelj sa ID-om " + roditeljId + " nije pronađen."));
+        UcenikEntity dete = ucenikRepository.findById(deteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Dete sa ID-om " + deteId + " nije pronađeno."));
+        
+        roditelj.getDete().add(dete);
+        dete.setRoditelj(roditelj);
+        roditeljRepository.save(roditelj);
+        
+        return roditeljMapper.toDto(roditelj);
+    }
+
+    @Override
+    @Transactional
+    public void removeDeteFromRoditelj(Integer roditeljId, Integer deteId) {
+        RoditeljEntity roditelj = roditeljRepository.findById(roditeljId)
+                .orElseThrow(() -> new ResourceNotFoundException("Roditelj sa ID-om " + roditeljId + " nije pronađen."));
+        UcenikEntity dete = ucenikRepository.findById(deteId)
+                .orElseThrow(() -> new ResourceNotFoundException("Dete sa ID-om " + deteId + " nije pronađeno."));
+        
+        roditelj.getDete().remove(dete);
+        dete.setRoditelj(null);
+        roditeljRepository.save(roditelj);
+    }
+    
+    //prikazi decu
+    @Override
+    @Transactional
+    public List<UcenikDTO> findDecaByRoditeljId(Integer roditeljId) {
+        List<UcenikEntity> deca = ucenikRepository.findByRoditeljId(roditeljId);
+        return ucenikMapper.toDtoList(deca);
+    }
+    
 }

@@ -8,37 +8,39 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)//dodaje podklase kao tabele
 @Table(name = "role")
 public class RoleEntity {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column( name= "role_id")
 	private Integer id;
 	
 	@Column(name = "role_name", unique = true)
 	private String name;
 	
+	@Version
+	protected Integer version;
+	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private List<KorisnikEntity> korisnici = new ArrayList<>();
 
 	public RoleEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public RoleEntity(Integer id, String name, List<KorisnikEntity> korisnici) {
+	public RoleEntity(Integer id, String name, Integer version, List<KorisnikEntity> korisnici) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.version = version;
 		this.korisnici = korisnici;
 	}
 
@@ -58,6 +60,14 @@ public class RoleEntity {
 		this.name = name;
 	}
 
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 	public List<KorisnikEntity> getKorisnici() {
 		return korisnici;
 	}
@@ -68,8 +78,8 @@ public class RoleEntity {
 
 	@Override
 	public String toString() {
-		return "RoleEntity [id=" + id + ", name=" + name + ", korisnici=" + korisnici + "]";
+		return "RoleEntity [id=" + id + ", name=" + name + ", version=" + version + ", korisnici=" + korisnici + "]";
 	}
-	
+
 	
 }

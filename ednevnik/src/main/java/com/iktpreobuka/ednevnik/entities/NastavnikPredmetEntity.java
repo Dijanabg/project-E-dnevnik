@@ -1,28 +1,19 @@
 package com.iktpreobuka.ednevnik.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -45,36 +36,17 @@ public class NastavnikPredmetEntity {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "predmet")
 	private PredmetEntity predmet;
-
-	
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "skolgod_id")
-	@NotNull(message = "Skolska godina mora biti uneta.")
-	private SkolskaGodinaEntity skolskaGodina;
-
-	@Column
-	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Polugodiste mora biti uneto.")
-	private EPolugodisteEntity polugodiste;
-	
-	//nastavnici koji predaju predmet uceniku
-	@JsonIgnore
-	@OneToMany(mappedBy = "nastavnikPredmet", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	private List<NastavnikPredmetUcenikEntity> nastavnikPredmetUcenik = new ArrayList<>();
 	
 	public NastavnikPredmetEntity() {
 		super();
 	}
 
-	public NastavnikPredmetEntity(Integer id, NastavnikEntity nastavnik, PredmetEntity predmet,
-			@NotNull(message = "Skolska godina mora biti uneta.") SkolskaGodinaEntity skolskaGodina,
-			@NotNull(message = "Polugodiste mora biti uneto.") EPolugodisteEntity polugodiste) {
+	public NastavnikPredmetEntity(Integer id, Integer version, NastavnikEntity nastavnik, PredmetEntity predmet) {
 		super();
 		this.id = id;
+		this.version = version;
 		this.nastavnik = nastavnik;
 		this.predmet = predmet;
-		this.skolskaGodina = skolskaGodina;
-		this.polugodiste = polugodiste;
 	}
 
 	public Integer getId() {
@@ -83,6 +55,14 @@ public class NastavnikPredmetEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 	public NastavnikEntity getNastavnik() {
@@ -103,8 +83,9 @@ public class NastavnikPredmetEntity {
 
 	@Override
 	public String toString() {
-		return "NastavnikPredmetEntity [id=" + id + ", nastavnik=" + nastavnik + ", predmet=" + predmet
-				+ ", skolskaGodina=" + skolskaGodina + ", polugodiste=" + polugodiste + "]";
+		return "NastavnikPredmetEntity [id=" + id + ", version=" + version + ", nastavnik=" + nastavnik + ", predmet="
+				+ predmet + "]";
 	}
+
 	
 }

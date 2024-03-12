@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,13 +35,13 @@ public class RoleController {
     }
 	
 	@PostMapping
-    public ResponseEntity<RoleDTO> addRole(@RequestBody RoleDTO roleDTO) {
+    public ResponseEntity<RoleDTO> addRole(@Validated @RequestBody RoleDTO roleDTO) {
         RoleDTO newRole = roleService.saveRole(roleDTO);
         return new ResponseEntity<>(newRole, HttpStatus.CREATED);
     }
 	
 	@PutMapping("/{id}")
-    public ResponseEntity<RoleDTO> updateRole(@PathVariable Integer id, @RequestBody RoleDTO roleDTO) {
+    public ResponseEntity<RoleDTO> updateRole(@PathVariable Integer id,@Validated @RequestBody RoleDTO roleDTO) {
         RoleDTO updatedRole = roleService.updateRole(id, roleDTO);
         if(updatedRole != null) {
             return new ResponseEntity<>(updatedRole, HttpStatus.OK);

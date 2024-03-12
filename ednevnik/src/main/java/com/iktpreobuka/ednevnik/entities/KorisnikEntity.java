@@ -1,5 +1,12 @@
 package com.iktpreobuka.ednevnik.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +17,7 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
@@ -18,15 +26,19 @@ import jakarta.persistence.Version;
 public class KorisnikEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "korisnik_id")
+	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	
 	@Column(name = "korisnicko_ime", unique = true)
+	@JsonView(Views.Public.class)
 	private String korisnickoIme;
 	
 	@Column(name = "sifra")
+	@JsonView(Views.Public.class)
+	@JsonIgnore
 	private String sifra;
 	
 	@Column(name = "aktivno")
@@ -36,9 +48,22 @@ public class KorisnikEntity {
 	private Integer version;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id") // Ovo treba da odgovara nazivu kolone u bazi
+	@JoinColumn(name = "role_id") 
+	@JsonView(Views.Admin.class)
 	private RoleEntity role;
 	
+	@OneToMany(mappedBy = "korisnikUcenik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	protected List<UcenikEntity> ucenici = new ArrayList<>();
+
+	@OneToMany(mappedBy = "korisnikNastavnik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	protected List<NastavnikEntity> nastavnici = new ArrayList<>();
+
+	@OneToMany(mappedBy = "korisnikRoditelj", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	protected List<RoditeljEntity> roditelji = new ArrayList<>();
+
+	@OneToMany(mappedBy = "korisnikAdmin", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	protected List<AdminEntity> administratori = new ArrayList<>();
+
 	public KorisnikEntity() {
 		super();
 	}

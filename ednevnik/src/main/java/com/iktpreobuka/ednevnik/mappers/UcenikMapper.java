@@ -8,14 +8,15 @@ import org.springframework.stereotype.Component;
 
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
-import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
+import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
 
 @Component
 public class UcenikMapper {
 	
 	@Autowired
-	private KorisnikMapper korisnikMapper;
+	private KorisnikRepository korisnikRepository;
 	
 	public  UcenikEntity toEntity(UcenikDTO dto) {
 		UcenikEntity entity = new UcenikEntity();
@@ -24,9 +25,10 @@ public class UcenikMapper {
         entity.setPrezime(dto.getPrezime());
         entity.setEmail(dto.getEmail());
         
-        if (dto.getKorisnik() != null) {
-            KorisnikEntity korisnikEntity = korisnikMapper.toEntity(dto.getKorisnik());
-            entity.setKorisnik(korisnikEntity);
+        if (dto.getKorisnikId() != null) {
+            KorisnikEntity korisnik = korisnikRepository.findById(dto.getKorisnikId()).
+            		orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + dto.getKorisnikId() + " nije pronađena."));
+            entity.setKorisnikUcenik(korisnik);
         }
         
         return entity;
@@ -39,9 +41,8 @@ public class UcenikMapper {
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
         
-        if (entity.getKorisnik() != null) {
-            KorisnikDTO korisnikDTO = korisnikMapper.toDto(entity.getKorisnik());
-            dto.setKorisnik(korisnikDTO);
+        if (entity.getKorisnikUcenik() != null) {
+            dto.setKorisnikId(entity.getKorisnikUcenik().getId());
         }
         
         return dto;

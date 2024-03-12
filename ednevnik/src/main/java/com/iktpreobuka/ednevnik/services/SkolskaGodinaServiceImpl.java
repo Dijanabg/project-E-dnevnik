@@ -1,56 +1,65 @@
 package com.iktpreobuka.ednevnik.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iktpreobuka.ednevnik.entities.SkolskaGodinaEntity;
 import com.iktpreobuka.ednevnik.entities.dto.SkolskaGodinaDTO;
-import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.SkolskaGodinaMapper;
 import com.iktpreobuka.ednevnik.repositories.SkolskaGodinaRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class SkolskaGodinaServiceImpl implements SkolskaGodinaService{
 	@Autowired
-	private SkolskaGodinaRepository skolskaGodinaRepository;
-	
-	@Autowired
+    private SkolskaGodinaRepository skolskaGodinaRepository;
+
+    @Autowired
     private SkolskaGodinaMapper skolskaGodinaMapper;
 
-	@Override
-	public SkolskaGodinaDTO findById(Integer id) {
-		SkolskaGodinaEntity skolskaGodina = skolskaGodinaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Skolska godina not found with id: " + id));
-	        return skolskaGodinaMapper.toDto(skolskaGodina);
-	}
-
-	@Override
-	public Iterable<SkolskaGodinaEntity> findAll() {
-		return skolskaGodinaRepository.findAll();
-	}
-
-	@Override
-	public SkolskaGodinaDTO saveSkolskaGodina(SkolskaGodinaDTO skolskaGodinaDTO) {
-		SkolskaGodinaEntity skolskaGodina = skolskaGodinaMapper.toEntity(skolskaGodinaDTO);
-        skolskaGodina = skolskaGodinaRepository.save(skolskaGodina);
-        return skolskaGodinaMapper.toDto(skolskaGodina);
-	}
-
-	@Override
-	public SkolskaGodinaDTO updateSkolskaGodina(Integer id, SkolskaGodinaDTO skolskaGodinaDTO) {
-		SkolskaGodinaEntity existingSkolskaGodina = skolskaGodinaRepository.findById(id)
-	            .orElseThrow(() -> new ResourceNotFoundException("Skolska godina not found with id: " + id));
-	        existingSkolskaGodina.setOznaka(skolskaGodinaDTO.getOznaka());
-	        existingSkolskaGodina = skolskaGodinaRepository.save(existingSkolskaGodina);
-	        return skolskaGodinaMapper.toDto(existingSkolskaGodina);
-	}
-
-	@Override
-	public void deleteSkolskaGodina(Integer id) {
-		if (!skolskaGodinaRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Nije pronadjena skolska godina sa id: " + id);
+    // Prikaz svih školskih godina
+    @Override
+    public List<SkolskaGodinaDTO> findAll() {
+        List<SkolskaGodinaEntity> skolskeGodine = (List<SkolskaGodinaEntity>) skolskaGodinaRepository.findAll();
+        List<SkolskaGodinaDTO> skolskaGodinaDTOs = new ArrayList<>();
+        for (SkolskaGodinaEntity skolskaGodina : skolskeGodine) {
+            skolskaGodinaDTOs.add(skolskaGodinaMapper.toDto(skolskaGodina));
         }
+        return skolskaGodinaDTOs;
+    }
+
+    // Dodavanje nove školske godine
+    @Override
+    public SkolskaGodinaDTO save(SkolskaGodinaDTO skolskaGodinaDTO) {
+        SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaMapper.toEntity(skolskaGodinaDTO);
+        skolskaGodinaEntity = skolskaGodinaRepository.save(skolskaGodinaEntity);
+        return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
+    }
+ // Prikaz detalja o određenoj školskoj godini
+    @Override
+    public SkolskaGodinaDTO findById(Integer id) {
+        SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Školska godina sa ID-om " + id + " nije pronađena."));
+        return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
+    }
+    // Ažuriranje postojeće školske godine
+    @Override
+    public SkolskaGodinaDTO update(Integer id, SkolskaGodinaDTO skolskaGodinaDTO) {
+        SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Školska godina sa ID-om " + id + " nije pronađena."));
+        skolskaGodinaEntity.setOznaka(skolskaGodinaDTO.getOznaka());
+        skolskaGodinaEntity = skolskaGodinaRepository.save(skolskaGodinaEntity);
+        return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
+    }
+
+    // Brisanje školske godine
+    @Override
+    public void deleteById(Integer id) {
         skolskaGodinaRepository.deleteById(id);
-	}
-	
-	
+    }
+
 }
