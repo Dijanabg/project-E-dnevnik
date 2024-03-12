@@ -51,7 +51,7 @@ public class OcenaEntity {
 
 	@Enumerated(EnumType.STRING)
 	@JsonView(Views.Public.class)
-	private EPolugodisteEntity semestar;
+	private EPolugodisteEntity polugodiste;
 	
 	@Version
 	private Integer version;
@@ -69,111 +69,106 @@ public class OcenaEntity {
 	@JoinColumn	(name = "ucenik")
 	private UcenikEntity ucenik;
 
-
+	@ManyToOne
+    @JoinColumn(name = "predmet_id", nullable = false)
+    private PredmetEntity predmet;
+	
 	public OcenaEntity() {
 		super();
 	}
 
-
 	public OcenaEntity(Integer id, Integer vrednostOcene, Date datum, EAktivnostEntity aktivnost,
-			EPolugodisteEntity semestar, Integer version, NastavnikEntity ocenjivac, UcenikEntity ucenik) {
+			EPolugodisteEntity polugodiste, Integer version, NastavnikEntity ocenjivac, UcenikEntity ucenik,
+			PredmetEntity predmet) {
 		super();
 		this.id = id;
 		this.vrednostOcene = vrednostOcene;
 		this.datum = datum;
 		this.aktivnost = aktivnost;
-		this.semestar = semestar;
+		this.polugodiste = polugodiste;
 		this.version = version;
 		this.ocenjivac = ocenjivac;
 		this.ucenik = ucenik;
+		this.predmet = predmet;
 	}
-
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public Integer getVrednostOcene() {
 		return vrednostOcene;
 	}
 
-
 	public void setVrednostOcene(Integer vrednostOcene) {
 		this.vrednostOcene = vrednostOcene;
 	}
-
 
 	public Date getDatum() {
 		return datum;
 	}
 
-
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
-
 
 	public EAktivnostEntity getAktivnost() {
 		return aktivnost;
 	}
 
-
 	public void setAktivnost(EAktivnostEntity aktivnost) {
 		this.aktivnost = aktivnost;
 	}
 
-
-	public EPolugodisteEntity getSemestar() {
-		return semestar;
+	public EPolugodisteEntity getPolugodiste() {
+		return polugodiste;
 	}
 
-
-	public void setSemestar(EPolugodisteEntity semestar) {
-		this.semestar = semestar;
+	public void setPolugodiste(EPolugodisteEntity polugodiste) {
+		this.polugodiste = polugodiste;
 	}
-
 
 	public Integer getVersion() {
 		return version;
 	}
 
-
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
 
 	public NastavnikEntity getOcenjivac() {
 		return ocenjivac;
 	}
 
-
 	public void setOcenjivac(NastavnikEntity ocenjivac) {
 		this.ocenjivac = ocenjivac;
 	}
-
 
 	public UcenikEntity getUcenik() {
 		return ucenik;
 	}
 
-
 	public void setUcenik(UcenikEntity ucenik) {
 		this.ucenik = ucenik;
 	}
 
+	public PredmetEntity getPredmet() {
+		return predmet;
+	}
+
+	public void setPredmet(PredmetEntity predmet) {
+		this.predmet = predmet;
+	}
 
 	@Override
 	public String toString() {
 		return "OcenaEntity [id=" + id + ", vrednostOcene=" + vrednostOcene + ", datum=" + datum + ", aktivnost="
-				+ aktivnost + ", semestar=" + semestar + ", version=" + version + ", ocenjivac=" + ocenjivac
-				+ ", ucenik=" + ucenik + "]";
+				+ aktivnost + ", polugodiste=" + polugodiste + ", version=" + version + ", ocenjivac=" + ocenjivac
+				+ ", ucenik=" + ucenik + ", predmet=" + predmet + "]";
 	}
 
 	

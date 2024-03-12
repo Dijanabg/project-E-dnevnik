@@ -55,6 +55,13 @@ public class PredmetEntity {
 	@JsonIgnore
 	protected List<NastavnikPredmetEntity> nastavnici = new ArrayList<>();
 
+	@JsonBackReference
+    @OneToMany(mappedBy = "predmet", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();
+	//private Set<NastavnikOdelenjeEntity> nastavnikOdelenje = new HashSet<>();
+	//set kolekcija koja ne dozvoljava duplikate
+	
+	
 	public List<NastavnikPredmetEntity> getNastavnici() {
 		return nastavnici;
 	}

@@ -36,6 +36,11 @@ public class NastavnikOdelenjeEntity {
 	@JoinColumn (name = "odelenje")
 	private OdelenjeEntity odelenje;
 	
+	@JsonManagedReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "predmet")
+    private PredmetEntity predmet;
+
 	@Version
 	protected Integer version;
 
@@ -43,11 +48,13 @@ public class NastavnikOdelenjeEntity {
 		super();
 	}
 
-	public NastavnikOdelenjeEntity(Integer id, NastavnikEntity predavac, OdelenjeEntity odelenje, Integer version) {
+	public NastavnikOdelenjeEntity(Integer id, NastavnikEntity predavac, OdelenjeEntity odelenje, PredmetEntity predmet,
+			Integer version) {
 		super();
 		this.id = id;
 		this.predavac = predavac;
 		this.odelenje = odelenje;
+		this.predmet = predmet;
 		this.version = version;
 	}
 
@@ -75,6 +82,14 @@ public class NastavnikOdelenjeEntity {
 		this.odelenje = odelenje;
 	}
 
+	public PredmetEntity getPredmet() {
+		return predmet;
+	}
+
+	public void setPredmet(PredmetEntity predmet) {
+		this.predmet = predmet;
+	}
+
 	public Integer getVersion() {
 		return version;
 	}
@@ -85,9 +100,8 @@ public class NastavnikOdelenjeEntity {
 
 	@Override
 	public String toString() {
-		return "NastavnikOdelenjeEntity [id=" + id + ", predavac=" + predavac + ", odelenje=" + odelenje + ", version="
-				+ version + "]";
+		return "NastavnikOdelenjeEntity [id=" + id + ", predavac=" + predavac + ", odelenje=" + odelenje + ", predmet="
+				+ predmet + ", version=" + version + "]";
 	}
-	
-	
+
 }

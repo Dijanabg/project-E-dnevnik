@@ -8,18 +8,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
+import com.iktpreobuka.ednevnik.entities.NastavnikOdelenjeEntity;
 import com.iktpreobuka.ednevnik.entities.OdelenjeEntity;
+import com.iktpreobuka.ednevnik.entities.PredmetEntity;
 import com.iktpreobuka.ednevnik.entities.RazredEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.NastavnikPredmetDTO;
 import com.iktpreobuka.ednevnik.entities.dto.OdelenjeDTO;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.NastavnikMapper;
 import com.iktpreobuka.ednevnik.mappers.OdelenjeMapper;
 import com.iktpreobuka.ednevnik.mappers.UcenikMapper;
+import com.iktpreobuka.ednevnik.repositories.NastavnikOdelenjeRepository;
+import com.iktpreobuka.ednevnik.repositories.NastavnikPredmetRepository;
 import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
 import com.iktpreobuka.ednevnik.repositories.OdelenjeRepository;
+import com.iktpreobuka.ednevnik.repositories.PredmetRepository;
 import com.iktpreobuka.ednevnik.repositories.RazredRepository;
 import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
@@ -48,6 +54,15 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     
     @Autowired 
     private NastavnikMapper nastavnikMapper;
+    
+    @Autowired
+    private PredmetRepository predmetRepository;
+    
+    @Autowired
+    private NastavnikOdelenjeRepository nastavnikOdelenjeRepository;
+    
+    @Autowired
+    private NastavnikPredmetRepository nastavnikPredmetRepository;
 
     // Dodavanje novog odelenja
     @Override
@@ -181,4 +196,58 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         return ucenikMapper.toDtoList(new ArrayList<>(odelenje.getUcenici()));
     }
     //dodati nastavnika odelenju koji predaje neki predmet
+    @Override
+    @Transactional
+    public void dodajNastavnikaPredmetuUOdelenju(Integer nastavnikId, Integer predmetId, Integer odelenjeId) {
+    	// Provera da li postoji kombinacija nastavnik-predmet
+        NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
+            .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
+        PredmetEntity predmet = predmetRepository.findById(predmetId)
+            .orElseThrow(() -> new RuntimeException("Predmet not found"));
+        OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
+            .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+        
+        // Proveriti da li nastavnik već predaje dati predmet u odelenju
+        boolean alreadyExists = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet);
+        
+        // Proveriti da li nastavnik može da predaje dati predmet
+        boolean canTeach = nastavnikPredmetRepository.existsByNastavnikIdAndPredmetId(nastavnikId, predmetId); // Ovo pretpostavlja postojanje takve provere
+        
+        if (!alreadyExists && canTeach) {
+            NastavnikOdelenjeEntity nastavnikOdelenje = new NastavnikOdelenjeEntity();
+            nastavnikOdelenje.setPredavac(nastavnik);
+            nastavnikOdelenje.setOdelenje(odelenje);
+            nastavnikOdelenje.setPredmet(predmet);
+
+            nastavnikOdelenjeRepository.save(nastavnikOdelenje);
+        } else if (!canTeach) {
+            throw new RuntimeException("Nastavnik nije kvalifikovan da predaje dati predmet");
+        } else {
+            throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
+        }
+    }
+
+        //svi nastavnici i predmeti koje predju u nekom odelenju
+    @Override
+    @Transactional
+    public List<NastavnikPredmetDTO> getPredmetiINastavniciZaOdelenje(Integer odelenjeId) {
+    	 List<NastavnikOdelenjeEntity> nastavniciOdelenja = nastavnikOdelenjeRepository.findAllByOdelenjeId(odelenjeId);
+
+    	    List<NastavnikPredmetDTO> predmetiNastavniciList = new ArrayList<>();
+    	    for (NastavnikOdelenjeEntity nastavnikOdelenje : nastavniciOdelenja) {
+    	        NastavnikEntity nastavnik = nastavnikOdelenje.getPredavac();
+    	        PredmetEntity predmet = nastavnikOdelenje.getPredmet(); 
+    	        if (nastavnik != null && predmet != null) {
+    	            NastavnikPredmetDTO dto = new NastavnikPredmetDTO();
+    	            dto.setId(nastavnikOdelenje.getId());
+    	            dto.setNastavnikId(nastavnik.getId());
+    	            dto.setNastavnikIme(nastavnik.getIme() + " " + nastavnik.getPrezime());
+    	            dto.setPredmetId(predmet.getId());
+    	            dto.setPredmetNaziv(predmet.getNazivPredmeta());
+    	            predmetiNastavniciList.add(dto);
+    	        }
+    	    }
+
+    	    return predmetiNastavniciList;
+    }
 }

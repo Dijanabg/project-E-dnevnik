@@ -1,19 +1,34 @@
 package com.iktpreobuka.ednevnik.mappers;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
 import com.iktpreobuka.ednevnik.entities.OcenaEntity;
+import com.iktpreobuka.ednevnik.entities.PredmetEntity;
+import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
 import com.iktpreobuka.ednevnik.entities.enums.EAktivnostEntity;
 import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
+import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
+import com.iktpreobuka.ednevnik.repositories.PredmetRepository;
+import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
 @Component
 public class OcenaMapper {
 	
-	public static OcenaDTO toDto(OcenaEntity ocenaEntity) {
+	@Autowired 
+	private PredmetRepository predmetRepository;
+	
+	@Autowired
+	private UcenikRepository ucenikRepository;
+	
+	@Autowired NastavnikRepository nastavnikRepository;
+	public OcenaDTO toDto(OcenaEntity ocenaEntity) {
         if (ocenaEntity == null) {
             return null;
         }
@@ -28,17 +43,24 @@ public class OcenaMapper {
         if(ocenaEntity.getAktivnost() != null) {
             ocenaDTO.setAktivnost(ocenaEntity.getAktivnost().toString());
         }
-        if(ocenaEntity.getSemestar() != null) {
-            ocenaDTO.setPolugodiste(ocenaEntity.getSemestar().toString());
+        if(ocenaEntity.getPolugodiste() != null) {
+            ocenaDTO.setPolugodiste(ocenaEntity.getPolugodiste().toString());
         }
         if(ocenaEntity.getOcenjivac() != null) {
             ocenaDTO.setOcenjivacId(ocenaEntity.getOcenjivac().getId());
+        }
+        if(ocenaEntity.getUcenik() != null) {
+            ocenaDTO.setUcenikId(ocenaEntity.getUcenik().getId());
+        }
+        if(ocenaEntity.getPredmet() != null) {
+            ocenaDTO.setPredmetId(ocenaEntity.getPredmet().getId());
+            ocenaDTO.setPredmetNaziv(ocenaEntity.getPredmet().getNazivPredmeta());
         }
         return ocenaDTO;
     }
 
     // Konvertuje OcenaDTO u OcenaEntity
-    public static OcenaEntity toEntity(OcenaDTO ocenaDTO) {
+    public OcenaEntity toEntity(OcenaDTO ocenaDTO) {
         if (ocenaDTO == null) {
             return null;
         }
@@ -46,21 +68,28 @@ public class OcenaMapper {
         OcenaEntity ocenaEntity = new OcenaEntity();
         ocenaEntity.setId(ocenaDTO.getId());
         ocenaEntity.setVrednostOcene(ocenaDTO.getVrednostOcene());
-        try {
-            if(ocenaDTO.getDatum() != null && !ocenaDTO.getDatum().isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                ocenaEntity.setDatum(sdf.parse(ocenaDTO.getDatum()));
-            }
-        } catch(ParseException e) {
-            e.printStackTrace(); // U pravom projektu logger
-        }
+     // Postavljanje trenutnog datuma
+        ocenaEntity.setDatum(new Date());
+
         if(ocenaDTO.getAktivnost() != null) {
             ocenaEntity.setAktivnost(EAktivnostEntity.valueOf(ocenaDTO.getAktivnost()));
         }
         if(ocenaDTO.getPolugodiste() != null) {
-            ocenaEntity.setSemestar(EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste()));
+            ocenaEntity.setPolugodiste(EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste()));
         }
-        // Napomena: za nastavnika i ucenika morate da ih dohvatite iz baze pre postavljanja
+        
+     // Dohvatanje predmeta, učenika, i ocenjivača (nastavnika) iz baze na osnovu ID dobijenih iz DTO
+        PredmetEntity predmetEntity = predmetRepository.findById(ocenaDTO.getPredmetId())
+                .orElseThrow(() -> new ResourceNotFoundException("Predmet nije pronađen."));
+        UcenikEntity ucenikEntity = ucenikRepository.findById(ocenaDTO.getUcenikId())
+                .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
+        NastavnikEntity ocenjivacEntity = nastavnikRepository.findById(ocenaDTO.getOcenjivacId())
+                .orElseThrow(() -> new ResourceNotFoundException("Nastavnik nije pronađen."));
+
+        ocenaEntity.setPredmet(predmetEntity); 
+        ocenaEntity.setUcenik(ucenikEntity); 
+        ocenaEntity.setOcenjivac(ocenjivacEntity);
+        
         return ocenaEntity;
     }
 }

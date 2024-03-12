@@ -3,6 +3,7 @@ package com.iktpreobuka.ednevnik.services;
 import java.util.List;
 
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.NastavnikPredmetDTO;
 import com.iktpreobuka.ednevnik.entities.dto.OdelenjeDTO;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 
@@ -27,6 +28,10 @@ public interface OdelenjeService {
 	UcenikDTO dodeliUcenikaOdelenju(Integer ucenikId, Integer odelenjeId);
 
 	UcenikDTO ukloniUcenikaIzOdelenja(Integer ucenikId);
+
+	void dodajNastavnikaPredmetuUOdelenju(Integer nastavnikId, Integer predmetId, Integer odelenjeId);
+
+	List<NastavnikPredmetDTO> getPredmetiINastavniciZaOdelenje(Integer odelenjeId);
 
 	
 }

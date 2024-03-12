@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.NastavnikPredmetDTO;
 import com.iktpreobuka.ednevnik.entities.dto.OdelenjeDTO;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 import com.iktpreobuka.ednevnik.services.OdelenjeService;
@@ -27,6 +28,7 @@ public class OdelenjeController {
 
 	@Autowired
 	private OdelenjeService odelenjeService;
+	
 
 
     // Dohvatanje svih odelenja
@@ -89,5 +91,22 @@ public class OdelenjeController {
     public ResponseEntity<List<UcenikDTO>> findAllUceniciInOdelenje(@PathVariable Integer odelenjeId) {
         List<UcenikDTO> ucenici = odelenjeService.findAllUceniciInOdelenje(odelenjeId);
         return ResponseEntity.ok(ucenici);
+    }
+    //Dodaj nastvnika predmetu u odelenju
+    @PostMapping("/dodajNastavnikaPredmetu")
+    public ResponseEntity<?> dodajNastavnikaPredmetuUOdelenju(
+            @RequestParam("nastavnikId") Integer nastavnikId,
+            @RequestParam("predmetId") Integer predmetId,
+            @RequestParam("odelenjeId") Integer odelenjeId) {
+        
+            odelenjeService.dodajNastavnikaPredmetuUOdelenju(nastavnikId, predmetId, odelenjeId);
+            return ResponseEntity.ok("Nastavnik je uspešno dodat predmetu u odabrano odeljenje.");
+        
+    }
+    //svi nastavnici i predmeti koje predaju u nekom odelenju
+    @GetMapping("/{odeljenjeId}/nastavnici-predmeti")
+    public ResponseEntity<List<NastavnikPredmetDTO>> getPredmetiINastavniciZaOdelenje(@PathVariable Integer odeljenjeId) {
+            List<NastavnikPredmetDTO> predmetiNastavniciList = odelenjeService.getPredmetiINastavniciZaOdelenje(odeljenjeId);   
+            return ResponseEntity.ok(predmetiNastavniciList);
     }
 }
