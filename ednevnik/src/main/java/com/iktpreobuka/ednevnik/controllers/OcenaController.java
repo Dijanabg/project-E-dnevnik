@@ -1,6 +1,5 @@
 package com.iktpreobuka.ednevnik.controllers;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
+import com.iktpreobuka.ednevnik.entities.dto.ZakljucnaOcenaDTO;
 import com.iktpreobuka.ednevnik.services.OcenaService;
 
 @RestController
@@ -46,8 +46,22 @@ public class OcenaController {
     }
 
     @GetMapping("/ucenik/{ucenikId}")
-    public ResponseEntity<Map<String, List<Integer>>> getOcenePoPredmetimaZaUcenika(@PathVariable Integer ucenikId) {
-        Map<String, List<Integer>> ocene = ocenaService.getOcenePoPredmetimaZaUcenika(ucenikId);
+    public ResponseEntity<Map<String, Object>> getOcenePoPredmetimaZaUcenika(@PathVariable Integer ucenikId) {
+        Map<String, Object> ocene = ocenaService.getOcenePoPredmetimaZaUcenika(ucenikId);
         return ResponseEntity.ok(ocene);
+    }
+    
+    @PostMapping("/zakljucna")
+    public ResponseEntity<ZakljucnaOcenaDTO> dajZakljucnuOcenu(@RequestBody OcenaDTO ocenaDTO) {
+    	ZakljucnaOcenaDTO zakljucenaOcenaDTO = ocenaService.dajZakljucnuOcenu(ocenaDTO.getUcenikId(), ocenaDTO.getPredmetId(), ocenaDTO.getZakljucnaOcena());
+        return new ResponseEntity<>(zakljucenaOcenaDTO, HttpStatus.OK);
+    }
+    
+    @GetMapping("/{ucenikId}/prosekZakljucnihOcena")
+    public ResponseEntity<Double> getProsekZakljucnihOcena(@PathVariable Integer ucenikId) {
+       
+            Double prosek = ocenaService.izracunajProsekZakljucnihOcenaZaUcenika(ucenikId);
+            return ResponseEntity.ok(prosek);
+        
     }
 }

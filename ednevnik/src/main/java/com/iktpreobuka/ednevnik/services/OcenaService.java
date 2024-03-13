@@ -1,9 +1,9 @@
 package com.iktpreobuka.ednevnik.services;
 
-import java.util.List;
 import java.util.Map;
 
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
+import com.iktpreobuka.ednevnik.entities.dto.ZakljucnaOcenaDTO;
 
 public interface OcenaService {
 
@@ -13,6 +13,12 @@ public interface OcenaService {
 
 	void obrisiOcenu(Integer ocenaId);
 
-	Map<String, List<Integer>> getOcenePoPredmetimaZaUcenika(Integer ucenikId);
+	Map<String, Object> getOcenePoPredmetimaZaUcenika(Integer ucenikId);
+
+	ZakljucnaOcenaDTO dajZakljucnuOcenu(Integer ucenikId, Integer predmetId, Integer zakljucnaOcena);
+
+	Double izracunajProsekZakljucnihOcenaZaUcenika(Integer ucenikId);
+
+	
 
 }

@@ -53,6 +53,10 @@ public class OcenaEntity {
 	@JsonView(Views.Public.class)
 	private EPolugodisteEntity polugodiste;
 	
+	@Column(name = "zakljucna_ocena")
+	@JsonView(Views.Public.class)
+	private Integer zakljucnaOcena;
+	
 	@Version
 	private Integer version;
 	
@@ -78,14 +82,15 @@ public class OcenaEntity {
 	}
 
 	public OcenaEntity(Integer id, Integer vrednostOcene, Date datum, EAktivnostEntity aktivnost,
-			EPolugodisteEntity polugodiste, Integer version, NastavnikEntity ocenjivac, UcenikEntity ucenik,
-			PredmetEntity predmet) {
+			EPolugodisteEntity polugodiste, Integer zakljucnaOcena, Integer version, NastavnikEntity ocenjivac,
+			UcenikEntity ucenik, PredmetEntity predmet) {
 		super();
 		this.id = id;
 		this.vrednostOcene = vrednostOcene;
 		this.datum = datum;
 		this.aktivnost = aktivnost;
 		this.polugodiste = polugodiste;
+		this.zakljucnaOcena = zakljucnaOcena;
 		this.version = version;
 		this.ocenjivac = ocenjivac;
 		this.ucenik = ucenik;
@@ -132,6 +137,14 @@ public class OcenaEntity {
 		this.polugodiste = polugodiste;
 	}
 
+	public Integer getZakljucnaOcena() {
+		return zakljucnaOcena;
+	}
+
+	public void setZakljucnaOcena(Integer zakljucnaOcena) {
+		this.zakljucnaOcena = zakljucnaOcena;
+	}
+
 	public Integer getVersion() {
 		return version;
 	}
@@ -167,8 +180,8 @@ public class OcenaEntity {
 	@Override
 	public String toString() {
 		return "OcenaEntity [id=" + id + ", vrednostOcene=" + vrednostOcene + ", datum=" + datum + ", aktivnost="
-				+ aktivnost + ", polugodiste=" + polugodiste + ", version=" + version + ", ocenjivac=" + ocenjivac
-				+ ", ucenik=" + ucenik + ", predmet=" + predmet + "]";
+				+ aktivnost + ", polugodiste=" + polugodiste + ", zakljucnaOcena=" + zakljucnaOcena + ", version="
+				+ version + ", ocenjivac=" + ocenjivac + ", ucenik=" + ucenik + ", predmet=" + predmet + "]";
 	}
 
 	

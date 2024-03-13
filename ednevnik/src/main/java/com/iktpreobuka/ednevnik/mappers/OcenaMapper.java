@@ -56,6 +56,7 @@ public class OcenaMapper {
             ocenaDTO.setPredmetId(ocenaEntity.getPredmet().getId());
             ocenaDTO.setPredmetNaziv(ocenaEntity.getPredmet().getNazivPredmeta());
         }
+        ocenaDTO.setZakljucnaOcena(ocenaEntity.getZakljucnaOcena());
         return ocenaDTO;
     }
 
@@ -70,6 +71,7 @@ public class OcenaMapper {
         ocenaEntity.setVrednostOcene(ocenaDTO.getVrednostOcene());
      // Postavljanje trenutnog datuma
         ocenaEntity.setDatum(new Date());
+        ocenaEntity.setZakljucnaOcena(ocenaDTO.getZakljucnaOcena());
 
         if(ocenaDTO.getAktivnost() != null) {
             ocenaEntity.setAktivnost(EAktivnostEntity.valueOf(ocenaDTO.getAktivnost()));
