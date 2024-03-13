@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,30 +37,35 @@ public class RoditeljController {
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<RoditeljDTO> createRoditelj(@Validated @RequestBody RoditeljDTO roditeljDTO) {
         RoditeljDTO createdRoditelj = roditeljService.save(roditeljDTO);
         return new ResponseEntity<>(createdRoditelj, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<RoditeljDTO> updateRoditelj(@PathVariable Integer id,@Validated @RequestBody RoditeljDTO roditeljDTO) {
         RoditeljDTO updatedRoditelj = roditeljService.update(id, roditeljDTO);
         return new ResponseEntity<>(updatedRoditelj, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteRoditelj(@PathVariable Integer id) {
         roditeljService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
     @PostMapping("/{roditeljId}/dodaj-dete/{deteId}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<RoditeljDTO> dodajDeteRoditelju(@PathVariable Integer roditeljId, @PathVariable Integer deteId) {
         RoditeljDTO roditeljDTO = roditeljService.addDeteToRoditelj(roditeljId, deteId);
         return ResponseEntity.ok(roditeljDTO);
     }
 
     @DeleteMapping("/{roditeljId}/ukloni-dete/{deteId}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> ukloniDeteIzRoditelja(@PathVariable Integer roditeljId, @PathVariable Integer deteId) {
         roditeljService.removeDeteFromRoditelj(roditeljId, deteId);
         return ResponseEntity.noContent().build();

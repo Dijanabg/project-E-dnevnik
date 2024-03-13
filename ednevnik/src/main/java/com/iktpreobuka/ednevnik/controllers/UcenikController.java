@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +28,13 @@ public class UcenikController {
     private UcenikService ucenikService;
 
     @PostMapping
-    public ResponseEntity<UcenikDTO> createUcenik(@RequestBody UcenikDTO ucenikDTO) {
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<UcenikDTO> createUcenik(@Validated @RequestBody UcenikDTO ucenikDTO) {
         return new ResponseEntity<>(ucenikService.saveUcenik(ucenikDTO), HttpStatus.CREATED);
     }
 
     @GetMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<List<UcenikDTO>> getAllUcenici() {
         return ResponseEntity.ok(ucenikService.findAllUcenici());
     }
@@ -41,11 +45,13 @@ public class UcenikController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UcenikDTO> updateUcenik(@PathVariable Integer id, @RequestBody UcenikDTO ucenikDTO) {
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<UcenikDTO> updateUcenik(@PathVariable Integer id,@Validated @RequestBody UcenikDTO ucenikDTO) {
         return ResponseEntity.ok(ucenikService.updateUcenik(id, ucenikDTO));
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteUcenik(@PathVariable Integer id) {
         ucenikService.deleteUcenik(id);
         return ResponseEntity.ok().build();

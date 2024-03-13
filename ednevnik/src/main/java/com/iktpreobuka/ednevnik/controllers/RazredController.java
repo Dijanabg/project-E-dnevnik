@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class RazredController {
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<RazredDTO> createRazred(@RequestBody RazredDTO razredDTO) {
         RazredDTO createdRazred = razredService.save(razredDTO);
         return new ResponseEntity<>(createdRazred, HttpStatus.CREATED);
@@ -44,12 +46,14 @@ public class RazredController {
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<RazredDTO> updateRazred(@PathVariable Integer id, @Validated @RequestBody RazredDTO razredDTO) {
         RazredDTO updatedRazred = razredService.update(id, razredDTO);
         return new ResponseEntity<>(updatedRazred, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteRazred(@PathVariable Integer id) {
         razredService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

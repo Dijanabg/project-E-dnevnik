@@ -17,6 +17,7 @@ public class NastavnikDTO {
 	message="Email is not valid.")
     private String email;
 	
+	@NotNull(message = "Korisnik id mora biti prosledjen.")
 	private Integer korisnikId;
     
 	public NastavnikDTO() {

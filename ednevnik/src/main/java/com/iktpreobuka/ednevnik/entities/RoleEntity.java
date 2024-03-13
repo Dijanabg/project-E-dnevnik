@@ -3,6 +3,8 @@ package com.iktpreobuka.ednevnik.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +32,7 @@ public class RoleEntity {
 	protected Integer version;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<KorisnikEntity> korisnici = new ArrayList<>();
 
 	public RoleEntity() {
@@ -68,6 +71,7 @@ public class RoleEntity {
 		this.version = version;
 	}
 
+	
 	public List<KorisnikEntity> getKorisnici() {
 		return korisnici;
 	}

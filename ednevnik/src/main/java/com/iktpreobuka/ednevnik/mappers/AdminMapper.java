@@ -51,7 +51,7 @@ public class AdminMapper {
         return entityList.stream().map(this::toDto).collect(Collectors.toList());
     }
     
-    public void updateNastavnikEntityFromDto(AdminDTO dto, AdminEntity entity) {
+    public void updateAdminEntityFromDto(AdminDTO dto, AdminEntity entity) {
         if (dto == null || entity == null) return;
 
         if (dto.getIme() != null) {

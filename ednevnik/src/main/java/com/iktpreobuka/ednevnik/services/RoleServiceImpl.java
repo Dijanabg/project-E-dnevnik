@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.iktpreobuka.ednevnik.entities.RoleEntity;
 import com.iktpreobuka.ednevnik.entities.dto.RoleDTO;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.RoleMapper;
 import com.iktpreobuka.ednevnik.repositories.RoleRepository;
-import com.iktpreobuka.ednevnik.security.RoleService;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class RoleServiceImpl implements RoleService{
@@ -42,14 +41,14 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public RoleDTO findById(Integer id) {
-		RoleEntity entity = roleRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Role not found!"));
+		RoleEntity entity = roleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Role not found!"));
         return roleMapper.toDto(entity);
 	}
 
 	@Override
     public RoleDTO updateRole(Integer id, RoleDTO roleDTO) {
         RoleEntity entity = roleRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Role not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found!"));
         entity.setName(roleDTO.getName());
         entity = roleRepository.save(entity);
         return roleMapper.toDto(entity);

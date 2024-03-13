@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,18 +46,21 @@ public class OdelenjeController {
 
     // Kreiranje novog odelenja
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<OdelenjeDTO> createOdelenje(@Validated @RequestBody OdelenjeDTO odelenjeDTO) {
         return new ResponseEntity<>(odelenjeService.createOdelenje(odelenjeDTO), HttpStatus.CREATED);
     }
 
     // Ažuriranje odelenja
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<OdelenjeDTO> updateOdelenje(@PathVariable Integer id, @Validated @RequestBody OdelenjeDTO odelenjeDTO) {
         return ResponseEntity.ok(odelenjeService.updateOdelenje(id, odelenjeDTO));
     }
 
     // Brisanje odelenja
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteOdelenje(@PathVariable Integer id) {
         odelenjeService.deleteOdelenje(id);
         return ResponseEntity.noContent().build();
@@ -64,6 +68,7 @@ public class OdelenjeController {
 
     // Dodeljivanje razrednog odelenju
     @PostMapping("/{odelenjeId}/razredni/{nastavnikId}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> setRazredniStaresina(@PathVariable Integer odelenjeId, @PathVariable Integer nastavnikId) {
         odelenjeService.setRazredniStaresina(odelenjeId, nastavnikId);
         return ResponseEntity.ok().build();
@@ -76,12 +81,14 @@ public class OdelenjeController {
     }
  // Dodavanje učenika u odelenje
     @PostMapping("/{odelenjeId}/dodeli-ucenika")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<UcenikDTO> dodeliUcenikaOdelenju(@PathVariable Integer odelenjeId, @RequestParam Integer ucenikId) {
         UcenikDTO ucenikDTO = odelenjeService.dodeliUcenikaOdelenju(ucenikId, odelenjeId);
         return ResponseEntity.ok(ucenikDTO);
     }
     //Uklanjanje ucenika iz odelenja
     @DeleteMapping("/ukloni-ucenika-iz-odelenja")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<UcenikDTO> ukloniUcenikaIzOdelenja(@RequestParam Integer ucenikId) {
         UcenikDTO ucenikDTO = odelenjeService.ukloniUcenikaIzOdelenja(ucenikId);
         return ResponseEntity.ok(ucenikDTO);
@@ -94,6 +101,7 @@ public class OdelenjeController {
     }
     //Dodaj nastvnika predmetu u odelenju
     @PostMapping("/dodajNastavnikaPredmetu")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<?> dodajNastavnikaPredmetuUOdelenju(
             @RequestParam("nastavnikId") Integer nastavnikId,
             @RequestParam("predmetId") Integer predmetId,

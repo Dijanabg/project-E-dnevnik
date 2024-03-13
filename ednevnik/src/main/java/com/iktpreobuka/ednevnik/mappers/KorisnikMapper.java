@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.iktpreobuka.ednevnik.controllers.util.Encryption;
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.RoleEntity;
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
@@ -17,11 +18,15 @@ public class KorisnikMapper {
 	@Autowired
 	private RoleRepository roleRepository; 
 	
+	
 	public  KorisnikEntity toEntity(KorisnikDTO dto) {
 		KorisnikEntity entity = new KorisnikEntity();
 		entity.setId(dto.getId());
         entity.setKorisnickoIme(dto.getKorisnickoIme());
-        entity.setSifra(dto.getSifra());
+        
+     // Enkriptujte lozinku pre nego što je postavite
+        String encryptedPass = Encryption.getPassEncoded(dto.getSifra());
+        entity.setSifra(encryptedPass);
         
         if (dto.getRolaId() != null) {
             RoleEntity role = roleRepository.findById(dto.getRolaId()).orElse(null);
@@ -35,7 +40,6 @@ public class KorisnikMapper {
 		KorisnikDTO dto = new KorisnikDTO();
 		dto.setId(entity.getId());
         dto.setKorisnickoIme(entity.getKorisnickoIme());
-        dto.setSifra(entity.getSifra());
         
         if (entity.getRole() != null) {
             dto.setRolaId(entity.getRole().getId());
@@ -51,7 +55,8 @@ public class KorisnikMapper {
             entity.setKorisnickoIme(dto.getKorisnickoIme());
         }
         if (dto.getSifra() != null) {
-            entity.setSifra(dto.getSifra());
+        	String encryptedPass = Encryption.getPassEncoded(dto.getSifra());
+            entity.setSifra(encryptedPass);
         }
         if (dto.getRolaId() != null) {
             RoleEntity role = roleRepository.findById(dto.getRolaId()).orElse(null);

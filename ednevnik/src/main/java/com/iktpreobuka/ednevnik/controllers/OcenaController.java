@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,36 +29,42 @@ public class OcenaController {
 	private OcenaService ocenaService;
 	
 	@PostMapping
+	@Secured("ROLE_NASTAVNIK")
     public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO novaOcena = ocenaService.dodajOcenu(ocenaDTO);
         return new ResponseEntity<>(novaOcena, HttpStatus.CREATED);
     }
 
     @PutMapping("/{ocenaId}")
+    @Secured("ROLE_NASTAVNIK")
     public ResponseEntity<OcenaDTO> updateOcenu(@PathVariable Integer ocenaId, @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO azuriranaOcena = ocenaService.updateOcenu(ocenaId, ocenaDTO);
         return ResponseEntity.ok(azuriranaOcena);
     }
 
     @DeleteMapping("/{ocenaId}")
+    @Secured("ROLE_NASTAVNIK")
     public ResponseEntity<Void> obrisiOcenu(@PathVariable Integer ocenaId) {
         ocenaService.obrisiOcenu(ocenaId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/ucenik/{ucenikId}")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     public ResponseEntity<Map<String, Object>> getOcenePoPredmetimaZaUcenika(@PathVariable Integer ucenikId) {
         Map<String, Object> ocene = ocenaService.getOcenePoPredmetimaZaUcenika(ucenikId);
         return ResponseEntity.ok(ocene);
     }
     
     @PostMapping("/zakljucna")
+    @Secured("ROLE_NASTAVNIK")
     public ResponseEntity<ZakljucnaOcenaDTO> dajZakljucnuOcenu(@RequestBody OcenaDTO ocenaDTO) {
     	ZakljucnaOcenaDTO zakljucenaOcenaDTO = ocenaService.dajZakljucnuOcenu(ocenaDTO.getUcenikId(), ocenaDTO.getPredmetId(), ocenaDTO.getZakljucnaOcena());
         return new ResponseEntity<>(zakljucenaOcenaDTO, HttpStatus.OK);
     }
     
     @GetMapping("/{ucenikId}/prosekZakljucnihOcena")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     public ResponseEntity<Double> getProsekZakljucnihOcena(@PathVariable Integer ucenikId) {
        
             Double prosek = ocenaService.izracunajProsekZakljucnihOcenaZaUcenika(ucenikId);

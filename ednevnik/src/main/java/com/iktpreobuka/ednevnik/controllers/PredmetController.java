@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class PredmetController {
     private NastavnikPredmetServise nastavnikPredmetService;
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<PredmetDTO> dodajPredmet(@Validated @RequestBody PredmetDTO predmetDTO) {
         PredmetDTO noviPredmet = predmetService.save(predmetDTO);
         return new ResponseEntity<>(noviPredmet, HttpStatus.CREATED);
@@ -43,18 +45,21 @@ public class PredmetController {
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<PredmetDTO> azurirajPredmet(@PathVariable Integer id,@Validated @RequestBody PredmetDTO predmetDTO) {
         PredmetDTO azuriraniPredmet = predmetService.update(id, predmetDTO);
         return ResponseEntity.ok(azuriraniPredmet);
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> obrisiPredmet(@PathVariable Integer id) {
         predmetService.delete(id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{predmetId}/dodeli-nastavnika/{nastavnikId}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<?> dodeliNastavnikaPredmetu(@PathVariable Integer nastavnikId,
             @PathVariable Integer predmetId) {
     	NastavnikPredmetDTO nastavnikPredmetDTO = nastavnikPredmetService.dodeliNastavnikaPredmetu(nastavnikId, predmetId);

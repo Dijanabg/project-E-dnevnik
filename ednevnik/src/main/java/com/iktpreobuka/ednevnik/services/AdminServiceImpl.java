@@ -43,7 +43,7 @@ public class AdminServiceImpl implements AdminService{
     public AdminDTO update(Integer id, AdminDTO adminDTO) {
     	AdminEntity adminEntity = adminRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Admin nije pronadjen"));
-    	adminMapper.updateNastavnikEntityFromDto(adminDTO, adminEntity);
+    	adminMapper.updateAdminEntityFromDto(adminDTO, adminEntity);
     	adminEntity = adminRepository.save(adminEntity);
         return adminMapper.toDto(adminEntity);
     }

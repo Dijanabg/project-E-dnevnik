@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,25 +32,29 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<AdminDTO> getAdminById(@PathVariable Integer id) {
         AdminDTO adminDTO = adminService.findById(id);
         return new ResponseEntity<>(adminDTO, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<AdminDTO> createNastavnik(@Validated @RequestBody AdminDTO adminDTO) {
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<AdminDTO> createAdmin(@Validated @RequestBody AdminDTO adminDTO) {
         AdminDTO newAdminDTO = adminService.save(adminDTO);
         return new ResponseEntity<>(newAdminDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdminDTO> updateNastavnik(@PathVariable Integer id,@Validated @RequestBody AdminDTO adminDTO) {
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<AdminDTO> updateAdmin(@PathVariable Integer id,@Validated @RequestBody AdminDTO adminDTO) {
         AdminDTO updatedAdminDTO = adminService.update(id, adminDTO);
         return new ResponseEntity<>(updatedAdminDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNastavnik(@PathVariable Integer id) {
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<Void> deleteAdmin(@PathVariable Integer id) {
         adminService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

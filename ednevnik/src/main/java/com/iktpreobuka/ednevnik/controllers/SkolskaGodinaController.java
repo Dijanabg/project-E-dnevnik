@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ public class SkolskaGodinaController {
 
     // Dodavanje nove školske godine
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SkolskaGodinaDTO> addSkolskaGodina(@Validated @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaDTO novaSkolskaGodina = skolskaGodinaService.save(skolskaGodinaDTO);
         return new ResponseEntity<>(novaSkolskaGodina, HttpStatus.CREATED);
@@ -50,6 +52,7 @@ public class SkolskaGodinaController {
 
     // Ažuriranje postojeće školske godine
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<SkolskaGodinaDTO> updateSkolskaGodina(@PathVariable Integer id, @Valid @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaDTO azuriranaSkolskaGodina = skolskaGodinaService.update(id, skolskaGodinaDTO);
         return new ResponseEntity<>(azuriranaSkolskaGodina, HttpStatus.OK);
@@ -57,6 +60,7 @@ public class SkolskaGodinaController {
 
     // Brisanje školske godine
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Void> deleteSkolskaGodina(@PathVariable Integer id) {
         skolskaGodinaService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
