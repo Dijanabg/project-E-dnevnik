@@ -121,7 +121,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     @Transactional
     public List<OdelenjeDTO> findAllOdelenja() {
         List<OdelenjeEntity> odelenja = (List<OdelenjeEntity>) odelenjeRepository.findAll();
-        //dodati po razredu, dal uopste treba ovo
+        
         return odelenjeMapper.toDtoList(odelenja);
     }
 
@@ -199,32 +199,62 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     @Override
     @Transactional
     public void dodajNastavnikaPredmetuUOdelenju(Integer nastavnikId, Integer predmetId, Integer odelenjeId) {
-    	// Provera da li postoji kombinacija nastavnik-predmet
-        NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
-            .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
-        PredmetEntity predmet = predmetRepository.findById(predmetId)
-            .orElseThrow(() -> new RuntimeException("Predmet not found"));
-        OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
-            .orElseThrow(() -> new RuntimeException("Odelenje not found"));
-        
-        // Proveriti da li nastavnik već predaje dati predmet u odelenju
-        boolean alreadyExists = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet);
-        
-        // Proveriti da li nastavnik može da predaje dati predmet
-        boolean canTeach = nastavnikPredmetRepository.existsByNastavnikIdAndPredmetId(nastavnikId, predmetId); // Ovo pretpostavlja postojanje takve provere
-        
-        if (!alreadyExists && canTeach) {
-            NastavnikOdelenjeEntity nastavnikOdelenje = new NastavnikOdelenjeEntity();
-            nastavnikOdelenje.setPredavac(nastavnik);
-            nastavnikOdelenje.setOdelenje(odelenje);
-            nastavnikOdelenje.setPredmet(predmet);
+//    	// Provera da li postoji kombinacija nastavnik-predmet
+//        NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
+//            .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
+//        PredmetEntity predmet = predmetRepository.findById(predmetId)
+//            .orElseThrow(() -> new RuntimeException("Predmet not found"));
+//        OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
+//            .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+//        
+//        // Proveriti da li nastavnik već predaje dati predmet u odelenju
+//        boolean alreadyExists = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet);
+//        
+//        // Proveriti da li nastavnik može da predaje dati predmet
+//        boolean canTeach = nastavnikPredmetRepository.existsByNastavnikIdAndPredmetId(nastavnikId, predmetId); // Ovo pretpostavlja postojanje takve provere
+//        
+//        if (!alreadyExists && canTeach) {
+//            NastavnikOdelenjeEntity nastavnikOdelenje = new NastavnikOdelenjeEntity();
+//            nastavnikOdelenje.setPredavac(nastavnik);
+//            nastavnikOdelenje.setOdelenje(odelenje);
+//            nastavnikOdelenje.setPredmet(predmet);
+//
+//            nastavnikOdelenjeRepository.save(nastavnikOdelenje);
+//        } else if (!canTeach) {
+//            throw new RuntimeException("Nastavnik nije kvalifikovan da predaje dati predmet");
+//        } else {
+//            throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
+//        }
+    	NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
+    	        .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
+    	    PredmetEntity predmet = predmetRepository.findById(predmetId)
+    	        .orElseThrow(() -> new RuntimeException("Predmet not found"));
+    	    OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
+    	        .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+    	    
+    	    // Provera da li predmet odgovara razredu odelenja
+    	    boolean isAppropriateGrade = predmet.getRazred() == odelenje.getRazred();
+    	    if (!isAppropriateGrade) {
+    	        throw new RuntimeException("Predmet nije namenjen razredu odelenja");
+    	    }
 
-            nastavnikOdelenjeRepository.save(nastavnikOdelenje);
-        } else if (!canTeach) {
-            throw new RuntimeException("Nastavnik nije kvalifikovan da predaje dati predmet");
-        } else {
-            throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
-        }
+    	    // Provera da li nastavnik već predaje dati predmet u odelenju
+    	    boolean alreadyExists = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet);
+    	    
+    	    // Provera da li nastavnik može da predaje dati predmet
+    	    boolean canTeach = nastavnikPredmetRepository.existsByNastavnikIdAndPredmetId(nastavnikId, predmetId);
+    	    
+    	    if (!alreadyExists && canTeach) {
+    	        NastavnikOdelenjeEntity nastavnikOdelenje = new NastavnikOdelenjeEntity();
+    	        nastavnikOdelenje.setPredavac(nastavnik);
+    	        nastavnikOdelenje.setOdelenje(odelenje);
+    	        nastavnikOdelenje.setPredmet(predmet);
+    	        nastavnikOdelenjeRepository.save(nastavnikOdelenje);
+    	    } else if (!canTeach) {
+    	        throw new RuntimeException("Nastavnik nije kvalifikovan da predaje dati predmet");
+    	    } else {
+    	        throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
+    	    }
     }
 
         //svi nastavnici i predmeti koje predju u nekom odelenju
@@ -241,9 +271,11 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     	            NastavnikPredmetDTO dto = new NastavnikPredmetDTO();
     	            dto.setId(nastavnikOdelenje.getId());
     	            dto.setNastavnikId(nastavnik.getId());
-    	            dto.setNastavnikIme(nastavnik.getIme() + " " + nastavnik.getPrezime());
+    	            dto.setNastavnikIme(nastavnik.getIme());
+    	            dto.setNastavnikPrezime(nastavnik.getPrezime());
     	            dto.setPredmetId(predmet.getId());
     	            dto.setPredmetNaziv(predmet.getNazivPredmeta());
+    	            //dto.setPredmetRazred(predmet.getRazred());
     	            predmetiNastavniciList.add(dto);
     	        }
     	    }

@@ -26,6 +26,7 @@ public class RoditeljDTO {
     
     @NotEmpty(message = "Lista dece ne sme biti prazna.")
     private List<Integer> deteIds = new ArrayList<>();
+    
 	public RoditeljDTO() {
 		super();
 	}

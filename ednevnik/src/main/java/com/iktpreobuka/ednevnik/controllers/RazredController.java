@@ -34,7 +34,7 @@ public class RazredController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<RazredDTO> createRazred(@RequestBody RazredDTO razredDTO) {
+    public ResponseEntity<RazredDTO> createRazred(@Validated @RequestBody RazredDTO razredDTO) {
         RazredDTO createdRazred = razredService.save(razredDTO);
         return new ResponseEntity<>(createdRazred, HttpStatus.CREATED);
     }

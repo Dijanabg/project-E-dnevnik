@@ -15,5 +15,7 @@ public interface NastavnikService {
 	NastavnikDTO update(Integer id, NastavnikDTO nastavnikDTO);
 
 	void deleteById(Integer id);
+
+	NastavnikDTO pronadjiNastavnikaPoKorisnickomImenu(String korisnickoIme);
 	
 }

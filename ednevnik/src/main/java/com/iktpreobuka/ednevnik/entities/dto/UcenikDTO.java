@@ -17,21 +17,38 @@ public class UcenikDTO {
     private String email;
 	
 	private Integer korisnikId;
+	
+	private RoditeljDTO roditelj;
 
 	public UcenikDTO() {
 		super();
 	}
+//	public UcenikDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
+//			@NotNull(message = "Prezime mora biti uneto.") String prezime,
+//			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
+//			Integer korisnikId) {
+//		super();
+//		this.id = id;
+//		this.ime = ime;
+//		this.prezime = prezime;
+//		this.email = email;
+//		this.korisnikId = korisnikId;
+//	}
+	
+	
 	public UcenikDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
-			@NotNull(message = "Prezime mora biti uneto.") String prezime,
-			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
-			Integer korisnikId) {
-		super();
-		this.id = id;
-		this.ime = ime;
-		this.prezime = prezime;
-		this.email = email;
-		this.korisnikId = korisnikId;
+		@NotNull(message = "Prezime mora biti uneto.") String prezime,
+		@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
+		Integer korisnikId, RoditeljDTO roditelj) {
+			super();
+			this.id = id;
+			this.ime = ime;
+			this.prezime = prezime;
+			this.email = email;
+			this.korisnikId = korisnikId;
+			this.roditelj = roditelj;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -62,6 +79,17 @@ public class UcenikDTO {
 	public void setKorisnikId(Integer korisnikId) {
 		this.korisnikId = korisnikId;
 	}
+	
+	public RoditeljDTO getRoditelj() {
+		return roditelj;
+	}
+
+
+	public void setRoditelj(RoditeljDTO roditelj) {
+		this.roditelj = roditelj;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UcenikDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnikId="

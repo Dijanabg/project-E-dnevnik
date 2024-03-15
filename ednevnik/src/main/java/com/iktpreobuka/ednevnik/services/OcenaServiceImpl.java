@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,37 +56,45 @@ public class OcenaServiceImpl implements OcenaService{
     private PredmetRepository predmetRepository;
 
     @Override
-    @Transactional
-    public OcenaDTO dodajOcenu(OcenaDTO ocenaDTO) {
-    	UcenikEntity ucenik = ucenikRepository.findById(ocenaDTO.getUcenikId())
-                .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
-        NastavnikEntity nastavnik = nastavnikRepository.findById(ocenaDTO.getOcenjivacId())
-                .orElseThrow(() -> new ResourceNotFoundException("Nastavnik nije pronađen."));
-        PredmetEntity predmet = predmetRepository.findById(ocenaDTO.getPredmetId())
-                .orElseThrow(() -> new ResourceNotFoundException("Predmet nije pronađen."));
-        OdelenjeEntity odelenje = odelenjeRepository.findById(ucenik.getOdelenje().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Odeljenje nije pronađeno."));
+	@Transactional
+	public OcenaDTO dodajOcenu(OcenaDTO ocenaDTO) {
+	    // Dobijanje korisničkog imena ulogovanog korisnika
+	    String ulogovaniKorisnikUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+	    // Pronalaženje ulogovanog nastavnika na osnovu korisničkog imena
+	    NastavnikEntity ulogovaniNastavnik = nastavnikRepository.findByKorisnikNastavnikKorisnickoIme(ulogovaniKorisnikUsername)
+	            .orElseThrow(() -> new ResourceNotFoundException("Nije pronađen nastavnik sa korisničkim imenom: " + ulogovaniKorisnikUsername));
 
-        if (!nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet)) {
-            throw new ResourceNotFoundException("Nastavnik ne predaje dati predmet u odeljenju učenika.");
-        }
+	    UcenikEntity ucenik = ucenikRepository.findById(ocenaDTO.getUcenikId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
+	    PredmetEntity predmet = predmetRepository.findById(ocenaDTO.getPredmetId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Predmet nije pronađen."));
+	    OdelenjeEntity odelenje = odelenjeRepository.findById(ucenik.getOdelenje().getId())
+	            .orElseThrow(() -> new ResourceNotFoundException("Odeljenje nije pronađeno."));
 
-        OcenaEntity novaOcena = ocenaMapper.toEntity(ocenaDTO);
-        novaOcena.setVrednostOcene(ocenaDTO.getVrednostOcene());
-        EAktivnostEntity aktivnostEnum = EAktivnostEntity.valueOf(ocenaDTO.getAktivnost().toUpperCase());
-        novaOcena.setAktivnost(aktivnostEnum);
-        
-        EPolugodisteEntity polugodisteEnum = EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste().toUpperCase());
-        novaOcena.setPolugodiste(polugodisteEnum);
-        
-        novaOcena.setUcenik(ucenik);
-        novaOcena.setPredmet(predmet);
-        novaOcena.setOcenjivac(nastavnik);
-        novaOcena.setDatum(new Date());
-        novaOcena = ocenaRepository.save(novaOcena);
+	    // Provera da li ulogovani nastavnik predaje dati predmet u odelenju učenika
+	    boolean predajePredmetUOdeljenju = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(ulogovaniNastavnik, odelenje, predmet);
+	    if (!predajePredmetUOdeljenju) {
+	        throw new AccessDeniedException("Nastavnik ne predaje dati predmet u odeljenju učenika.");
+	    }
 
-        return ocenaMapper.toDto(novaOcena);
-    }
+	    // Kreiranje nove ocene
+	    OcenaEntity novaOcena = ocenaMapper.toEntity(ocenaDTO);
+	    novaOcena.setVrednostOcene(ocenaDTO.getVrednostOcene());
+	    EAktivnostEntity aktivnostEnum = EAktivnostEntity.valueOf(ocenaDTO.getAktivnost().toUpperCase());
+	    novaOcena.setAktivnost(aktivnostEnum);
+	    
+	    EPolugodisteEntity polugodisteEnum = EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste().toUpperCase());
+	    novaOcena.setPolugodiste(polugodisteEnum);
+	    
+	    novaOcena.setUcenik(ucenik);
+	    novaOcena.setPredmet(predmet);
+	    // Ovde postavljamo ulogovanog nastavnika kao ocenjivača
+	    novaOcena.setOcenjivac(ulogovaniNastavnik);
+	    novaOcena.setDatum(new Date());
+	    novaOcena = ocenaRepository.save(novaOcena);
+
+	    return ocenaMapper.toDto(novaOcena);
+	}	
     
     @Override
     @Transactional

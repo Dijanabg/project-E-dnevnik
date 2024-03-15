@@ -1,9 +1,13 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class NastavnikOdelenjeDTO {
 	private Integer id;
     private Integer nastavnikId;
     private String nastavnikIme; 
+    @JsonIgnore
+    private String nastavnikPrezime;
     private Integer odeljenjeId;
     private Integer predmetId;
     private String predmetNaziv;
@@ -12,12 +16,13 @@ public class NastavnikOdelenjeDTO {
 		super();
 	}
 
-	public NastavnikOdelenjeDTO(Integer id, Integer nastavnikId, String nastavnikIme, Integer odeljenjeId,
-			Integer predmetId, String predmetNaziv) {
+	public NastavnikOdelenjeDTO(Integer id, Integer nastavnikId, String nastavnikIme, String nastavnikPrezime,
+			Integer odeljenjeId, Integer predmetId, String predmetNaziv) {
 		super();
 		this.id = id;
 		this.nastavnikId = nastavnikId;
 		this.nastavnikIme = nastavnikIme;
+		this.nastavnikPrezime = nastavnikPrezime;
 		this.odeljenjeId = odeljenjeId;
 		this.predmetId = predmetId;
 		this.predmetNaziv = predmetNaziv;
@@ -47,6 +52,14 @@ public class NastavnikOdelenjeDTO {
 		this.nastavnikIme = nastavnikIme;
 	}
 
+	public String getNastavnikPrezime() {
+		return nastavnikPrezime;
+	}
+
+	public void setNastavnikPrezime(String nastavnikPrezime) {
+		this.nastavnikPrezime = nastavnikPrezime;
+	}
+
 	public Integer getOdeljenjeId() {
 		return odeljenjeId;
 	}
@@ -74,9 +87,7 @@ public class NastavnikOdelenjeDTO {
 	@Override
 	public String toString() {
 		return "NastavnikOdelenjeDTO [id=" + id + ", nastavnikId=" + nastavnikId + ", nastavnikIme=" + nastavnikIme
-				+ ", odeljenjeId=" + odeljenjeId + ", predmetId=" + predmetId
+				+ ", nastavnikPrezime=" + nastavnikPrezime + ", odeljenjeId=" + odeljenjeId + ", predmetId=" + predmetId
 				+ ", predmetNaziv=" + predmetNaziv + "]";
 	}
-
-	
 }

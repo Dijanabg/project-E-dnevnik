@@ -13,11 +13,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "nastavnikPredmet")
+//@Table(name = "nastavnikPredmet")
+@Table(name = "nastavnikPredmet", uniqueConstraints = {
+	    @UniqueConstraint(columnNames = {"nastavnik_id", "predmet_id"})
+	})
 public class NastavnikPredmetEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

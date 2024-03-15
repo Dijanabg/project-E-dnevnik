@@ -18,6 +18,8 @@ public class UcenikMapper {
 	@Autowired
 	private KorisnikRepository korisnikRepository;
 	
+	@Autowired RoditeljMapper roditeljMapper;
+	
 	public  UcenikEntity toEntity(UcenikDTO dto) {
 		UcenikEntity entity = new UcenikEntity();
 		entity.setId(dto.getId());
@@ -44,7 +46,9 @@ public class UcenikMapper {
         if (entity.getKorisnikUcenik() != null) {
             dto.setKorisnikId(entity.getKorisnikUcenik().getId());
         }
-        
+        if (entity.getRoditelj() != null) {
+            dto.setRoditelj(roditeljMapper.toDto(entity.getRoditelj())); // Dodavanje informacija o roditelju
+        }
         return dto;
     }
 	public List<UcenikEntity> toEntityList(List<UcenikDTO> dtoList) {

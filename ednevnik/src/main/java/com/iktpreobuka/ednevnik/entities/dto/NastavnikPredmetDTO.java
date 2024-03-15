@@ -4,21 +4,25 @@ public class NastavnikPredmetDTO {
 	private Integer id;
     private Integer nastavnikId;
     private String nastavnikIme; 
+    private String nastavnikPrezime;
     private Integer predmetId;
     private String predmetNaziv; 
+    private Integer predmetRazred;
     
 	public NastavnikPredmetDTO() {
 		super();
 	}
 
-	public NastavnikPredmetDTO(Integer id, Integer nastavnikId, String nastavnikIme, Integer predmetId,
-			String predmetNaziv) {
+	public NastavnikPredmetDTO(Integer id, Integer nastavnikId, String nastavnikIme, String nastavnikPrezime,
+			Integer predmetId, String predmetNaziv, Integer predmetRazred) {
 		super();
 		this.id = id;
 		this.nastavnikId = nastavnikId;
 		this.nastavnikIme = nastavnikIme;
+		this.nastavnikPrezime = nastavnikPrezime;
 		this.predmetId = predmetId;
 		this.predmetNaziv = predmetNaziv;
+		this.predmetRazred = predmetRazred;
 	}
 
 	public Integer getId() {
@@ -59,6 +63,22 @@ public class NastavnikPredmetDTO {
 
 	public void setPredmetNaziv(String predmetNaziv) {
 		this.predmetNaziv = predmetNaziv;
+	}
+
+	public String getNastavnikPrezime() {
+		return nastavnikPrezime;
+	}
+
+	public void setNastavnikPrezime(String nastavnikPrezime) {
+		this.nastavnikPrezime = nastavnikPrezime;
+	}
+
+	public Integer getPredmetRazred() {
+		return predmetRazred;
+	}
+
+	public void setPredmetRazred(Integer razredEntity) {
+		this.predmetRazred = razredEntity;
 	}
 
 	@Override

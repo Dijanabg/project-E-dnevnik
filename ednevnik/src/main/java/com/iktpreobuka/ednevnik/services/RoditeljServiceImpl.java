@@ -49,14 +49,23 @@ public class RoditeljServiceImpl implements RoditeljService{
         roditeljEntity = roditeljRepository.save(roditeljEntity);
         if(roditeljDTO.getDeteIds() != null && !roditeljDTO.getDeteIds().isEmpty()) {
             for(Integer deteId : roditeljDTO.getDeteIds()) {
-                UcenikEntity dete = ucenikRepository.findById(deteId).orElseThrow(() -> new RuntimeException("Dete sa ID-em " + deteId + " nije pronađeno."));
+                UcenikEntity dete = ucenikRepository.findById(deteId).orElseThrow(() -> new ResourceNotFoundException("Dete sa ID-em " + deteId + " nije pronađeno."));
                 dete.setRoditelj(roditeljEntity);
+                deca.add(dete);
                 ucenikRepository.save(dete);
             }
+            ucenikRepository.saveAll(deca);
         }
-        ucenikRepository.saveAll(deca);
-        return roditeljMapper.toDto(roditeljEntity);
-    }
+        
+        
+        //roditeljEntity.setDete(deca);
+        //return roditeljMapper.toDto(roditeljEntity);
+        roditeljEntity.setDete(deca); // Ovde postavljamo listu dece za roditeljEntity pre nego što ga vratimo
+        roditeljRepository.save(roditeljEntity); // Ponovno čuvanje roditelja nakon dodavanja dece
+
+        // Kreiramo finalniDTO iz ažuriranog roditeljEntity koji sada uključuje i decu
+        RoditeljDTO finalniDTO = roditeljMapper.toDto(roditeljEntity);
+        return finalniDTO;    }
     
     @Override
     @Transactional

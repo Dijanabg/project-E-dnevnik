@@ -42,6 +42,7 @@ public class UcenikServiceImpl implements UcenikService{
     }
 
     @Override
+    @Transactional
     public List<UcenikDTO> findAllUcenici() {
         List<UcenikEntity> ucenici = (List<UcenikEntity>) ucenikRepository.findAll();
         return ucenikMapper.toDtoList(ucenici);

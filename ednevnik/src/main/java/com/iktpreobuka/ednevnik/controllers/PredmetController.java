@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikPredmetDTO;
@@ -66,9 +67,26 @@ public class PredmetController {
         return new ResponseEntity<>(nastavnikPredmetDTO, HttpStatus.CREATED);
 	}
     
+    @GetMapping("/nastavnici-predmeti")
+    public ResponseEntity<List<NastavnikPredmetDTO>> getNastavniciIPredmetiKojePredaju() {
+        List<NastavnikPredmetDTO> dtoList = nastavnikPredmetService.getNastavniciIPredmetiKojePredaju();
+        return ResponseEntity.ok(dtoList);
+    }
+    
     @GetMapping("/razred/{razredId}/predmeti")
     public ResponseEntity<List<PredmetDTO>> getPredmetiByRazredId(@PathVariable Integer razredId) {
         List<PredmetDTO> predmetiDTO = predmetService.findPredmetiByRazredId(razredId);
         return ResponseEntity.ok(predmetiDTO);
+    }
+    
+    @DeleteMapping("/ukloni-dodelu")
+    @Secured("ROLE_ADMIN")
+    public ResponseEntity<?> ukloniDodeluNastavnikaPredmetu(@RequestParam Integer nastavnikId, @RequestParam Integer predmetId) {
+        boolean uklonjeno = nastavnikPredmetService.ukloniDodeluNastavnikaPredmetu(nastavnikId, predmetId);
+        if (uklonjeno) {
+            return new ResponseEntity<>("Dodela predmeta nastavniku uspešno uklonjena.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Dodela predmeta nastavniku nije pronađena.", HttpStatus.NOT_FOUND);
+        }
     }
 }

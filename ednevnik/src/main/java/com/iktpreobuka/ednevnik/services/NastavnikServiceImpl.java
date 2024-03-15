@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
@@ -55,8 +56,13 @@ public class NastavnikServiceImpl implements NastavnikService{
         nastavnikRepository.deleteById(id);
     }
 
+    @Override
+    @Transactional
+    public NastavnikDTO pronadjiNastavnikaPoKorisnickomImenu(String korisnickoIme) {
+    	NastavnikEntity nastavnik =nastavnikRepository.findByKorisnikNastavnikKorisnickoIme(korisnickoIme)
+                .orElseThrow(() -> new ResourceNotFoundException("Nastavnik nije pronađen za korisnika: " + korisnickoIme));
+    	return nastavnikMapper.toDto(nastavnik);
+    }
     
     
-    // uklanjanje dodeljenog nastavnika odelenju u odelenje
-    // pregled nastavnika sa listom predmeta koje predae i u kojim odelenjima
 }

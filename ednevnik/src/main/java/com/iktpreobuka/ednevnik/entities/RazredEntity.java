@@ -20,11 +20,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "razred")
+//@Table(name = "razred")
+@Table(name = "razred", uniqueConstraints = {
+	    @UniqueConstraint(columnNames = {"skolska_godina_id", "razred"})
+	})
 public class RazredEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
