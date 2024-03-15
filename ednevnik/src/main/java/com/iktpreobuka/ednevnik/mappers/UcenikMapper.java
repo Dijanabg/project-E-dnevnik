@@ -49,6 +49,14 @@ public class UcenikMapper {
         if (entity.getRoditelj() != null) {
             dto.setRoditelj(roditeljMapper.toDto(entity.getRoditelj())); // Dodavanje informacija o roditelju
         }
+        if (entity.getOdelenje() != null) {
+            dto.setOdelenje(entity.getOdelenje().getOdelenje());
+         // Dodajemo informaciju o razredu 
+            if (entity.getOdelenje().getRazred() != null) {
+                dto.setRazred(entity.getOdelenje().getRazred().getRazred()); // Pretpostavljam da želite broj razreda
+            }
+        }
+        
         return dto;
     }
 	public List<UcenikEntity> toEntityList(List<UcenikDTO> dtoList) {

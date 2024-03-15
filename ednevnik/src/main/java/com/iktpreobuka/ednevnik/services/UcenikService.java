@@ -17,6 +17,8 @@ public interface UcenikService {
 	void deleteUcenik(Integer id);
 
 	List<UcenikDTO> nadjiDecuNegogRoditelja(Integer roditeljId);
+
+	UcenikDTO dajInformacijeORazreduZaUcenika(Integer ucenikId);
 	
     
 }

@@ -17,6 +17,7 @@ import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
 import com.iktpreobuka.ednevnik.entities.OcenaEntity;
 import com.iktpreobuka.ednevnik.entities.OdelenjeEntity;
 import com.iktpreobuka.ednevnik.entities.PredmetEntity;
+import com.iktpreobuka.ednevnik.entities.RazredEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
 import com.iktpreobuka.ednevnik.entities.dto.ZakljucnaOcenaDTO;
@@ -140,6 +141,9 @@ public class OcenaServiceImpl implements OcenaService{
         // Brisanje ocene
         ocenaRepository.deleteById(ocenaId);
     }
+    
+    @Override
+    @Transactional
     public Map<String, Object> getOcenePoPredmetimaZaUcenika(Integer ucenikId) {
         // nadji sve ocene za datog učenika
         List<OcenaEntity> ocene = ocenaRepository.findAllByUcenikId(ucenikId);
@@ -187,12 +191,22 @@ public class OcenaServiceImpl implements OcenaService{
     @Override
     @Transactional
     public ZakljucnaOcenaDTO dajZakljucnuOcenu(Integer ucenikId, Integer predmetId, Integer zakljucnaOcena) {
-        // pronalaženje učenika i predmeta 
+        
+    	String ulogovaniKorisnikUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        NastavnikEntity ulogovaniNastavnik = nastavnikRepository.findByKorisnikNastavnikKorisnickoIme(ulogovaniKorisnikUsername)
+                .orElseThrow(() -> new ResourceNotFoundException("Nije pronađen nastavnik sa korisničkim imenom: " + ulogovaniKorisnikUsername));
+
+    	// pronalaženje učenika i predmeta 
         UcenikEntity ucenik = ucenikRepository.findById(ucenikId)
                 .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
         PredmetEntity predmet = predmetRepository.findById(predmetId)
                 .orElseThrow(() -> new ResourceNotFoundException("Predmet nije pronađen."));
-        
+     // Provera da li ulogovani nastavnik predaje dati predmet u odelenju učenika
+        boolean predajeUOdeljenju = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(ulogovaniNastavnik, ucenik.getOdelenje(), predmet);
+        if (!predajeUOdeljenju) {
+            throw new AccessDeniedException("Nastavnik ne predaje dati predmet u odelenju učenika.");
+        }
+
         // zaključna ocena ide na nivou učenika i predmeta
         // pronađite sve ocene učenika za dati predmet
         List<OcenaEntity> ocene = ocenaRepository.findAllByUcenikAndPredmet(ucenik, predmet);
@@ -215,27 +229,36 @@ public class OcenaServiceImpl implements OcenaService{
     @Override
     @Transactional
     public Double izracunajProsekZakljucnihOcenaZaUcenika(Integer ucenikId) {
-        List<OcenaEntity> sveOceneUcenika = ocenaRepository.findAllByUcenikId(ucenikId);
-        Map<Integer, Integer> zakljucneOcenePoPredmetima = new HashMap<>(); // predmet id -> zakljucna ocena
+        UcenikEntity ucenik = ucenikRepository.findById(ucenikId)
+                .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
 
-        for (OcenaEntity ocena : sveOceneUcenika) {
-            if (ocena.getZakljucnaOcena() != null) {
-                zakljucneOcenePoPredmetima.put(ocena.getPredmet().getId(), ocena.getZakljucnaOcena());
+        RazredEntity razred = ucenik.getOdelenje().getRazred();
+        List<PredmetEntity> predmeti = razred.getPredmetiPoRazredu();
+
+        if (predmeti.isEmpty()) {
+            throw new ResourceNotFoundException("Nema predmeta za dati razred.");
+        }
+
+        double sumaZakljucnihOcena = 0;
+        int brojPredmetaSaZakljucnomOcenom = 0;
+
+        for (PredmetEntity predmet : predmeti) {
+            List<OcenaEntity> oceneUcenikaZaPredmet = ocenaRepository.findAllByUcenikAndPredmet(ucenik, predmet);
+            for (OcenaEntity ocena : oceneUcenikaZaPredmet) {
+                if (ocena.getZakljucnaOcena() != null) {
+                    sumaZakljucnihOcena += ocena.getZakljucnaOcena();
+                    brojPredmetaSaZakljucnomOcenom++;
+                    break; // Pretpostavljamo da ima samo jednu zaključnu ocenu po predmetu
+                }
             }
         }
 
-        // Proveravamo da li je za svaki predmet postavljena zaključna ocena
-        long brojPredmeta = predmetRepository.count();
-        if (zakljucneOcenePoPredmetima.size() != brojPredmeta) {
+        if (brojPredmetaSaZakljucnomOcenom != predmeti.size()) {
             throw new ResourceNotFoundException("Nisu sve zaključne ocene postavljene.");
         }
 
-        // Izračunavanje proseka
-        int sumaZakljucnihOcena = 0;
-        for (Integer ocena : zakljucneOcenePoPredmetima.values()) {
-            sumaZakljucnihOcena += ocena;
-        }
-
-        return (double) sumaZakljucnihOcena / zakljucneOcenePoPredmetima.size();
+        double prosek = sumaZakljucnihOcena / brojPredmetaSaZakljucnomOcenom;
+        prosek = Math.round(prosek * 100.0) / 100.0;
+        return prosek;
     }
 }

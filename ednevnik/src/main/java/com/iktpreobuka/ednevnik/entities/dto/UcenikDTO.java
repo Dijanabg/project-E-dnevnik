@@ -19,7 +19,11 @@ public class UcenikDTO {
 	private Integer korisnikId;
 	
 	private RoditeljDTO roditelj;
+	
+	private Integer odelenje;
 
+	private Integer razred;
+	
 	public UcenikDTO() {
 		super();
 	}
@@ -87,6 +91,26 @@ public class UcenikDTO {
 
 	public void setRoditelj(RoditeljDTO roditelj) {
 		this.roditelj = roditelj;
+	}
+
+
+	public Integer getRazred() {
+		return razred;
+	}
+
+
+	public void setRazred(Integer razred) {
+		this.razred = razred;
+	}
+
+
+	public Integer getOdelenje() {
+		return odelenje;
+	}
+
+
+	public void setOdelenje(Integer integer) {
+		this.odelenje = integer;
 	}
 
 

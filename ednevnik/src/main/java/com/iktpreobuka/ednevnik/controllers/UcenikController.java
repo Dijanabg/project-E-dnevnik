@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.services.UcenikService;
 
 
@@ -55,5 +56,17 @@ public class UcenikController {
     public ResponseEntity<Void> deleteUcenik(@PathVariable Integer id) {
         ucenikService.deleteUcenik(id);
         return ResponseEntity.ok().build();
+    }
+    
+    @GetMapping("/{ucenikId}/razred-odelenje")
+    public ResponseEntity<UcenikDTO> dajRazredIOdelenjeZaUcenika(@PathVariable Integer ucenikId) {
+        try {
+            UcenikDTO ucenikRazredDTO = ucenikService.dajInformacijeORazreduZaUcenika(ucenikId);
+            return new ResponseEntity<>(ucenikRazredDTO, HttpStatus.OK);
+        } catch (ResourceNotFoundException ex) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (IllegalStateException ex) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
