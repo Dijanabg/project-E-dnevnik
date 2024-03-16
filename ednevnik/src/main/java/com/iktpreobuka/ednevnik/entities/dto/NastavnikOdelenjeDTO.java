@@ -1,15 +1,24 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 public class NastavnikOdelenjeDTO {
+	@JsonView(Views.Admin.class)
 	private Integer id;
+	@JsonView(Views.Admin.class)
     private Integer nastavnikId;
+	@JsonView(Views.Private.class)
     private String nastavnikIme; 
     @JsonIgnore
+    @JsonView(Views.Private.class)
     private String nastavnikPrezime;
+    @JsonView(Views.Admin.class)
     private Integer odeljenjeId;
+    @JsonView(Views.Admin.class)
     private Integer predmetId;
+    @JsonView(Views.Private.class)
     private String predmetNaziv;
     
 	public NastavnikOdelenjeDTO() {

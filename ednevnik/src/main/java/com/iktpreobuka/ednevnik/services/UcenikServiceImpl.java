@@ -51,6 +51,7 @@ public class UcenikServiceImpl implements UcenikService{
     }
 
     @Override
+    @Transactional
     public UcenikDTO findUcenikById(Integer id) {
         UcenikEntity ucenik = ucenikRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ucenik not found with id " + id));

@@ -32,21 +32,22 @@ public class OcenaEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ocena_id")
+	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@Column(name = "vrednost_ocene")
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private Integer vrednostOcene;
 	
 	@Column(name = "datum")
 	@JsonFormat(
 			shape = JsonFormat.Shape.STRING,
 			pattern = "dd-MM-yyyy")
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private Date datum;
 	
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private EAktivnostEntity aktivnost;
 
 	@Enumerated(EnumType.STRING)
@@ -54,7 +55,7 @@ public class OcenaEntity {
 	private EPolugodisteEntity polugodiste;
 	
 	@Column(name = "zakljucna_ocena")
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private Integer zakljucnaOcena;
 	
 	@Version

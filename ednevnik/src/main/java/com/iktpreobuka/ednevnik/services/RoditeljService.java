@@ -3,7 +3,6 @@ package com.iktpreobuka.ednevnik.services;
 import java.util.List;
 
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
-import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 
 public interface RoditeljService {
 
@@ -23,7 +22,9 @@ public interface RoditeljService {
 
 	RoditeljDTO createRoditeljWithDete(RoditeljDTO roditeljDTO);
 
-	List<UcenikDTO> findDecaByRoditeljId(Integer roditeljId);
+	RoditeljDTO findDecaByRoditeljId(Integer roditeljId);
+
+
 
 	
 	

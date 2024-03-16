@@ -33,15 +33,15 @@ public class KorisnikEntity {
 	
 	
 	@Column(name = "korisnicko_ime", unique = true)
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Admin.class)
 	private String korisnickoIme;
 	
 	@Column(name = "sifra")
-	@JsonView(Views.Public.class)
 	@JsonIgnore
 	private String sifra;
 	
 	@Column(name = "aktivno")
+	@JsonView(Views.Admin.class)
 	private boolean aktivno;
 	
 	@Version

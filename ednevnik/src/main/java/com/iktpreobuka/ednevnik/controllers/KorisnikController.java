@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.KorisnikService;
 
 @RestController
@@ -28,6 +30,7 @@ public class KorisnikController {
 
     @GetMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<List<KorisnikDTO>> getAllKorisnici() {
         List<KorisnikDTO> korisnici = korisnikService.findAll();
         return ResponseEntity.ok(korisnici);
@@ -35,6 +38,7 @@ public class KorisnikController {
 
     @GetMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> getKorisnikById(@PathVariable Integer id) {
         KorisnikDTO korisnikDTO = korisnikService.findById(id);
         return ResponseEntity.ok(korisnikDTO);
@@ -42,6 +46,7 @@ public class KorisnikController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> createKorisnik(@Validated @RequestBody KorisnikDTO korisnikDTO) {
         KorisnikDTO createdKorisnik = korisnikService.save(korisnikDTO);
         return new ResponseEntity<>(createdKorisnik, HttpStatus.CREATED);
@@ -49,6 +54,7 @@ public class KorisnikController {
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> updateKorisnik(@PathVariable Integer id,@Validated @RequestBody KorisnikDTO korisnikDTO) {
         KorisnikDTO updatedKorisnik = korisnikService.update(id, korisnikDTO);
         return ResponseEntity.ok(updatedKorisnik);
@@ -56,6 +62,7 @@ public class KorisnikController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteKorisnik(@PathVariable Integer id) {
         korisnikService.deleteById(id);
         return ResponseEntity.noContent().build();
@@ -63,6 +70,7 @@ public class KorisnikController {
 
     @GetMapping("/korisnickoIme/{korisnickoIme}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> getKorisnikByKorisnickoIme(@PathVariable String korisnickoIme) {
         KorisnikDTO korisnikDTO = korisnikService.findByKorisickoIme(korisnickoIme);
         return ResponseEntity.ok(korisnikDTO);

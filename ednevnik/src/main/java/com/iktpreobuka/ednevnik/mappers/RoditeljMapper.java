@@ -18,6 +18,7 @@ public class RoditeljMapper {
 	@Autowired
 	private KorisnikRepository korisnikRepository;
 	
+	
 	public RoditeljEntity toEntity(RoditeljDTO dto) {
 		RoditeljEntity entity = new RoditeljEntity();
 		entity.setId(dto.getId());
@@ -52,8 +53,8 @@ public class RoditeljMapper {
         return dtoList.stream().map(this::toEntity).collect(Collectors.toList());
     }
 
-    public List<RoditeljDTO> toDtoList(List<RoditeljEntity> entityList) {
-        return entityList.stream().map(this::toDto).collect(Collectors.toList());
+    public List<RoditeljDTO> toDtoList(List<RoditeljEntity> deca) {
+        return deca.stream().map(this::toDto).collect(Collectors.toList());
     }
     
     public void updateRoditeljEntityFromDto(RoditeljDTO dto, RoditeljEntity entity) {

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.AdminDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.AdminService;
 
 @RestController
@@ -26,6 +28,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@GetMapping
+	@JsonView(Views.Admin.class)
     public ResponseEntity<List<AdminDTO>> getAllNastavnici() {
         List<AdminDTO> admin = adminService.findAll();
         return new ResponseEntity<>(admin, HttpStatus.OK);
@@ -33,6 +36,7 @@ public class AdminController {
 
     @GetMapping("/{id}")
     @Secured("ROLE_ADMIN")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<AdminDTO> getAdminById(@PathVariable Integer id) {
         AdminDTO adminDTO = adminService.findById(id);
         return new ResponseEntity<>(adminDTO, HttpStatus.OK);
@@ -40,6 +44,7 @@ public class AdminController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<AdminDTO> createAdmin(@Validated @RequestBody AdminDTO adminDTO) {
         AdminDTO newAdminDTO = adminService.save(adminDTO);
         return new ResponseEntity<>(newAdminDTO, HttpStatus.CREATED);
@@ -54,6 +59,7 @@ public class AdminController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteAdmin(@PathVariable Integer id) {
         adminService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

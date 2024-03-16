@@ -1,11 +1,15 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class OcenaDTO {
+	@JsonView(Views.Admin.class)
 	private Integer id;
 
 	@NotNull(message = "Morate uneti ocenu.")

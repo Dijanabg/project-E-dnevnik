@@ -1,56 +1,55 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class UcenikDTO {
+	
+	@JsonView(Views.Private.class)
 	private Integer id;
+	
 	@NotNull(message = "Ime mora biti uneto.")
+	@JsonView(Views.Private.class)
     private String ime;
 	
 	@NotNull(message = "Prezime mora biti uneto.")
+	@JsonView(Views.Private.class)
     private String prezime;
 	
 	@NotNull(message = "Email must be provided.")
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
 	message="Email is not valid.")
+	@JsonView(Views.Private.class)
     private String email;
 	
+	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
 	
+	@JsonView(Views.Private.class)
 	private RoditeljDTO roditelj;
 	
+	@JsonView(Views.Private.class)
 	private Integer odelenje;
 
+	@JsonView(Views.Private.class)
 	private Integer razred;
 	
 	public UcenikDTO() {
 		super();
 	}
-//	public UcenikDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
-//			@NotNull(message = "Prezime mora biti uneto.") String prezime,
-//			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
-//			Integer korisnikId) {
-//		super();
-//		this.id = id;
-//		this.ime = ime;
-//		this.prezime = prezime;
-//		this.email = email;
-//		this.korisnikId = korisnikId;
-//	}
-	
-	
 	public UcenikDTO(Integer id, @NotNull(message = "Ime mora biti uneto.") String ime,
-		@NotNull(message = "Prezime mora biti uneto.") String prezime,
-		@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
-		Integer korisnikId, RoditeljDTO roditelj) {
-			super();
-			this.id = id;
-			this.ime = ime;
-			this.prezime = prezime;
-			this.email = email;
-			this.korisnikId = korisnikId;
-			this.roditelj = roditelj;
+			@NotNull(message = "Prezime mora biti uneto.") String prezime,
+			@NotNull(message = "Email must be provided.") @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email is not valid.") String email,
+			Integer korisnikId) {
+		super();
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.korisnikId = korisnikId;
 	}
 	
 	public Integer getId() {

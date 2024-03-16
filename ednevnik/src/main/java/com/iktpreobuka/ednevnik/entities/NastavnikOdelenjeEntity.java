@@ -2,6 +2,8 @@ package com.iktpreobuka.ednevnik.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,22 +25,26 @@ public class NastavnikOdelenjeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
+	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@JsonManagedReference
 	@ManyToOne (fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn (name = "nastavnik")
+	@JsonView(Views.Admin.class)
 	private NastavnikEntity predavac;
 	
 	
 	@JsonManagedReference
 	@ManyToOne (fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn (name = "odelenje")
+	@JsonView(Views.Admin.class)
 	private OdelenjeEntity odelenje;
 	
 	@JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "predmet")
+	@JsonView(Views.Admin.class)
     private PredmetEntity predmet;
 
 	@Version

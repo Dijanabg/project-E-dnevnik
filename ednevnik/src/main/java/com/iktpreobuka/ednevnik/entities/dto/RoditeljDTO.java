@@ -3,29 +3,41 @@ package com.iktpreobuka.ednevnik.entities.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class RoditeljDTO {
-
+	@JsonView(Views.Admin.class)
 	private Integer id;
     
 	@NotNull(message = "Ime mora biti uneto.")
+	@JsonView(Views.Private.class)
 	private String ime;
 	
 	@NotNull(message = "Prezime mora biti uneto.")
+	@JsonView(Views.Private.class)
 	private String prezime;
     
 	@NotNull(message = "Email must be provided.")
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
 	message="Email is not valid.")
+	@JsonView(Views.Private.class)
 	private String email;
 
+	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
     
     @NotEmpty(message = "Lista dece ne sme biti prazna.")
+    @JsonView(Views.Private.class)
     private List<Integer> deteIds = new ArrayList<>();
+    
+    @JsonView(Views.Private.class)
+    private List<DeteDTO> deca;
+	
     
 	public RoditeljDTO() {
 		super();
@@ -78,13 +90,16 @@ public class RoditeljDTO {
 	public void setDeteIds(List<Integer> deteIds) {
 		this.deteIds = deteIds;
 	}
+	public List<DeteDTO> getDeca() {
+        return deca;
+    }
+    public void setDeca(List<DeteDTO> decaDTO) {
+        this.deca = decaDTO;
+    }
 	@Override
 	public String toString() {
 		return "RoditeljDTO [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", korisnikId="
 				+ korisnikId + ", deteIds=" + deteIds + "]";
 	}
 	
-	
-	
-    
 }

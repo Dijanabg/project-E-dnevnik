@@ -1,16 +1,27 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotNull;
 
 public class AdminDTO {
+
+	@JsonView(Views.Admin.class)
 	private Integer id;
     
+
+	@JsonView(Views.Admin.class)
 	@NotNull(message = "Ime mora biti uneto.")
 	private String ime;
     
+
+	@JsonView(Views.Admin.class)
 	@NotNull(message = "Prezime mora biti uneto.")
 	private String prezime;
 	
+
+	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
 	
 	public AdminDTO() {

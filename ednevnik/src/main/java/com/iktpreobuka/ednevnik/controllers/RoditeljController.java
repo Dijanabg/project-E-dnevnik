@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
-import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.RoditeljService;
-import com.iktpreobuka.ednevnik.services.UcenikService;
 
 @RestController
 @RequestMapping("/ednevnik/roditelji")
@@ -26,11 +26,11 @@ public class RoditeljController {
 	
 	@Autowired
 	private RoditeljService roditeljService;
-	
-	@Autowired
-	private UcenikService ucenikService;
+
 
 	@GetMapping
+	@Secured({"ROLE_ADMIN"})
+	@JsonView(Views.Admin.class)
     public ResponseEntity<List<RoditeljDTO>> getAllRoditelji() {
         List<RoditeljDTO> roditelji = roditeljService.findAll();
         return new ResponseEntity<>(roditelji, HttpStatus.OK);
@@ -38,6 +38,7 @@ public class RoditeljController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<RoditeljDTO> createRoditelj(@Validated @RequestBody RoditeljDTO roditeljDTO) {
         RoditeljDTO createdRoditelj = roditeljService.save(roditeljDTO);
         return new ResponseEntity<>(createdRoditelj, HttpStatus.CREATED);
@@ -45,6 +46,7 @@ public class RoditeljController {
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<RoditeljDTO> updateRoditelj(@PathVariable Integer id,@Validated @RequestBody RoditeljDTO roditeljDTO) {
         RoditeljDTO updatedRoditelj = roditeljService.update(id, roditeljDTO);
         return new ResponseEntity<>(updatedRoditelj, HttpStatus.OK);
@@ -52,6 +54,7 @@ public class RoditeljController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteRoditelj(@PathVariable Integer id) {
         roditeljService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -59,6 +62,7 @@ public class RoditeljController {
     
     @PostMapping("/{roditeljId}/dodaj-dete/{deteId}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<RoditeljDTO> dodajDeteRoditelju(@PathVariable Integer roditeljId, @PathVariable Integer deteId) {
         RoditeljDTO roditeljDTO = roditeljService.addDeteToRoditelj(roditeljId, deteId);
         return ResponseEntity.ok(roditeljDTO);
@@ -66,13 +70,17 @@ public class RoditeljController {
 
     @DeleteMapping("/{roditeljId}/ukloni-dete/{deteId}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> ukloniDeteIzRoditelja(@PathVariable Integer roditeljId, @PathVariable Integer deteId) {
         roditeljService.removeDeteFromRoditelj(roditeljId, deteId);
         return ResponseEntity.noContent().build();
     }
+    
     @GetMapping("/{roditeljId}/ucenici")
-    public ResponseEntity<List<UcenikDTO>> dohvatiUcenikeZaRoditelja(@PathVariable Integer roditeljId) {
-        List<UcenikDTO> ucenici = ucenikService.nadjiDecuNegogRoditelja(roditeljId);
-        return ResponseEntity.ok(ucenici);
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_RODITELJ"})
+    @JsonView(Views.Private.class)
+    public ResponseEntity<RoditeljDTO> dohvatiDecuZaRoditelja(@PathVariable Integer roditeljId) {
+        RoditeljDTO roditelj = roditeljService.findDecaByRoditeljId(roditeljId);
+        return ResponseEntity.ok(roditelj);
     }
 }

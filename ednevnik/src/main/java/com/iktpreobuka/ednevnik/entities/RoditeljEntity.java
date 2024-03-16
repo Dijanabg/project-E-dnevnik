@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,19 +30,24 @@ public class RoditeljEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roditelj_id")
+	@JsonView(Views.Admin.class)
     private Integer id;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
+	@JsonView(Views.Admin.class)
     private KorisnikEntity korisnikRoditelj;
     
     @Column(name = "ime")
+    @JsonView(Views.Private.class)
 	private String ime;
 
 	@Column(name = "prezime")
+	@JsonView(Views.Private.class)
 	private String prezime;
 	
 	@Column(name = "email", unique = true)
+	@JsonView(Views.Private.class)
 	private String email;
 	
 	@Version
@@ -49,6 +56,7 @@ public class RoditeljEntity{
 	//deca kojima je roditelj
 	@JsonBackReference
 	//@JsonIgnore
+	@JsonView(Views.Private.class)
 	@OneToMany(mappedBy = "roditelj", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	protected List<UcenikEntity> dete = new ArrayList<>();
 

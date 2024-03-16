@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
 import com.iktpreobuka.ednevnik.entities.dto.ZakljucnaOcenaDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.OcenaService;
 
 @RestController
@@ -30,6 +32,7 @@ public class OcenaController {
 	
 	@PostMapping
 	@Secured("ROLE_NASTAVNIK")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO novaOcena = ocenaService.dodajOcenu(ocenaDTO);
         return new ResponseEntity<>(novaOcena, HttpStatus.CREATED);
@@ -37,6 +40,7 @@ public class OcenaController {
 
     @PutMapping("/{ocenaId}")
     @Secured("ROLE_NASTAVNIK")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<OcenaDTO> updateOcenu(@PathVariable Integer ocenaId, @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO azuriranaOcena = ocenaService.updateOcenu(ocenaId, ocenaDTO);
         return ResponseEntity.ok(azuriranaOcena);
@@ -44,6 +48,7 @@ public class OcenaController {
 
     @DeleteMapping("/{ocenaId}")
     @Secured("ROLE_NASTAVNIK")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> obrisiOcenu(@PathVariable Integer ocenaId) {
         ocenaService.obrisiOcenu(ocenaId);
         return ResponseEntity.ok().build();
@@ -51,6 +56,7 @@ public class OcenaController {
 
     @GetMapping("/ucenik/{ucenikId}")
     @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Map<String, Object>> getOcenePoPredmetimaZaUcenika(@PathVariable Integer ucenikId) {
         Map<String, Object> ocene = ocenaService.getOcenePoPredmetimaZaUcenika(ucenikId);
         return ResponseEntity.ok(ocene);
@@ -58,6 +64,7 @@ public class OcenaController {
     
     @PostMapping("/zakljucna")
     @Secured("ROLE_NASTAVNIK")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<ZakljucnaOcenaDTO> dajZakljucnuOcenu(@RequestBody OcenaDTO ocenaDTO) {
     	ZakljucnaOcenaDTO zakljucenaOcenaDTO = ocenaService.dajZakljucnuOcenu(ocenaDTO.getUcenikId(), ocenaDTO.getPredmetId(), ocenaDTO.getZakljucnaOcena());
         return new ResponseEntity<>(zakljucenaOcenaDTO, HttpStatus.OK);
@@ -65,6 +72,7 @@ public class OcenaController {
     
     @GetMapping("/{ucenikId}/prosekZakljucnihOcena")
     @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Double> getProsekZakljucnihOcena(@PathVariable Integer ucenikId) {
        
             Double prosek = ocenaService.izracunajProsekZakljucnihOcenaZaUcenika(ucenikId);

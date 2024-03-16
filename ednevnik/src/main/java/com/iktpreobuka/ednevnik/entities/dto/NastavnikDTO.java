@@ -1,23 +1,31 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class NastavnikDTO {
+	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@NotNull(message = "Ime mora biti uneto.")
+	@JsonView(Views.Public.class)
     private String ime;
 
 	@NotNull(message = "Prezime mora biti uneto.")
+	@JsonView(Views.Public.class)
     private String prezime;
 	
 	@NotNull(message = "Email mora biti prosledjen.")
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
 	message="Email is not valid.")
+	@JsonView(Views.Public.class)
     private String email;
 	
 	@NotNull(message = "Korisnik id mora biti prosledjen.")
+	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
     
 	public NastavnikDTO() {

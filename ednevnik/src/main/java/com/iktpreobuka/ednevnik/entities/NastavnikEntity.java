@@ -35,6 +35,7 @@ public class NastavnikEntity {
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
+	@JsonView(Views.Private.class)
     private KorisnikEntity korisnikNastavnik;
     
     @Column(name = "ime")

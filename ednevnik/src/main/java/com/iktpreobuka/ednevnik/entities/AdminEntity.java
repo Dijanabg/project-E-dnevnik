@@ -29,14 +29,16 @@ public class AdminEntity{
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
+
+	@JsonView(Views.Admin.class)
     private KorisnikEntity korisnikAdmin;
     
     @Column(name = "ime")
-    @JsonView(Views.Public.class)
+	@JsonView(Views.Admin.class)
 	private String ime;
 
 	@Column(name = "prezime")
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Admin.class)
 	private String prezime;
 	
 	@Version

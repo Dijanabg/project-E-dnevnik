@@ -34,18 +34,19 @@ public class UcenikEntity {
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
+	
     private KorisnikEntity korisnikUcenik;
     
     @Column(name = "ime")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Private.class)
 	private String ime;
 
 	@Column(name = "prezime")
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private String prezime;
     
 	@Column(name = "email", unique = true)
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	private String email;
 	
 	//roditelj ucenika
@@ -61,7 +62,7 @@ public class UcenikEntity {
 	//odelenje ucenika
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonView(Views.Public.class)
+	@JsonView(Views.Private.class)
 	@JoinColumn(name = "odelenje_id")
 	private OdelenjeEntity odelenje;
 
