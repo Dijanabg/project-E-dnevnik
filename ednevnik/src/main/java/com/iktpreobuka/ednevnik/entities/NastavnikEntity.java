@@ -162,9 +162,12 @@ public class NastavnikEntity {
 
 	@Override
 	public String toString() {
-		return "NastavnikEntity [id=" + id + ", korisnikNastavnik=" + korisnikNastavnik + ", ime=" + ime + ", prezime="
-				+ prezime + ", email=" + email + ", version=" + version + ", odeljenjeRazrednog=" + odeljenjeRazrednog
-				+ ", predajePredmet=" + predajePredmet + ", nastavnikOdelenje=" + nastavnikOdelenje + "]";
+	    return "NastavnikEntity{" +
+	            "id=" + id +
+	            ", ime='" + ime + '\'' +
+	            ", prezime='" + prezime + '\'' +
+	            
+	            '}';
 	}
 
 	

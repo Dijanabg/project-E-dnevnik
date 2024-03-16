@@ -15,26 +15,32 @@ public class OcenaDTO {
 	@NotNull(message = "Morate uneti ocenu.")
 	@Min(value = 1, message = "Vrednost ocene mora biti između {value} i 5.")
 	@Max(value = 5, message = "Vrednost ocene mora biti između 1 i {value}.")
+	@JsonView(Views.Private.class)
     private Integer vrednostOcene;
-	
+	@JsonView(Views.Private.class)
     private String datum; // Formatiran kao String za jednostavniji rad
     @NotNull(message = "Morate uneti aktivnost!")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Unesite validnu aktivnost.")
+    @JsonView(Views.Private.class)
     private String aktivnost;
     @NotNull(message = "Morate uneti polugodište!")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Polugodište moze biti PRVO ili DRUGO.")
+    @JsonView(Views.Private.class)
     private String polugodiste;
+    @JsonView(Views.Admin.class)
     @NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
     private Integer ocenjivacId;
     @NotNull(message = "Ucenik je obavezno polje")
+    @JsonView(Views.Admin.class)
     private Integer ucenikId; 
     @NotNull(message = "Predmet je obavezno polje")
     private Integer predmetId;
-    
+    @JsonView(Views.Private.class)
     private String predmetNaziv;
     
     @Min(value = 1, message = "Vrednost ocene mora biti između {value} i 5.")
 	@Max(value = 5, message = "Vrednost ocene mora biti između 1 i {value}.")
+    @JsonView(Views.Private.class)
     private Integer zakljucnaOcena;
     
 	public OcenaDTO() {

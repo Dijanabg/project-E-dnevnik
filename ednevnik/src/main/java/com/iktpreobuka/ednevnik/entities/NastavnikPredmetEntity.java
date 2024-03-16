@@ -92,8 +92,11 @@ public class NastavnikPredmetEntity {
 
 	@Override
 	public String toString() {
-		return "NastavnikPredmetEntity [id=" + id + ", version=" + version + ", nastavnik=" + nastavnik + ", predmet="
-				+ predmet + "]";
+	    return "NastavnikPredmetEntity{" +
+	            "id=" + id +
+	            ", nastavnikId=" + nastavnik.getId() + // Samo ID umesto celog objekta
+	            ", predmetId=" + predmet.getId() + // Samo ID umesto celog objekta
+	            '}';
 	}
 
 	

@@ -55,6 +55,9 @@ public class OcenaServiceImpl implements OcenaService{
 
     @Autowired
     private PredmetRepository predmetRepository;
+    
+    @Autowired
+    private EmailService emailService;
 
     @Override
 	@Transactional
@@ -93,7 +96,15 @@ public class OcenaServiceImpl implements OcenaService{
 	    novaOcena.setOcenjivac(ulogovaniNastavnik);
 	    novaOcena.setDatum(new Date());
 	    novaOcena = ocenaRepository.save(novaOcena);
-
+	    try {
+	        emailService.posaljiMejlRoditelju(novaOcena);
+//	    } catch (MailException e) {
+//	        // Specifična obrada za greške prilikom slanja email-a
+//	        logger.error("Greška prilikom slanja email-a: " + e.getMessage());
+	    } catch (Exception e) {
+//	        // Opšta obrada za ostale moguće greške
+//	        logger.error("Nepredviđena greška: " + e.getMessage());
+    }
 	    return ocenaMapper.toDto(novaOcena);
 	}	
     

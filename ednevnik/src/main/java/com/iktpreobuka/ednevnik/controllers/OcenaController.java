@@ -31,7 +31,7 @@ public class OcenaController {
 	private OcenaService ocenaService;
 	
 	@PostMapping
-	@Secured("ROLE_NASTAVNIK")
+	//@Secured("ROLE_NASTAVNIK")
 	@JsonView(Views.Admin.class)
     public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO novaOcena = ocenaService.dodajOcenu(ocenaDTO);
