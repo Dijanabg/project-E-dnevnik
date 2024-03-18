@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Preuzmi Log Datoteku</title>
+</head>
+<body>
+
+<h2>Preuzmi Log Datoteku</h2>
+
+<!-- Dugme za preuzimanje log fajla -->
+<button id="downloadBtn">Preuzmi Log Datoteku</button>
+<div id="message"></div> <!-- Element za prikaz poruke -->
+
+<script>
+document.getElementById("downloadBtn").addEventListener("click", function() {
+    fetch('/ednevnik/download-log')
+    .then(response => {
+        if(response.ok) {
+            return response.blob();
+        }
+        throw new Error('Došlo je do problema sa preuzimanjem fajla.');
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'spring-boot-logging.log';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        
+        // Prikazivanje poruke o uspešnom preuzimanju
+        document.getElementById("message").textContent = "Log datoteka je uspešno preuzeta.";
+    })
+    .catch(error => {
+        console.error('Došlo je do greške:', error);
+        document.getElementById("message").textContent = "Greška prilikom preuzimanja log datoteke.";
+    });
+});
+</script>
+
+</body>
+</html>

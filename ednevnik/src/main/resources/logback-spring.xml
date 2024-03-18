@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Definicija appendera za ispis u datoteku sa rollovanjem -->
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/spring-boot-logging.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Dnevno rollovanje i čuvanje 7 dana -->
+            <fileNamePattern>logs/archived/spring-boot-logging.%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Definicija CONSOLE appendera -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Konfiguracija root loggera da koristi i FILE i CONSOLE appendere -->
+    <root level="info">
+        <appender-ref ref="ROLLING"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Definicija posebnih log nivoa za određene pakete -->
+    <logger name="org.springframework.web" level="info"/>
+    <logger name="com.iktpreobuka.uploadexample.controllers" level="info"/>
+    <logger name="org.hibernate" level="error"/>
+    <logger name="org.thymeleaf" level="debug"/>
+
+</configuration>
