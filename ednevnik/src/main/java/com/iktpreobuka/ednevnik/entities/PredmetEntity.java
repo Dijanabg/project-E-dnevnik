@@ -34,9 +34,11 @@ public class PredmetEntity {
 	private Integer id;
 	
 	@Column(name = "naziv_predmeta")
+	@JsonView(Views.Public.class)
 	private String nazivPredmeta;
 	
 	@Column(name = "fond")
+	@JsonView(Views.Public.class)
 	private Integer casovaNedeljno;
 	
 	@Version
@@ -44,7 +46,7 @@ public class PredmetEntity {
 	
 	//predmeti po razredu
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Public.class)
 	@JoinColumn(name = "razred_id", nullable = false)
 	private RazredEntity razred;
 	
@@ -57,6 +59,7 @@ public class PredmetEntity {
 
 	@JsonBackReference
     @OneToMany(mappedBy = "predmet", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Public.class)
 	private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();
 	//private Set<NastavnikOdelenjeEntity> nastavnikOdelenje = new HashSet<>();
 	//set kolekcija koja ne dozvoljava duplikate

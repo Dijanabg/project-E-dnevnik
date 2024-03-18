@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class AdminDTO {
 
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
     
 

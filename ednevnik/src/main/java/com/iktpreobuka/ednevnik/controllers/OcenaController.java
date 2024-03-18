@@ -31,23 +31,23 @@ public class OcenaController {
 	private OcenaService ocenaService;
 	
 	@PostMapping
-	//@Secured("ROLE_NASTAVNIK")
-	@JsonView(Views.Admin.class)
+	@Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
+	@JsonView(Views.Private.class)
     public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO novaOcena = ocenaService.dodajOcenu(ocenaDTO);
         return new ResponseEntity<>(novaOcena, HttpStatus.CREATED);
     }
 
     @PutMapping("/{ocenaId}")
-    @Secured("ROLE_NASTAVNIK")
-    @JsonView(Views.Admin.class)
+    @Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
+    @JsonView(Views.Private.class)
     public ResponseEntity<OcenaDTO> updateOcenu(@PathVariable Integer ocenaId, @RequestBody OcenaDTO ocenaDTO) {
         OcenaDTO azuriranaOcena = ocenaService.updateOcenu(ocenaId, ocenaDTO);
         return ResponseEntity.ok(azuriranaOcena);
     }
 
     @DeleteMapping("/{ocenaId}")
-    @Secured("ROLE_NASTAVNIK")
+    @Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
     @JsonView(Views.Admin.class)
     public ResponseEntity<Void> obrisiOcenu(@PathVariable Integer ocenaId) {
         ocenaService.obrisiOcenu(ocenaId);
@@ -63,7 +63,7 @@ public class OcenaController {
     }
     
     @PostMapping("/zakljucna")
-    @Secured("ROLE_NASTAVNIK")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Admin.class)
     public ResponseEntity<ZakljucnaOcenaDTO> dajZakljucnuOcenu(@RequestBody OcenaDTO ocenaDTO) {
     	ZakljucnaOcenaDTO zakljucenaOcenaDTO = ocenaService.dajZakljucnuOcenu(ocenaDTO.getUcenikId(), ocenaDTO.getPredmetId(), ocenaDTO.getZakljucnaOcena());

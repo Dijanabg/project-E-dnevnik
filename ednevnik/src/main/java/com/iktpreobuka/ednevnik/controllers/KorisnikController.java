@@ -2,6 +2,8 @@ package com.iktpreobuka.ednevnik.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ import com.iktpreobuka.ednevnik.services.KorisnikService;
 @RestController
 @RequestMapping("/ednevnik/korisnici")
 public class KorisnikController {
-
+	private static final Logger log = LoggerFactory.getLogger(KorisnikController.class);
     @Autowired
     private KorisnikService korisnikService;
 
@@ -48,7 +50,8 @@ public class KorisnikController {
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> createKorisnik(@Validated @RequestBody KorisnikDTO korisnikDTO) {
-        KorisnikDTO createdKorisnik = korisnikService.save(korisnikDTO);
+    	log.info("Zahtev za kreiranje novog korisnika");
+    	KorisnikDTO createdKorisnik = korisnikService.save(korisnikDTO);
         return new ResponseEntity<>(createdKorisnik, HttpStatus.CREATED);
     }
 
@@ -56,7 +59,8 @@ public class KorisnikController {
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
     public ResponseEntity<KorisnikDTO> updateKorisnik(@PathVariable Integer id,@Validated @RequestBody KorisnikDTO korisnikDTO) {
-        KorisnikDTO updatedKorisnik = korisnikService.update(id, korisnikDTO);
+    	log.info("Zahtev za ažuriranje korisnika sa ID: {}", id);
+    	KorisnikDTO updatedKorisnik = korisnikService.update(id, korisnikDTO);
         return ResponseEntity.ok(updatedKorisnik);
     }
 
@@ -64,7 +68,8 @@ public class KorisnikController {
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteKorisnik(@PathVariable Integer id) {
-        korisnikService.deleteById(id);
+    	log.info("Zahtev za brisanje korisnika sa ID: {}", id);
+    	korisnikService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

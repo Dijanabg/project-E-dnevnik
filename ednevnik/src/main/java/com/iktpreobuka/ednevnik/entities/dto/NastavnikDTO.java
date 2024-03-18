@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class NastavnikDTO {
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
 	
 	@NotNull(message = "Ime mora biti uneto.")

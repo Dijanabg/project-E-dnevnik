@@ -1,6 +1,5 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.security.Views;
 
@@ -11,7 +10,7 @@ import jakarta.validation.constraints.Size;
 
 public class KorisnikDTO {
 	
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
 	
 	@JsonView(Views.Admin.class)
@@ -22,10 +21,10 @@ public class KorisnikDTO {
 	
 	@NotNull(message = "Password must be provided.")
 	@Size(min=5, max=10, message = "Password must be between {min} and {max} characters long.")
-	@JsonIgnore
 	private String sifra;
 	
 	@JsonView(Views.Admin.class)
+	@NotNull(message = "Role must be provided.")
     private Integer rolaId;
     
 	public KorisnikDTO() {

@@ -1,5 +1,8 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -9,6 +12,7 @@ public class RoleDTO {
 	
 	@NotBlank(message = "Rola ne moze biti prazno polje")
 	@Size(min = 3, max = 20, message = "Ime role mora biti između {min} i {max} karaktera.")
+	@JsonView(Views.Admin.class)
 	private String name;
 	
 	public RoleDTO() {

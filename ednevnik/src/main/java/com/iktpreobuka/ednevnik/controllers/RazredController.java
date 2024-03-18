@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.RazredDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.RazredService;
 
 @RestController
@@ -27,6 +29,7 @@ public class RazredController {
     private RazredService razredService;
 	
     @GetMapping
+    @JsonView(Views.Public.class)
     public ResponseEntity<List<RazredDTO>> getAllRazredi() {
         List<RazredDTO> razredi = razredService.findAll();
         return new ResponseEntity<>(razredi, HttpStatus.OK);
@@ -34,12 +37,14 @@ public class RazredController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<RazredDTO> createRazred(@Validated @RequestBody RazredDTO razredDTO) {
         RazredDTO createdRazred = razredService.save(razredDTO);
         return new ResponseEntity<>(createdRazred, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
+    @JsonView(Views.Public.class)
     public ResponseEntity<RazredDTO> getRazredById(@PathVariable Integer id) {
         RazredDTO razredDTO = razredService.findById(id);
         return new ResponseEntity<>(razredDTO, HttpStatus.OK);
@@ -47,6 +52,7 @@ public class RazredController {
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<RazredDTO> updateRazred(@PathVariable Integer id, @Validated @RequestBody RazredDTO razredDTO) {
         RazredDTO updatedRazred = razredService.update(id, razredDTO);
         return new ResponseEntity<>(updatedRazred, HttpStatus.OK);
@@ -54,6 +60,7 @@ public class RazredController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteRazred(@PathVariable Integer id) {
         razredService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

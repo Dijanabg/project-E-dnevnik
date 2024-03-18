@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Pattern;
 
 public class UcenikDTO {
 	
-	@JsonView(Views.Private.class)
+	
 	private Integer id;
 	
 	@NotNull(message = "Ime mora biti uneto.")
@@ -25,11 +25,7 @@ public class UcenikDTO {
 	@JsonView(Views.Private.class)
     private String email;
 	
-	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
-	
-	@JsonView(Views.Private.class)
-	private RoditeljDTO roditelj;
 	
 	@JsonView(Views.Private.class)
 	private Integer odelenje;
@@ -37,6 +33,8 @@ public class UcenikDTO {
 	@JsonView(Views.Private.class)
 	private Integer razred;
 	
+	@JsonView(Views.Private.class)
+	private RoditeljDTO roditelj;
 	public UcenikDTO() {
 		super();
 	}

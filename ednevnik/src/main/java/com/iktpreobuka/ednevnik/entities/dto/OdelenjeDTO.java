@@ -1,22 +1,30 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class OdelenjeDTO {
+	
 	private Integer id;
 	
 	@NotNull(message = "Razred mora biti unet.")
+	@JsonView(Views.Private.class)
     private Integer razred;
     
     @Min(value = 1, message = "Broj odelenja moze biti najmanje {value}")
 	@Max(value = 10, message = "Broj odelenja moze biti najvise {value}")
 	@NotNull(message = "Broj odelenja mora biti unet.")
+    @JsonView(Views.Private.class)
 	private Integer odelenje;
     
     private Integer version;
-    
+    @JsonView(Views.Private.class)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private NastavnikDTO razredniStaresina;
     
 	public OdelenjeDTO() {

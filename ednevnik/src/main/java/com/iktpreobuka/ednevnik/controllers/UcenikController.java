@@ -45,6 +45,7 @@ public class UcenikController {
     }
 
     @GetMapping("/{id}")
+    @Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
     public ResponseEntity<UcenikDTO> getUcenikById(@PathVariable Integer id) {
         return ResponseEntity.ok(ucenikService.findUcenikById(id));
@@ -66,6 +67,7 @@ public class UcenikController {
     }
     
     @GetMapping("/{ucenikId}/razred-odelenje")
+    @Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
     public ResponseEntity<UcenikDTO> dajRazredIOdelenjeZaUcenika(@PathVariable Integer ucenikId) {
         try {

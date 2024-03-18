@@ -24,12 +24,11 @@ public class AdminEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "admin_id")
-	@JsonView(Views.Admin.class)
+	
     private Integer id;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
-
 	@JsonView(Views.Admin.class)
     private KorisnikEntity korisnikAdmin;
     

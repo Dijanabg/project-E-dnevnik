@@ -28,7 +28,6 @@ public class NastavnikPredmetEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@Version
@@ -37,13 +36,13 @@ public class NastavnikPredmetEntity {
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "nastavnik")
-	@JsonView(Views.Private.class)
+	@JsonView(Views.Public.class)
 	private NastavnikEntity nastavnik;
 	
 	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "predmet")
-	@JsonView(Views.Private.class)
+	@JsonView(Views.Public.class)
 	private PredmetEntity predmet;
 	
 	public NastavnikPredmetEntity() {

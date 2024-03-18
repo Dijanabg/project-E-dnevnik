@@ -40,6 +40,7 @@ public class RazredEntity {
 	private Integer razred;
 	@ManyToOne
 	@JoinColumn(name = "skolska_godina_id") 
+	@JsonView(Views.Public.class)
 	private SkolskaGodinaEntity skolskaGodina;
 	
 	@Version
@@ -47,6 +48,7 @@ public class RazredEntity {
 	
 	@JsonBackReference
 	@OneToMany(mappedBy = "razred", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JsonView(Views.Public.class)
 	protected List<OdelenjeEntity> odelenja = new ArrayList<>();
 
 	@OneToMany(mappedBy = "razred", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

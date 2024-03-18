@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +27,7 @@ public class SkolskaGodinaEntity {
 	private Integer id;
 	
 	@Column(name = "oznaka")
+	@JsonView(Views.Public.class)
 	private String oznaka;
 	
 	@Version
@@ -32,6 +35,7 @@ public class SkolskaGodinaEntity {
 	
 	@OneToMany(mappedBy = "skolskaGodina")
     @JsonIgnore // da se izbegne potencijalna beskonačna rekurzija prilikom serijalizacije u JSON
+    @JsonView(Views.Private.class)
     private List<RazredEntity> razredi;
 
 	public SkolskaGodinaEntity() {

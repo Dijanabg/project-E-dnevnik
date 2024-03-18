@@ -30,7 +30,6 @@ public class RoditeljEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "roditelj_id")
-	@JsonView(Views.Admin.class)
     private Integer id;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

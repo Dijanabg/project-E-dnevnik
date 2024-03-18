@@ -38,27 +38,28 @@ public class UcenikMapper {
 	
 	public  UcenikDTO toDto(UcenikEntity entity) {
 		UcenikDTO dto = new UcenikDTO();
-		dto.setId(entity.getId());
+		//dto.setId(entity.getId());
         dto.setIme(entity.getIme());
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
         
-        if (entity.getKorisnikUcenik() != null) {
-            dto.setKorisnikId(entity.getKorisnikUcenik().getId());
+//        if (entity.getKorisnikUcenik() != null) {
+//            dto.setKorisnikId(entity.getKorisnikUcenik().getId());
+//        }
+        if (entity.getOdelenje() != null) {
+            dto.setOdelenje(entity.getOdelenje().getOdelenje());
+         // Dodajemo informaciju o razredu 
+	        if (entity.getOdelenje().getRazred() != null) {
+	            dto.setRazred(entity.getOdelenje().getRazred().getRazred()); // Pretpostavljam da želite broj razreda
+	        }
         }
         if (entity.getRoditelj() != null) {
             dto.setRoditelj(roditeljMapper.toDto(entity.getRoditelj())); // Dodavanje informacija o roditelju
         }
-        if (entity.getOdelenje() != null) {
-            dto.setOdelenje(entity.getOdelenje().getOdelenje());
-         // Dodajemo informaciju o razredu 
-            if (entity.getOdelenje().getRazred() != null) {
-                dto.setRazred(entity.getOdelenje().getRazred().getRazred()); // Pretpostavljam da želite broj razreda
-            }
-        }
         
         return dto;
     }
+	
 	public List<UcenikEntity> toEntityList(List<UcenikDTO> dtoList) {
         return dtoList.stream().map(this::toEntity).collect(Collectors.toList());
     }

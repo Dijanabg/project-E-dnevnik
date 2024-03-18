@@ -2,6 +2,8 @@ package com.iktpreobuka.ednevnik.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ import com.iktpreobuka.ednevnik.services.NastavnikService;
 @RestController
 @RequestMapping("/ednevnik/nastavnici")
 public class NastavnikController {
+	private static final Logger log = LoggerFactory.getLogger(NastavnikController.class);
 		@Autowired
 		private NastavnikService nastavnikService;
 		
@@ -55,7 +58,8 @@ public class NastavnikController {
 	    @Secured("ROLE_ADMIN")
 		@JsonView(Views.Admin.class)
 	    public ResponseEntity<NastavnikDTO> updateNastavnik(@PathVariable Integer id,@Validated @RequestBody NastavnikDTO nastavnikDTO) {
-	        NastavnikDTO updatedNastavnikDTO = nastavnikService.update(id, nastavnikDTO);
+	    	log.info("Zahtev za ažuriranje nastavnika sa ID: {}", id);
+	    	NastavnikDTO updatedNastavnikDTO = nastavnikService.update(id, nastavnikDTO);
 	        return new ResponseEntity<>(updatedNastavnikDTO, HttpStatus.OK);
 	    }
 

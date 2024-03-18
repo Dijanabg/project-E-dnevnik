@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,10 +16,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 
 @Entity
-@Table(name = "role")
+@Table(name = "role", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class RoleEntity {
 	
 	@Id
@@ -26,6 +29,7 @@ public class RoleEntity {
 	private Integer id;
 	
 	@Column(name = "role_name", unique = true)
+	@JsonView(Views.Private.class)
 	private String name;
 	
 	@Version
@@ -33,6 +37,7 @@ public class RoleEntity {
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonIgnore
+	@JsonView(Views.Admin.class)
 	private List<KorisnikEntity> korisnici = new ArrayList<>();
 
 	public RoleEntity() {

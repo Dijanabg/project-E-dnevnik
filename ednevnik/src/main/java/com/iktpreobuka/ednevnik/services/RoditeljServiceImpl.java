@@ -168,7 +168,7 @@ public class RoditeljServiceImpl implements RoditeljService{
         RoditeljEntity roditelj = roditeljOpt.get();
         RoditeljDTO roditeljDTO = new RoditeljDTO();
         // Setovanje osnovnih informacija o roditelju
-        roditeljDTO.setId(roditelj.getId());
+        //roditeljDTO.setId(roditelj.getId());
         roditeljDTO.setIme(roditelj.getIme());
         roditeljDTO.setPrezime(roditelj.getPrezime());
         roditeljDTO.setEmail(roditelj.getEmail());

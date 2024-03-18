@@ -10,6 +10,7 @@ import com.iktpreobuka.ednevnik.controllers.util.Encryption;
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.RoleEntity;
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
+import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.repositories.RoleRepository;
 
 @Component
@@ -29,7 +30,8 @@ public class KorisnikMapper {
         entity.setSifra(encryptedPass);
         
         if (dto.getRolaId() != null) {
-            RoleEntity role = roleRepository.findById(dto.getRolaId()).orElse(null);
+            RoleEntity role = roleRepository.findById(dto.getRolaId())
+            		.orElseThrow(() -> new ResourceNotFoundException("Rola nije pronadjena! "));
             entity.setRole(role);
         }
         
@@ -59,7 +61,7 @@ public class KorisnikMapper {
             entity.setSifra(encryptedPass);
         }
         if (dto.getRolaId() != null) {
-            RoleEntity role = roleRepository.findById(dto.getRolaId()).orElse(null);
+            RoleEntity role = roleRepository.findById(dto.getRolaId()).orElseThrow(() -> new ResourceNotFoundException("Rola nije pronadjena! "));
             entity.setRole(role);
         }
     }

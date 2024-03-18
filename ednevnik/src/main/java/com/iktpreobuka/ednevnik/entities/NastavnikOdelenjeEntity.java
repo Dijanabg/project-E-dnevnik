@@ -25,26 +25,25 @@ public class NastavnikOdelenjeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@JsonManagedReference
 	@ManyToOne (fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn (name = "nastavnik")
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Private.class)
 	private NastavnikEntity predavac;
 	
 	
 	@JsonManagedReference
 	@ManyToOne (fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn (name = "odelenje")
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Private.class)
 	private OdelenjeEntity odelenje;
 	
 	@JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "predmet")
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Private.class)
     private PredmetEntity predmet;
 
 	@Version

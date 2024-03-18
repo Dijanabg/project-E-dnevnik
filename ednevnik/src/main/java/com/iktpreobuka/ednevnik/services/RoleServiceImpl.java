@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.iktpreobuka.ednevnik.entities.RoleEntity;
@@ -47,11 +48,17 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
     public RoleDTO updateRole(Integer id, RoleDTO roleDTO) {
-        RoleEntity entity = roleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found!"));
-        entity.setName(roleDTO.getName());
-        entity = roleRepository.save(entity);
-        return roleMapper.toDto(entity);
+		RoleEntity existingRole = roleRepository.findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Role not found!"));
+
+	    // Provera da li postoji rola sa novim imenom, ali sa različitim ID-jem
+		RoleEntity roleWithSameName = roleRepository.findByName(roleDTO.getName());
+	    if (roleWithSameName != null && !roleWithSameName.getId().equals(existingRole.getId())) {
+	        throw new DataIntegrityViolationException("Rola sa ovim imenom vec postoji!");
+	    }
+	    existingRole.setName(roleDTO.getName());
+	    existingRole = roleRepository.save(existingRole);
+	    return roleMapper.toDto(existingRole);
     }
 
 	@Override

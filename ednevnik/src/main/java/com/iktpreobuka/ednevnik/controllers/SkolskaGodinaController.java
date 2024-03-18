@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.SkolskaGodinaDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.SkolskaGodinaService;
 
 import jakarta.validation.Valid;
@@ -30,6 +32,7 @@ public class SkolskaGodinaController {
 
     // Dohvatanje svih školskih godina
     @GetMapping
+    @JsonView(Views.Public.class)
     public ResponseEntity<List<SkolskaGodinaDTO>> getAllSkolskeGodine() {
         List<SkolskaGodinaDTO> skolskeGodine = skolskaGodinaService.findAll();
         return new ResponseEntity<>(skolskeGodine, HttpStatus.OK);
@@ -37,6 +40,7 @@ public class SkolskaGodinaController {
 
     // Dohvatanje školske godine po ID
     @GetMapping("/{id}")
+    @JsonView(Views.Private.class)
     public ResponseEntity<SkolskaGodinaDTO> getSkolskaGodinaById(@PathVariable Integer id) {
         SkolskaGodinaDTO skolskaGodinaDTO = skolskaGodinaService.findById(id);
         return new ResponseEntity<>(skolskaGodinaDTO, HttpStatus.OK);
@@ -45,6 +49,7 @@ public class SkolskaGodinaController {
     // Dodavanje nove školske godine
     @PostMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<SkolskaGodinaDTO> addSkolskaGodina(@Validated @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaDTO novaSkolskaGodina = skolskaGodinaService.save(skolskaGodinaDTO);
         return new ResponseEntity<>(novaSkolskaGodina, HttpStatus.CREATED);
@@ -53,6 +58,7 @@ public class SkolskaGodinaController {
     // Ažuriranje postojeće školske godine
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<SkolskaGodinaDTO> updateSkolskaGodina(@PathVariable Integer id, @Valid @RequestBody SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaDTO azuriranaSkolskaGodina = skolskaGodinaService.update(id, skolskaGodinaDTO);
         return new ResponseEntity<>(azuriranaSkolskaGodina, HttpStatus.OK);
@@ -61,6 +67,7 @@ public class SkolskaGodinaController {
     // Brisanje školske godine
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteSkolskaGodina(@PathVariable Integer id) {
         skolskaGodinaService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

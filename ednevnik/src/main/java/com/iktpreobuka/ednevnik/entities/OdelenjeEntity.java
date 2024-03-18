@@ -34,10 +34,10 @@ public class OdelenjeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "odelenje_id")
-	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@Column(name = "odelenje")
+	@JsonView(Views.Public.class)
 	private Integer odelenje;
 
 	@Version
@@ -58,11 +58,13 @@ public class OdelenjeEntity {
 	//ucenici u odelenju
 	@JsonBackReference
 	@OneToMany(mappedBy = "odelenje", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JsonView(Views.Private.class)
 	protected List<UcenikEntity> ucenici = new ArrayList<>();
 
 	//nastavnici koji predaju odelenju
 	@JsonBackReference
 	@OneToMany(mappedBy = "odelenje", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JsonView(Views.Private.class)
 	private List <NastavnikOdelenjeEntity> nastavnici = new ArrayList<>();
 
 	

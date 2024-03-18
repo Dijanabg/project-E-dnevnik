@@ -1,5 +1,8 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -7,14 +10,17 @@ public class PredmetDTO {
 	private Integer id;
     
 	@NotBlank(message = "Naziv predmeta mora biti unet.")
+	@JsonView(Views.Public.class)
 	private String nazivPredmeta;
     
 	@NotNull(message = "Fond casova mora biti unet.")
+	@JsonView(Views.Public.class)
 	private Integer casovaNedeljno;
    
 	private Integer version;
     
 	@NotNull(message = "Razred mora biti unet.")
+	@JsonView(Views.Public.class)
 	private Integer razredId;
 	
 	public PredmetDTO() {

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.security.Views;
 
 public class NastavnikOdelenjeDTO {
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
 	@JsonView(Views.Admin.class)
     private Integer nastavnikId;

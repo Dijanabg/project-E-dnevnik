@@ -3,6 +3,7 @@ package com.iktpreobuka.ednevnik.entities.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.security.Views;
 
@@ -11,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class RoditeljDTO {
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
     
 	@NotNull(message = "Ime mora biti uneto.")
@@ -28,14 +29,13 @@ public class RoditeljDTO {
 	@JsonView(Views.Private.class)
 	private String email;
 
-	@JsonView(Views.Admin.class)
 	private Integer korisnikId;
     
     @NotEmpty(message = "Lista dece ne sme biti prazna.")
-    @JsonView(Views.Private.class)
     private List<Integer> deteIds = new ArrayList<>();
     
     @JsonView(Views.Private.class)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<DeteDTO> deca;
 	
     

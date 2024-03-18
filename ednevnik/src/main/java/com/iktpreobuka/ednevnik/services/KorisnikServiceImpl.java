@@ -1,5 +1,8 @@
 package com.iktpreobuka.ednevnik.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,12 +15,13 @@ import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.KorisnikMapper;
 import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
 
-import jakarta.persistence.EntityNotFoundException;
-
 @Service
 public class KorisnikServiceImpl implements KorisnikService{
+	
+	private static final Logger log = LoggerFactory.getLogger(KorisnikServiceImpl.class);
+	
 	@Autowired
-    private KorisnikRepository korisnikRepository; // Pretpostavimo da imate repository za korisnika
+    private KorisnikRepository korisnikRepository; 
 
 	@Autowired
     private KorisnikMapper korisnikMapper;
@@ -30,7 +34,8 @@ public class KorisnikServiceImpl implements KorisnikService{
 
     @Override
     public KorisnikDTO save(KorisnikDTO korisnikDto) {
-        KorisnikEntity korisnikEntity = korisnikMapper.toEntity(korisnikDto);
+    	log.info("Kreiranje korisnika: {}", korisnikDto.getKorisnickoIme());
+    	KorisnikEntity korisnikEntity = korisnikMapper.toEntity(korisnikDto);
         korisnikEntity = korisnikRepository.save(korisnikEntity);
         return korisnikMapper.toDto(korisnikEntity);
     }
@@ -38,27 +43,25 @@ public class KorisnikServiceImpl implements KorisnikService{
 	@Override
     public KorisnikDTO findById(Integer id) {
 		Optional<KorisnikEntity> entity = korisnikRepository.findById(id);
-        return entity.map(korisnikMapper::toDto).orElse(null); // Vraća korisnika na osnovu ID-a ili null ako korisnik nije pronađen
+        return entity.map(korisnikMapper::toDto).orElseThrow(() -> new ResourceNotFoundException("Korisnik nije pronađen."));
     }
 	
 	@Override
 	public KorisnikDTO update(Integer id, KorisnikDTO korisnikDTO) {
-	    // Pronađi korisnika po ID-u
+		log.info("Ažuriranje korisnika sa ID: {}", id);
 	    KorisnikEntity korisnikEntity = korisnikRepository.findById(id)
-	            .orElseThrow(() -> new EntityNotFoundException("Korisnik sa ID-om " + id + " nije pronađen."));
+	            .orElseThrow(() -> new ResourceNotFoundException("Korisnik nije pronađen."));
 
-	    // Ažuriraj podatke korisnika
 	    korisnikMapper.updateKorisnikEntityFromDto(korisnikDTO, korisnikEntity);
 
-	    // Sačuvaj 
 	    KorisnikEntity updatedEntity = korisnikRepository.save(korisnikEntity);
 
-	    // Pretvori nazad u DTO i vrati ga
 	    return korisnikMapper.toDto(updatedEntity);
 	}
 	
 	@Override
     public void deleteById(Integer id) {
+		log.info("Brisanje korisnika sa ID: {}", id);
         korisnikRepository.deleteById(id);
     }
 	

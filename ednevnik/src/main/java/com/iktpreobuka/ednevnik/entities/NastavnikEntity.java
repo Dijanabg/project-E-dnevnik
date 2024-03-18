@@ -30,7 +30,6 @@ public class NastavnikEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "nastavnik_id")
-	@JsonView(Views.Admin.class)
     private Integer id;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
@@ -64,7 +63,7 @@ public class NastavnikEntity {
 	@JsonView(Views.Public.class)
 	private List<NastavnikPredmetEntity> predajePredmet = new ArrayList<>();
 	
-	//odelenje u kojem predaje !!!!!!!!!!ne znam dal mi treba
+	//odelenje u kojem predaje
 	@JsonView(Views.Public.class)
 	@OneToMany(mappedBy = "predavac", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();

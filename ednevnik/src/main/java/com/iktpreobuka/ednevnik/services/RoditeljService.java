@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
 
+
 public interface RoditeljService {
 
 	List<RoditeljDTO> findAll();

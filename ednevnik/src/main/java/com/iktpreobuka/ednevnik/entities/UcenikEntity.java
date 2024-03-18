@@ -29,13 +29,11 @@ public class UcenikEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ucenik_id")
-	@JsonView(Views.Admin.class)
     private Integer id;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
-	
-    private KorisnikEntity korisnikUcenik;
+	private KorisnikEntity korisnikUcenik;
     
     @Column(name = "ime")
     @JsonView(Views.Private.class)

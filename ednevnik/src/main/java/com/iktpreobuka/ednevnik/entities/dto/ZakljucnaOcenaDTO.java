@@ -1,7 +1,13 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 public class ZakljucnaOcenaDTO {
+	
+	@JsonView(Views.Private.class)
 	private String predmetNaziv;
+	@JsonView(Views.Private.class)
     private Integer zakljucnaOcena;
 	public ZakljucnaOcenaDTO() {
 		super();

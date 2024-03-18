@@ -1,11 +1,15 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.security.Views;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class SkolskaGodinaDTO {
 	private Integer id;
 	
 	@NotBlank(message = "Oznaka skolske godine ne moze biti prazno polje")
+	@JsonView(Views.Public.class)
 	private String oznaka;
 	// Lista ID-jeva razreda za ovu školsku godinu, beez detaljisanja o svakom razredu
 //    @NotNull

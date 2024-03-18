@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +36,7 @@ import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
 @Service
 public class OcenaServiceImpl implements OcenaService{
-	
+	private static final Logger log = LoggerFactory.getLogger(OcenaServiceImpl.class);
 	@Autowired
     private OcenaRepository ocenaRepository;
 
@@ -62,12 +64,14 @@ public class OcenaServiceImpl implements OcenaService{
     @Override
 	@Transactional
 	public OcenaDTO dodajOcenu(OcenaDTO ocenaDTO) {
+    	
 	    // Dobijanje korisničkog imena ulogovanog korisnika
 	    String ulogovaniKorisnikUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 	    // Pronalaženje ulogovanog nastavnika na osnovu korisničkog imena
 	    NastavnikEntity ulogovaniNastavnik = nastavnikRepository.findByKorisnikNastavnikKorisnickoIme(ulogovaniKorisnikUsername)
 	            .orElseThrow(() -> new ResourceNotFoundException("Nije pronađen nastavnik sa korisničkim imenom: " + ulogovaniKorisnikUsername));
 
+	    
 	    UcenikEntity ucenik = ucenikRepository.findById(ocenaDTO.getUcenikId())
 	            .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
 	    PredmetEntity predmet = predmetRepository.findById(ocenaDTO.getPredmetId())
@@ -80,11 +84,18 @@ public class OcenaServiceImpl implements OcenaService{
 	    if (!predajePredmetUOdeljenju) {
 	        throw new AccessDeniedException("Nastavnik ne predaje dati predmet u odeljenju učenika.");
 	    }
+	 // Provera da li postoji zaključna ocena među ocenama za datog učenika i predmet
+	    boolean postojiZakljucnaOcena = ocenaRepository.findByUcenikAndPredmet(ucenik, predmet).stream()
+	            .anyMatch(ocena -> ocena.getZakljucnaOcena() != null);
 
+	    if (postojiZakljucnaOcena) {
+	        throw new IllegalStateException("Zaključna ocena za predmet je već postavljena. Ne možete dodati nove ocene.");
+	    }
+	    log.info("Čuva se nova ocena: {}", ocenaDTO);
 	    // Kreiranje nove ocene
 	    OcenaEntity novaOcena = ocenaMapper.toEntity(ocenaDTO);
 	    novaOcena.setVrednostOcene(ocenaDTO.getVrednostOcene());
-	    EAktivnostEntity aktivnostEnum = EAktivnostEntity.valueOf(ocenaDTO.getAktivnost().toUpperCase());
+	    EAktivnostEntity aktivnostEnum = ocenaDTO.getAktivnost();
 	    novaOcena.setAktivnost(aktivnostEnum);
 	    
 	    EPolugodisteEntity polugodisteEnum = EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste().toUpperCase());
@@ -130,7 +141,7 @@ public class OcenaServiceImpl implements OcenaService{
 
         // Ažuriranje postojeće ocene sa novim vrednostima
         postojecaOcena.setVrednostOcene(ocenaDTO.getVrednostOcene());
-        postojecaOcena.setAktivnost(EAktivnostEntity.valueOf(ocenaDTO.getAktivnost().toUpperCase()));
+        postojecaOcena.setAktivnost(ocenaDTO.getAktivnost());
         postojecaOcena.setPolugodiste(EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste().toUpperCase()));
         postojecaOcena.setUcenik(ucenik);
         postojecaOcena.setPredmet(predmet);
@@ -145,10 +156,16 @@ public class OcenaServiceImpl implements OcenaService{
     @Override
     @Transactional
     public void obrisiOcenu(Integer ocenaId) {
-        if (!ocenaRepository.existsById(ocenaId)) {
-            throw new ResourceNotFoundException("Ocena sa ID " + ocenaId + " nije pronađena.");
-        }
-
+    	 log.info("Briše se ocena sa id-om: {}", ocenaId);
+         try {
+	        if (!ocenaRepository.existsById(ocenaId)) {
+	            throw new ResourceNotFoundException("Ocena sa ID " + ocenaId + " nije pronađena.");
+	        }
+	        ocenaRepository.deleteById(ocenaId);
+         } catch (Exception e) {
+             log.error("Greška pri brisanju ocene sa id-om: {}", e.getMessage());
+             throw new RuntimeException("Greška pri brisanju ocene", e);
+         }
         // Brisanje ocene
         ocenaRepository.deleteById(ocenaId);
     }
@@ -226,6 +243,11 @@ public class OcenaServiceImpl implements OcenaService{
             throw new ResourceNotFoundException("Nema ocena za učenika za dati predmet.");
         }
 
+        boolean vecPostojiZakljucnaOcena = ocenaRepository.existsByUcenikAndPredmetAndZakljucnaOcenaNotNull(ucenik, predmet);
+        if(vecPostojiZakljucnaOcena) {
+            throw new AccessDeniedException("Zaključna ocena za predmet je već postavljena. Ne možete dodati nove ocene.");
+        }
+        
         for(OcenaEntity ocena : ocene) {
             ocena.setZakljucnaOcena(zakljucnaOcena);
             ocenaRepository.save(ocena);

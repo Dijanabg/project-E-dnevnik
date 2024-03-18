@@ -28,7 +28,6 @@ public class KorisnikEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "korisnik_id")
-	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	
@@ -53,15 +52,19 @@ public class KorisnikEntity {
 	private RoleEntity role;
 	
 	@OneToMany(mappedBy = "korisnikUcenik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Private.class)
 	protected List<UcenikEntity> ucenici = new ArrayList<>();
 
 	@OneToMany(mappedBy = "korisnikNastavnik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Public.class)
 	protected List<NastavnikEntity> nastavnici = new ArrayList<>();
 
 	@OneToMany(mappedBy = "korisnikRoditelj", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Private.class)
 	protected List<RoditeljEntity> roditelji = new ArrayList<>();
 
 	@OneToMany(mappedBy = "korisnikAdmin", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonView(Views.Private.class)
 	protected List<AdminEntity> administratori = new ArrayList<>();
 
 	public KorisnikEntity() {

@@ -32,7 +32,6 @@ public class OcenaEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ocena_id")
-	@JsonView(Views.Admin.class)
 	private Integer id;
 	
 	@Column(name = "vrednost_ocene")
@@ -47,7 +46,7 @@ public class OcenaEntity {
 	private Date datum;
 	
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Private.class)
+	@JsonView(Views.Public.class)
 	private EAktivnostEntity aktivnost;
 
 	@Enumerated(EnumType.STRING)

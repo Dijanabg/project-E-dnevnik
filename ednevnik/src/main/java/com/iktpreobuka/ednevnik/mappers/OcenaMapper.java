@@ -11,7 +11,6 @@ import com.iktpreobuka.ednevnik.entities.OcenaEntity;
 import com.iktpreobuka.ednevnik.entities.PredmetEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
-import com.iktpreobuka.ednevnik.entities.enums.EAktivnostEntity;
 import com.iktpreobuka.ednevnik.entities.enums.EPolugodisteEntity;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
@@ -41,7 +40,7 @@ public class OcenaMapper {
             ocenaDTO.setDatum(sdf.format(ocenaEntity.getDatum()));
         }
         if(ocenaEntity.getAktivnost() != null) {
-            ocenaDTO.setAktivnost(ocenaEntity.getAktivnost().toString());
+            ocenaDTO.setAktivnost(ocenaEntity.getAktivnost());
         }
         if(ocenaEntity.getPolugodiste() != null) {
             ocenaDTO.setPolugodiste(ocenaEntity.getPolugodiste().toString());
@@ -56,8 +55,14 @@ public class OcenaMapper {
             ocenaDTO.setPredmetId(ocenaEntity.getPredmet().getId());
             ocenaDTO.setPredmetNaziv(ocenaEntity.getPredmet().getNazivPredmeta());
         }
-        ocenaDTO.setZakljucnaOcena(ocenaEntity.getZakljucnaOcena());
+
+        if (ocenaEntity.getZakljucnaOcena() == null) {
+            ocenaDTO.setZakljucnaOcenaPoruka("Ocene još nisu zaključene");
+        } else {
+            ocenaDTO.setZakljucnaOcena(ocenaEntity.getZakljucnaOcena());
+        }
         return ocenaDTO;
+        
     }
 
     // Konvertuje OcenaDTO u OcenaEntity
@@ -74,7 +79,7 @@ public class OcenaMapper {
         ocenaEntity.setZakljucnaOcena(ocenaDTO.getZakljucnaOcena());
 
         if(ocenaDTO.getAktivnost() != null) {
-            ocenaEntity.setAktivnost(EAktivnostEntity.valueOf(ocenaDTO.getAktivnost()));
+            ocenaEntity.setAktivnost(ocenaDTO.getAktivnost());
         }
         if(ocenaDTO.getPolugodiste() != null) {
             ocenaEntity.setPolugodiste(EPolugodisteEntity.valueOf(ocenaDTO.getPolugodiste()));

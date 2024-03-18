@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikPredmetDTO;
 import com.iktpreobuka.ednevnik.entities.dto.PredmetDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.NastavnikPredmetServise;
 import com.iktpreobuka.ednevnik.services.PredmetService;
 
@@ -34,12 +36,14 @@ public class PredmetController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<PredmetDTO> dodajPredmet(@Validated @RequestBody PredmetDTO predmetDTO) {
         PredmetDTO noviPredmet = predmetService.save(predmetDTO);
         return new ResponseEntity<>(noviPredmet, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
+    @JsonView(Views.Private.class)
     public ResponseEntity<PredmetDTO> pronadjiPredmet(@PathVariable Integer id) {
         PredmetDTO predmetDTO = predmetService.findById(id);
         return ResponseEntity.ok(predmetDTO);
@@ -47,6 +51,7 @@ public class PredmetController {
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<PredmetDTO> azurirajPredmet(@PathVariable Integer id,@Validated @RequestBody PredmetDTO predmetDTO) {
         PredmetDTO azuriraniPredmet = predmetService.update(id, predmetDTO);
         return ResponseEntity.ok(azuriraniPredmet);
@@ -54,6 +59,7 @@ public class PredmetController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> obrisiPredmet(@PathVariable Integer id) {
         predmetService.delete(id);
         return ResponseEntity.ok().build();
@@ -61,6 +67,7 @@ public class PredmetController {
 
     @PostMapping("/{predmetId}/dodeli-nastavnika/{nastavnikId}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<?> dodeliNastavnikaPredmetu(@PathVariable Integer nastavnikId,
             @PathVariable Integer predmetId) {
     	NastavnikPredmetDTO nastavnikPredmetDTO = nastavnikPredmetService.dodeliNastavnikaPredmetu(nastavnikId, predmetId);
@@ -68,12 +75,14 @@ public class PredmetController {
 	}
     
     @GetMapping("/nastavnici-predmeti")
+    @JsonView(Views.Private.class)
     public ResponseEntity<List<NastavnikPredmetDTO>> getNastavniciIPredmetiKojePredaju() {
         List<NastavnikPredmetDTO> dtoList = nastavnikPredmetService.getNastavniciIPredmetiKojePredaju();
         return ResponseEntity.ok(dtoList);
     }
     
     @GetMapping("/razred/{razredId}/predmeti")
+    @JsonView(Views.Public.class)
     public ResponseEntity<List<PredmetDTO>> getPredmetiByRazredId(@PathVariable Integer razredId) {
         List<PredmetDTO> predmetiDTO = predmetService.findPredmetiByRazredId(razredId);
         return ResponseEntity.ok(predmetiDTO);
@@ -81,6 +90,7 @@ public class PredmetController {
     
     @DeleteMapping("/ukloni-dodelu")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<?> ukloniDodeluNastavnikaPredmetu(@RequestParam Integer nastavnikId, @RequestParam Integer predmetId) {
         boolean uklonjeno = nastavnikPredmetService.ukloniDodeluNastavnikaPredmetu(nastavnikId, predmetId);
         if (uklonjeno) {

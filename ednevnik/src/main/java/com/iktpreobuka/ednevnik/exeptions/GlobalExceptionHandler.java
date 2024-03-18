@@ -2,6 +2,7 @@ package com.iktpreobuka.ednevnik.exeptions;
 
 import java.util.stream.Collectors;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -28,17 +29,22 @@ public class GlobalExceptionHandler {
         return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
     }
 	
-//	@ExceptionHandler(Exception.class)
-//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//	public ErrorMessage handleAllExceptions(Exception ex) {
-//	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
-//	}
+	@ExceptionHandler(AccessDeniedException.class)
+	@ResponseStatus(HttpStatus.FORBIDDEN)
+	public ErrorMessage handleAccessDeniedException(AccessDeniedException ex) {
+	    return new ErrorMessage(HttpStatus.FORBIDDEN.value(), ex.getMessage());
+	}
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ErrorMessage handleAllExceptions(Exception ex) {
+	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
+	}
 
-//	@ExceptionHandler(DataAccessException.class)
-//	@ResponseStatus(HttpStatus.BAD_REQUEST)
-//	public ErrorMessage handleDataAccessException(DataAccessException ex) {
-//	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "Greška prilikom pristupa podacima.");
-//	}
+	@ExceptionHandler(DataAccessException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorMessage handleDataAccessException(DataAccessException ex) {
+	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), "Greška prilikom pristupa podacima.");
+	}
 	
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -55,14 +61,20 @@ public class GlobalExceptionHandler {
 	    return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), errorMessage);
 	}
 	
-//	@ExceptionHandler(DataIntegrityViolationException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ErrorMessage handleDataIntegrityViolation(DataIntegrityViolationException ex) {
-//        // Provera specifičnog uzroka može biti složena i zavisna od upotrebljenog DBMS-a (MySQL, PostgreSQL, itd.)
-//        // Sledeća poruka je opšta. Možete razmotriti parsiranje poruke izuzetka da biste dobili detaljnije informacije.
-//        String message = "Operacija nije uspela zbog kršenja ograničenja integriteta podataka. Molimo proverite unos.";
-//        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
-//    }
+	@ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorMessage handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+        // Provera specifičnog uzroka može biti složena i zavisna od upotrebljenog DBMS-a (MySQL, PostgreSQL, itd.)
+        // Sledeća poruka je opšta. Možete razmotriti parsiranje poruke izuzetka da biste dobili detaljnije informacije.
+        String message = "Operacija nije uspela zbog kršenja ograničenja integriteta podataka. Molimo proverite unos.";
+        return new ErrorMessage(HttpStatus.BAD_REQUEST.value(), message);
+    }
+	
+	@ExceptionHandler(IllegalStateException.class)
+	@ResponseStatus(HttpStatus.CONFLICT) // HttpStatus.CONFLICT (409) se često koristi za situacije gde nešto nije dozvoljeno zbog trenutnog stanja resursa
+	public ErrorMessage handleIllegalStateException(IllegalStateException ex) {
+	    return new ErrorMessage(HttpStatus.CONFLICT.value(), ex.getMessage());
+	}
 	
     // Klasa za formatiranje poruke o grešci
     public static class ErrorMessage {

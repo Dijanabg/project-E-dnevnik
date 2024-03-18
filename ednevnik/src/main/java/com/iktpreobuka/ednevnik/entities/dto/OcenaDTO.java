@@ -1,6 +1,7 @@
 package com.iktpreobuka.ednevnik.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.entities.enums.EAktivnostEntity;
 import com.iktpreobuka.ednevnik.security.Views;
 
 import jakarta.validation.constraints.Max;
@@ -9,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class OcenaDTO {
-	@JsonView(Views.Admin.class)
+	
 	private Integer id;
 
 	@NotNull(message = "Morate uneti ocenu.")
@@ -20,9 +21,8 @@ public class OcenaDTO {
 	@JsonView(Views.Private.class)
     private String datum; // Formatiran kao String za jednostavniji rad
     @NotNull(message = "Morate uneti aktivnost!")
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Unesite validnu aktivnost.")
     @JsonView(Views.Private.class)
-    private String aktivnost;
+    private EAktivnostEntity aktivnost;
     @NotNull(message = "Morate uneti polugodište!")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Polugodište moze biti PRVO ili DRUGO.")
     @JsonView(Views.Private.class)
@@ -40,9 +40,11 @@ public class OcenaDTO {
     
     @Min(value = 1, message = "Vrednost ocene mora biti između {value} i 5.")
 	@Max(value = 5, message = "Vrednost ocene mora biti između 1 i {value}.")
-    @JsonView(Views.Private.class)
-    private Integer zakljucnaOcena;
     
+    private Integer zakljucnaOcena;
+    @JsonView(Views.Private.class)
+    private String zakljucnaOcenaPoruka;
+
 	public OcenaDTO() {
 		super();
 	}
@@ -50,7 +52,7 @@ public class OcenaDTO {
 	public OcenaDTO(Integer id,
 			@NotNull(message = "Morate uneti ocenu.") @Min(value = 1, message = "Vrednost ocene mora biti između {value} i 5.") @Max(value = 5, message = "Vrednost ocene mora biti između 1 i {value}.") Integer vrednostOcene,
 			String datum,
-			@NotNull(message = "Morate uneti aktivnost!") @Pattern(regexp = "^[a-zA-Z]+$", message = "Unesite validnu aktivnost.") String aktivnost,
+			@NotNull(message = "Morate uneti aktivnost!") @Pattern(regexp = "^[a-zA-Z]+$", message = "Unesite validnu aktivnost.") @NotNull(message = "Morate uneti aktivnost!") @Pattern(regexp = "^[a-zA-Z]+$", message = "Unesite validnu aktivnost.") EAktivnostEntity aktivnost,
 			@NotNull(message = "Morate uneti polugodište!") @Pattern(regexp = "^[a-zA-Z]+$", message = "Polugodište moze biti PRVO ili DRUGO.") String polugodiste,
 			@NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.") Integer ocenjivacId,
 			@NotNull(message = "Ucenik je obavezno polje") Integer ucenikId,
@@ -93,11 +95,11 @@ public class OcenaDTO {
 		this.datum = datum;
 	}
 
-	public String getAktivnost() {
+	public @NotNull(message = "Morate uneti aktivnost!") EAktivnostEntity getAktivnost() {
 		return aktivnost;
 	}
 
-	public void setAktivnost(String aktivnost) {
+	public void setAktivnost(@NotNull(message = "Morate uneti aktivnost!")  EAktivnostEntity aktivnost) {
 		this.aktivnost = aktivnost;
 	}
 
@@ -147,6 +149,14 @@ public class OcenaDTO {
 
 	public void setZakljucnaOcena(Integer zakljucnaOcena) {
 		this.zakljucnaOcena = zakljucnaOcena;
+	}
+	
+	public String getZakljucnaOcenaPoruka() {
+		return zakljucnaOcenaPoruka;
+	}
+
+	public void setZakljucnaOcenaPoruka(String zakljucnaOcenaPoruka) {
+		this.zakljucnaOcenaPoruka = zakljucnaOcenaPoruka;
 	}
 
 	@Override

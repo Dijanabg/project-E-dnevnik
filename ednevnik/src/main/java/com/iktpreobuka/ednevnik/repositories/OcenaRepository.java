@@ -18,4 +18,8 @@ public interface OcenaRepository extends CrudRepository<OcenaEntity, Integer>{
 
 	Optional<NastavnikEntity> findTopByUcenikAndPredmetOrderByDatumDesc(UcenikEntity ucenik, PredmetEntity predmet);
 
+	List<OcenaEntity> findByUcenikAndPredmet(UcenikEntity ucenik, PredmetEntity predmet);
+
+	boolean existsByUcenikAndPredmetAndZakljucnaOcenaNotNull(UcenikEntity ucenik, PredmetEntity predmet);
+
 }

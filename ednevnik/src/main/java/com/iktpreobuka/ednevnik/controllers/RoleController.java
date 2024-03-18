@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 //import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.RoleDTO;
+import com.iktpreobuka.ednevnik.security.Views;
 //import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.RoleService;
 
@@ -30,7 +32,7 @@ public class RoleController {
 	
 	@GetMapping
 	@Secured("ROLE_ADMIN")
-    //@JsonView(Views.Admin.class) // Ova anotacija specificira koji view koristimo
+    @JsonView(Views.Admin.class)
     public ResponseEntity<List<RoleDTO>> findAllRoles() {
         List<RoleDTO> roles = roleService.findAll();
         return new ResponseEntity<>(roles, HttpStatus.OK);
@@ -38,6 +40,7 @@ public class RoleController {
 	
 	@PostMapping
 	@Secured("ROLE_ADMIN")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<RoleDTO> addRole(@Validated @RequestBody RoleDTO roleDTO) {
         RoleDTO newRole = roleService.saveRole(roleDTO);
         return new ResponseEntity<>(newRole, HttpStatus.CREATED);
@@ -45,6 +48,7 @@ public class RoleController {
 	
 	@PutMapping("/{id}")
 	@Secured("ROLE_ADMIN")
+	@JsonView(Views.Admin.class)
     public ResponseEntity<RoleDTO> updateRole(@PathVariable Integer id,@Validated @RequestBody RoleDTO roleDTO) {
         RoleDTO updatedRole = roleService.updateRole(id, roleDTO);
         if(updatedRole != null) {
@@ -56,6 +60,7 @@ public class RoleController {
 
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
     public ResponseEntity<Void> deleteRole(@PathVariable Integer id) {
     	roleService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
