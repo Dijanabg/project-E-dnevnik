@@ -8,12 +8,16 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.RoditeljEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.DeteDTO;
 import com.iktpreobuka.ednevnik.entities.dto.RoditeljDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.RoditeljMapper;
+import com.iktpreobuka.ednevnik.repositories.AdminRepository;
+import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
+import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
 import com.iktpreobuka.ednevnik.repositories.RoditeljRepository;
 import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
@@ -27,7 +31,16 @@ public class RoditeljServiceImpl implements RoditeljService{
 
     @Autowired
     private UcenikRepository ucenikRepository;
-
+    
+    @Autowired
+    private KorisnikRepository korisnikRepository;
+    
+    @Autowired
+    private AdminRepository adminRepository;
+    
+    @Autowired
+    private NastavnikRepository nastavnikRepository;
+    
     @Autowired
     private RoditeljMapper roditeljMapper;
     
@@ -38,19 +51,16 @@ public class RoditeljServiceImpl implements RoditeljService{
 
         return roditelji.stream().map(roditelj -> {
             RoditeljDTO roditeljDTO = new RoditeljDTO();
-            // Setovanje osnovnih informacija o roditelju
             roditeljDTO.setId(roditelj.getId());
             roditeljDTO.setIme(roditelj.getIme());
             roditeljDTO.setPrezime(roditelj.getPrezime());
             roditeljDTO.setEmail(roditelj.getEmail());
 
-            // Konverzija dece u DeteDTO i dodavanje u listu
             List<DeteDTO> decaDTO = roditelj.getDete().stream().map(dete -> {
                 DeteDTO deteDTO = new DeteDTO();
                 deteDTO.setIme(dete.getIme());
                 deteDTO.setPrezime(dete.getPrezime());
                 deteDTO.setEmail(dete.getEmail());
-                // Setovanje dodatnih informacija o detetu
                 return deteDTO;
             }).collect(Collectors.toList());
 
@@ -63,8 +73,18 @@ public class RoditeljServiceImpl implements RoditeljService{
     @Override
     @Transactional
     public RoditeljDTO save(RoditeljDTO roditeljDTO) {
+    	// Provera da li korisnik već postoji u nekoj drugoj ulozi
+        KorisnikEntity korisnik = korisnikRepository.findById(roditeljDTO.getKorisnikId())
+                .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + roditeljDTO.getKorisnikId() + " nije pronađen."));
+
+        boolean existsInOtherRole = checkIfKorisnikExistsInOtherRoleForRoditelj(korisnik);
+        if (existsInOtherRole) {
+            throw new IllegalStateException("Korisnik sa ID " + roditeljDTO.getKorisnikId() + " već postoji u drugoj ulozi.");
+        }
+
         RoditeljEntity roditeljEntity = roditeljMapper.toEntity(roditeljDTO);
-        roditeljEntity = roditeljRepository.save(roditeljEntity);
+        roditeljEntity.setKorisnikRoditelj(korisnik); 
+        
         List<UcenikEntity> deca = new ArrayList<>();
         roditeljEntity = roditeljRepository.save(roditeljEntity);
         if(roditeljDTO.getDeteIds() != null && !roditeljDTO.getDeteIds().isEmpty()) {
@@ -76,27 +96,27 @@ public class RoditeljServiceImpl implements RoditeljService{
             }
             ucenikRepository.saveAll(deca);
         }
-        
-        
-        //roditeljEntity.setDete(deca);
-        //return roditeljMapper.toDto(roditeljEntity);
-        roditeljEntity.setDete(deca); // Ovde postavljamo listu dece za roditeljEntity pre nego što ga vratimo
-        roditeljRepository.save(roditeljEntity); // Ponovno čuvanje roditelja nakon dodavanja dece
 
-        // Kreiramo finalniDTO iz ažuriranog roditeljEntity koji sada uključuje i decu
-        RoditeljDTO finalniDTO = roditeljMapper.toDto(roditeljEntity);
-        return finalniDTO;    }
+        roditeljEntity.setDete(deca); 
+        roditeljRepository.save(roditeljEntity);
+
+
+        return roditeljMapper.toDto(roditeljEntity);    
+    }
     
+    private boolean checkIfKorisnikExistsInOtherRoleForRoditelj(KorisnikEntity korisnik) {
+        boolean existsAsNastavnik = nastavnikRepository.existsByKorisnikNastavnik(korisnik);
+        boolean existsAsUcenik = ucenikRepository.existsByKorisnikUcenik(korisnik);
+        boolean existsAsAdmin = adminRepository.existsByKorisnikAdmin(korisnik);
+
+        return existsAsNastavnik || existsAsUcenik || existsAsAdmin;
+    }
+
     @Override
     @Transactional
     public RoditeljDTO createRoditeljWithDete(RoditeljDTO roditeljDTO) {
-        // Konvertujemo RoditeljDTO u RoditeljEntity
         RoditeljEntity roditeljEntity = roditeljMapper.toEntity(roditeljDTO);
-
-        // Čuvanje roditelja u bazi
         roditeljEntity = roditeljRepository.save(roditeljEntity);
-
-        // Dodajemo roditelja deci (Ucenici) na osnovu deteIds i ažuriramo ih
         for (Integer deteId : roditeljDTO.getDeteIds()) {
             UcenikEntity dete = ucenikRepository.findById(deteId)
                     .orElseThrow(() -> new RuntimeException("Dete not found!")); // Promenite RuntimeException u odgovarajući exception
@@ -167,19 +187,15 @@ public class RoditeljServiceImpl implements RoditeljService{
         
         RoditeljEntity roditelj = roditeljOpt.get();
         RoditeljDTO roditeljDTO = new RoditeljDTO();
-        // Setovanje osnovnih informacija o roditelju
-        //roditeljDTO.setId(roditelj.getId());
         roditeljDTO.setIme(roditelj.getIme());
         roditeljDTO.setPrezime(roditelj.getPrezime());
         roditeljDTO.setEmail(roditelj.getEmail());
 
-        // Konverzija dece u DeteDTO i dodavanje u listu
         List<DeteDTO> decaDTO = roditelj.getDete().stream().map(dete -> {
             DeteDTO deteDTO = new DeteDTO();
             deteDTO.setIme(dete.getIme());
             deteDTO.setPrezime(dete.getPrezime());
             deteDTO.setEmail(dete.getEmail());
-            // Setovanje dodatnih informacija o detetu
             return deteDTO;
         }).collect(Collectors.toList());
 

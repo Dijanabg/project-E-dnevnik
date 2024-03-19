@@ -8,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.NastavnikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.NastavnikDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.NastavnikMapper;
+import com.iktpreobuka.ednevnik.repositories.AdminRepository;
+import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
 import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
+import com.iktpreobuka.ednevnik.repositories.RoditeljRepository;
+import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
 
 @Service
@@ -23,7 +28,19 @@ public class NastavnikServiceImpl implements NastavnikService{
 
     @Autowired
     NastavnikMapper nastavnikMapper;
-
+    
+    @Autowired
+    private KorisnikRepository korisnikRepository;
+    
+    @Autowired
+    private AdminRepository adminRepository;
+    
+    @Autowired
+    private UcenikRepository ucenikRepository;
+    
+    @Autowired
+    private RoditeljRepository roditeljRepository;
+    
     @Override
     public List<NastavnikDTO> findAll() {
     	List<NastavnikEntity> nastavnici = (List<NastavnikEntity>) nastavnikRepository.findAll();
@@ -38,13 +55,34 @@ public class NastavnikServiceImpl implements NastavnikService{
     }
 
     @Override
+    @Transactional
     public NastavnikDTO save(NastavnikDTO nastavnikDTO) {
-    	log.info("Čuvanje novog nastavnika");
-    	NastavnikEntity nastavnik = nastavnikMapper.toEntity(nastavnikDTO);
+        log.info("Čuvanje novog nastavnika");
+
+        // Pretpostavka je da NastavnikDTO sadrži korisnikId
+        KorisnikEntity korisnik = korisnikRepository.findById(nastavnikDTO.getKorisnikId())
+                .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + nastavnikDTO.getKorisnikId() + " nije pronađen."));
+
+        // Proverava da li korisnik već postoji u nekoj drugoj ulozi
+        boolean existsInOtherRole = checkIfKorisnikExistsInOtherRoleForNastavnik(korisnik);
+        if (existsInOtherRole) {
+            throw new IllegalStateException("Korisnik sa ID " + nastavnikDTO.getKorisnikId() + " već postoji u drugoj ulozi.");
+        }
+
+        NastavnikEntity nastavnik = nastavnikMapper.toEntity(nastavnikDTO);
+        nastavnik.setKorisnikNastavnik(korisnik);
+
         nastavnik = nastavnikRepository.save(nastavnik);
         return nastavnikMapper.toDto(nastavnik);
     }
 
+    private boolean checkIfKorisnikExistsInOtherRoleForNastavnik(KorisnikEntity korisnik) {
+        boolean existsAsAdmin = adminRepository.existsByKorisnikAdmin(korisnik);
+        boolean existsAsUcenik = ucenikRepository.existsByKorisnikUcenik(korisnik);
+        boolean existsAsParent = roditeljRepository.existsByKorisnikRoditelj(korisnik);
+
+        return existsAsAdmin || existsAsUcenik || existsAsParent;
+    }
     @Override
     public NastavnikDTO update(Integer id, NastavnikDTO nastavnikDTO) {
     	log.info("Brisanje nastavnika sa ID: {}", id);

@@ -78,7 +78,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
 
         if (odelenjeDTO.getRazredniStaresina() != null) {
             NastavnikEntity nastavnik = nastavnikRepository.findById(odelenjeDTO.getRazredniStaresina().getId())
-                    .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Nastavnik not found"));
             odelenje.setRazredniStaresina(nastavnik);
         }
 
@@ -91,7 +91,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     @Transactional
     public OdelenjeDTO updateOdelenje(Integer id, OdelenjeDTO odelenjeDTO) {
         OdelenjeEntity odelenje = odelenjeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Odelenje not found"));
 
         odelenje.setOdelenje(odelenjeDTO.getOdelenje());
         // Postavljanje razreda i razrednog starešine može se ažurirati slično kao kod dodavanja novog odelenja
@@ -105,7 +105,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     @Transactional
     public OdelenjeDTO findOdelenjeById(Integer id) {
     	OdelenjeEntity odelenje = odelenjeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Odelenje not found"));
         return odelenjeMapper.toDto(odelenje);
     }
     
@@ -226,16 +226,16 @@ public class OdelenjeServiceImpl implements OdelenjeService{
 //            throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
 //        }
     	NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
-    	        .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
+    	        .orElseThrow(() -> new ResourceNotFoundException("Nastavnik not found"));
     	    PredmetEntity predmet = predmetRepository.findById(predmetId)
-    	        .orElseThrow(() -> new RuntimeException("Predmet not found"));
+    	        .orElseThrow(() -> new ResourceNotFoundException("Predmet not found"));
     	    OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
-    	        .orElseThrow(() -> new RuntimeException("Odelenje not found"));
+    	        .orElseThrow(() -> new ResourceNotFoundException("Odelenje not found"));
     	    
     	    // Provera da li predmet odgovara razredu odelenja
     	    boolean isAppropriateGrade = predmet.getRazred() == odelenje.getRazred();
     	    if (!isAppropriateGrade) {
-    	        throw new RuntimeException("Predmet nije namenjen razredu odelenja");
+    	        throw new ResourceNotFoundException("Predmet nije namenjen razredu odelenja");
     	    }
 
     	    // Provera da li nastavnik već predaje dati predmet u odelenju
@@ -269,13 +269,13 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     	        PredmetEntity predmet = nastavnikOdelenje.getPredmet(); 
     	        if (nastavnik != null && predmet != null) {
     	            NastavnikPredmetDTO dto = new NastavnikPredmetDTO();
-    	            dto.setId(nastavnikOdelenje.getId());
-    	            dto.setNastavnikId(nastavnik.getId());
+    	            //dto.setId(nastavnikOdelenje.getId());
+    	            //dto.setNastavnikId(nastavnik.getId());
     	            dto.setNastavnikIme(nastavnik.getIme());
     	            dto.setNastavnikPrezime(nastavnik.getPrezime());
-    	            dto.setPredmetId(predmet.getId());
+    	            //dto.setPredmetId(predmet.getId());
     	            dto.setPredmetNaziv(predmet.getNazivPredmeta());
-    	            //dto.setPredmetRazred(predmet.getRazred());
+    	            dto.setPredmetRazred(predmet.getRazred().getRazred());
     	            predmetiNastavniciList.add(dto);
     	        }
     	    }

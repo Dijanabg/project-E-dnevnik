@@ -14,7 +14,10 @@ import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.UcenikMapper;
+import com.iktpreobuka.ednevnik.repositories.AdminRepository;
 import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
+import com.iktpreobuka.ednevnik.repositories.NastavnikRepository;
+import com.iktpreobuka.ednevnik.repositories.RoditeljRepository;
 import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 @Service
 public class UcenikServiceImpl implements UcenikService{
@@ -27,22 +30,38 @@ public class UcenikServiceImpl implements UcenikService{
     
     @Autowired
     private KorisnikRepository korisnikRepository;
-
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private NastavnikRepository nastavnikRepository;
+    @Autowired
+    private RoditeljRepository roditeljRepository;
     @Override
     @Transactional
     public UcenikDTO saveUcenik(UcenikDTO ucenikDTO) {
-        UcenikEntity ucenik = ucenikMapper.toEntity(ucenikDTO);
-     // postavlja korisnika na osnovu tog Id
-        if (ucenikDTO.getKorisnikId() != null) {
-            KorisnikEntity korisnik = korisnikRepository.findById(ucenikDTO.getKorisnikId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + ucenikDTO.getKorisnikId() + " nije pronađen."));
-            ucenik.setKorisnikUcenik(korisnik);
+        KorisnikEntity korisnik = korisnikRepository.findById(ucenikDTO.getKorisnikId())
+                .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + ucenikDTO.getKorisnikId() + " nije pronađen."));
+     // Proverava da li korisnik već postoji u nekoj drugoj ulozi
+        boolean existsInOtherRole = checkIfKorisnikExistsInOtherRole(korisnik);
+        if (existsInOtherRole) {
+            throw new IllegalStateException("Korisnik sa ID " + ucenikDTO.getKorisnikId() + " već postoji u drugoj ulozi.");
         }
-
+        UcenikEntity ucenik = ucenikMapper.toEntity(ucenikDTO);
+        ucenik.setKorisnikUcenik(korisnik);
+        
         ucenik = ucenikRepository.save(ucenik);
         return ucenikMapper.toDto(ucenik);
     }
+    
+    private boolean checkIfKorisnikExistsInOtherRole(KorisnikEntity korisnik) {
+        
+        boolean existsAsParent = roditeljRepository.existsByKorisnikRoditelj(korisnik);
+        boolean existsAsTeacher = nastavnikRepository.existsByKorisnikNastavnik(korisnik);
+        boolean existsAsAdmin = adminRepository.existsByKorisnikAdmin(korisnik);
 
+        return existsAsParent || existsAsTeacher || existsAsAdmin;
+    }
+    
     @Override
     @Transactional
     public List<UcenikDTO> findAllUcenici() {
