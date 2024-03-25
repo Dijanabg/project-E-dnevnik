@@ -25,7 +25,7 @@ public class NastavnikDTO {
     private String email;
 	
 	@NotNull(message = "Korisnik id mora biti prosledjen.")
-	@JsonView(Views.Admin.class)
+
 	private Integer korisnikId;
     
 	public NastavnikDTO() {

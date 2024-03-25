@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.iktpreobuka.ednevnik.entities.dto.DeteDTO;
 import com.iktpreobuka.ednevnik.entities.dto.OcenaDTO;
 import com.iktpreobuka.ednevnik.entities.dto.ZakljucnaOcenaDTO;
 import com.iktpreobuka.ednevnik.security.Views;
@@ -33,7 +34,7 @@ public class OcenaController {
 	@PostMapping
 	@Secured({"ROLE_ADMIN","ROLE_NASTAVNIK"})
 	@JsonView(Views.Private.class)
-    public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO) {
+    public ResponseEntity<OcenaDTO> dodajOcenu(@Validated @RequestBody OcenaDTO ocenaDTO, DeteDTO deteDTO) {
         OcenaDTO novaOcena = ocenaService.dodajOcenu(ocenaDTO);
         return new ResponseEntity<>(novaOcena, HttpStatus.CREATED);
     }

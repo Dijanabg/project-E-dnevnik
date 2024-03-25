@@ -31,7 +31,6 @@ public class PredmetServiceImpl implements PredmetService{
         return predmetMapper.toDtoList(predmetEntities);
     }
 
-    // Dodavanje predmeta
     @Override
     @Transactional
     public PredmetDTO save(PredmetDTO predmetDTO) {
@@ -47,16 +46,15 @@ public class PredmetServiceImpl implements PredmetService{
         return predmetMapper.toDto(predmetEntity);
     }
 
-    // Azuriranje predmeta
     @Override
     @Transactional
     public PredmetDTO update(Integer id, PredmetDTO predmetDTO) {
         PredmetEntity existingPredmet = predmetRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Predmet not found"));
-        // Mapirajte promene iz DTO u postojeći entitet, osim ID-a
+        
         existingPredmet.setNazivPredmeta(predmetDTO.getNazivPredmeta());
         existingPredmet.setCasovaNedeljno(predmetDTO.getCasovaNedeljno());
-        // Ažurirajte referencu na razred ako je promenjena
+        
         if (predmetDTO.getRazredId() != null && !existingPredmet.getRazred().getId().equals(predmetDTO.getRazredId())) {
             RazredEntity razred = razredRepository.findById(predmetDTO.getRazredId())
                     .orElseThrow(() -> new RuntimeException("Razred not found"));

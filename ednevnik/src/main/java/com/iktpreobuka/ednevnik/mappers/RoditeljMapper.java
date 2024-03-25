@@ -41,10 +41,7 @@ public class RoditeljMapper {
         if (entity.getKorisnikRoditelj() != null) {
             dto.setKorisnikId(entity.getKorisnikRoditelj().getId());
         }
-//        if(entity.getDete() != null && !entity.getDete().isEmpty()) {
-//            List<Integer> deteIds = entity.getDete().stream().map(UcenikEntity::getId).collect(Collectors.toList());
-//            dto.setDeteIds(deteIds);
-//        }
+
         return dto;
 	}
 	

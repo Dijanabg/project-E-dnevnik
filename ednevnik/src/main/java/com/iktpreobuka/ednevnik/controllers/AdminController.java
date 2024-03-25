@@ -35,7 +35,7 @@ public class AdminController {
 	
 	@GetMapping
 	@JsonView(Views.Admin.class)
-    public ResponseEntity<List<AdminDTO>> getAllNastavnici() {
+    public ResponseEntity<List<AdminDTO>> getAllAdmini() {
         List<AdminDTO> admin = adminService.findAll();
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }

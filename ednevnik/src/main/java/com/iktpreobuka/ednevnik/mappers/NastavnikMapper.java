@@ -33,14 +33,10 @@ public class NastavnikMapper {
 	
 	public  NastavnikDTO toDto(NastavnikEntity entity) {
 		NastavnikDTO dto = new NastavnikDTO();
-		dto.setId(entity.getId());
+		
         dto.setIme(entity.getIme());
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
-        
-        if (entity.getKorisnikNastavnik() != null) {
-            dto.setKorisnikId(entity.getKorisnikNastavnik().getId());
-        }
         
         return dto;
     }

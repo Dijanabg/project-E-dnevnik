@@ -64,7 +64,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     @Autowired
     private NastavnikPredmetRepository nastavnikPredmetRepository;
 
-    // Dodavanje novog odelenja
     @Override
     @Transactional
     public OdelenjeDTO createOdelenje(OdelenjeDTO odelenjeDTO) {
@@ -86,7 +85,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         return odelenjeMapper.toDto(odelenje);
     }
 
-    // Ažuriranje postojećeg odelenja
     @Override
     @Transactional
     public OdelenjeDTO updateOdelenje(Integer id, OdelenjeDTO odelenjeDTO) {
@@ -100,7 +98,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         return odelenjeMapper.toDto(odelenje);
     }
     
- // Pronalaženje odelenja po ID
     @Override
     @Transactional
     public OdelenjeDTO findOdelenjeById(Integer id) {
@@ -108,15 +105,13 @@ public class OdelenjeServiceImpl implements OdelenjeService{
                 .orElseThrow(() -> new ResourceNotFoundException("Odelenje not found"));
         return odelenjeMapper.toDto(odelenje);
     }
-    
-    // Brisanje odelenja
+
     @Override
     @Transactional
     public void deleteOdelenje(Integer id) {
         odelenjeRepository.deleteById(id);
     }
 
-    // Prikaz svih odelenja
     @Override
     @Transactional
     public List<OdelenjeDTO> findAllOdelenja() {
@@ -125,7 +120,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         return odelenjeMapper.toDtoList(odelenja);
     }
 
-    //Dodavanje razrednog odelenju
     @Override
     @Transactional
     public void setRazredniStaresina(Integer odelenjeId, Integer nastavnikId) {
@@ -138,7 +132,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         odelenjeRepository.save(odelenje);
     }
     
-    //prikaz razrednog nekog odelenja
     @Override
     @Transactional
     public NastavnikDTO getRazredniStaresinaOdOdelenja(Integer odelenjeId) {
@@ -152,7 +145,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
 
         return nastavnikMapper.toDto(razredniStaresina);
     }
-    //Dodavanje učenika odelenju
+    
     @Override
     @Transactional
     public UcenikDTO dodeliUcenikaOdelenju(Integer ucenikId, Integer odelenjeId) {
@@ -167,15 +160,12 @@ public class OdelenjeServiceImpl implements OdelenjeService{
                 .orElseThrow(() -> new ResourceNotFoundException("Odelenje nije pronađeno."));
 
         ucenik.setOdelenje(odelenje);
-        // Ovde se čuva učenik sa novim odelenjem
         UcenikEntity sacuvaniUcenik = ucenikRepository.save(ucenik);
 
-        // Pretvaranje entiteta učenika u DTO
         UcenikDTO ucenikDTO = ucenikMapper.toDto(sacuvaniUcenik);
         return ucenikDTO;
     }
     
-    //Ukloni ucenika iz odelenja
     @Override
     public UcenikDTO ukloniUcenikaIzOdelenja(Integer ucenikId) {
         UcenikEntity ucenik = ucenikRepository.findById(ucenikId)
@@ -186,7 +176,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         
         return ucenikMapper.toDto(updatedUcenik);
     }
-    //vrati sve ucenike datog odelenja
+    
     @Override
     @Transactional
     public List<UcenikDTO> findAllUceniciInOdelenje(Integer odelenjeId) {
@@ -195,36 +185,11 @@ public class OdelenjeServiceImpl implements OdelenjeService{
         
         return ucenikMapper.toDtoList(new ArrayList<>(odelenje.getUcenici()));
     }
-    //dodati nastavnika odelenju koji predaje neki predmet
+   
     @Override
     @Transactional
     public void dodajNastavnikaPredmetuUOdelenju(Integer nastavnikId, Integer predmetId, Integer odelenjeId) {
-//    	// Provera da li postoji kombinacija nastavnik-predmet
-//        NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
-//            .orElseThrow(() -> new RuntimeException("Nastavnik not found"));
-//        PredmetEntity predmet = predmetRepository.findById(predmetId)
-//            .orElseThrow(() -> new RuntimeException("Predmet not found"));
-//        OdelenjeEntity odelenje = odelenjeRepository.findById(odelenjeId)
-//            .orElseThrow(() -> new RuntimeException("Odelenje not found"));
-//        
-//        // Proveriti da li nastavnik već predaje dati predmet u odelenju
-//        boolean alreadyExists = nastavnikOdelenjeRepository.existsByPredavacAndOdelenjeAndPredmet(nastavnik, odelenje, predmet);
-//        
-//        // Proveriti da li nastavnik može da predaje dati predmet
-//        boolean canTeach = nastavnikPredmetRepository.existsByNastavnikIdAndPredmetId(nastavnikId, predmetId); // Ovo pretpostavlja postojanje takve provere
-//        
-//        if (!alreadyExists && canTeach) {
-//            NastavnikOdelenjeEntity nastavnikOdelenje = new NastavnikOdelenjeEntity();
-//            nastavnikOdelenje.setPredavac(nastavnik);
-//            nastavnikOdelenje.setOdelenje(odelenje);
-//            nastavnikOdelenje.setPredmet(predmet);
-//
-//            nastavnikOdelenjeRepository.save(nastavnikOdelenje);
-//        } else if (!canTeach) {
-//            throw new RuntimeException("Nastavnik nije kvalifikovan da predaje dati predmet");
-//        } else {
-//            throw new RuntimeException("Nastavnik već predaje ovaj predmet u odabranom odelenju");
-//        }
+
     	NastavnikEntity nastavnik = nastavnikRepository.findById(nastavnikId)
     	        .orElseThrow(() -> new ResourceNotFoundException("Nastavnik not found"));
     	    PredmetEntity predmet = predmetRepository.findById(predmetId)
@@ -257,7 +222,7 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     	    }
     }
 
-        //svi nastavnici i predmeti koje predju u nekom odelenju
+        
     @Override
     @Transactional
     public List<NastavnikPredmetDTO> getPredmetiINastavniciZaOdelenje(Integer odelenjeId) {

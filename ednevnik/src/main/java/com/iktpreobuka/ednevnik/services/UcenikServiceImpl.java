@@ -121,6 +121,7 @@ public class UcenikServiceImpl implements UcenikService{
         ucenikDTO.setId(ucenik.getId());
         ucenikDTO.setIme(ucenik.getIme());
         ucenikDTO.setPrezime(ucenik.getPrezime());
+        ucenikDTO.setEmail(ucenik.getEmail());
         ucenikDTO.setOdelenje(odelenje.getOdelenje()); // Pretpostavka je da odelenje ima polje 'oznaka'
         ucenikDTO.setRazred(razred.getRazred()); // 'razred' u RazredEntity je tipa Integer
 

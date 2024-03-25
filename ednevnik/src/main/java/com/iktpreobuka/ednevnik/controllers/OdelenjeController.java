@@ -32,9 +32,6 @@ public class OdelenjeController {
 	@Autowired
 	private OdelenjeService odelenjeService;
 	
-
-
-    // Dohvatanje svih odelenja
     @GetMapping
     @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
@@ -42,7 +39,6 @@ public class OdelenjeController {
         return ResponseEntity.ok(odelenjeService.findAllOdelenja());
     }
 
-    // Dohvatanje odelenja po ID
     @GetMapping("/{id}")
     @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
@@ -50,7 +46,6 @@ public class OdelenjeController {
         return ResponseEntity.ok(odelenjeService.findOdelenjeById(id));
     }
 
-    // Kreiranje novog odelenja
     @PostMapping
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -58,7 +53,6 @@ public class OdelenjeController {
         return new ResponseEntity<>(odelenjeService.createOdelenje(odelenjeDTO), HttpStatus.CREATED);
     }
 
-    // Ažuriranje odelenja
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -66,7 +60,6 @@ public class OdelenjeController {
         return ResponseEntity.ok(odelenjeService.updateOdelenje(id, odelenjeDTO));
     }
 
-    // Brisanje odelenja
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -75,7 +68,6 @@ public class OdelenjeController {
         return ResponseEntity.noContent().build();
     }
 
-    // Dodeljivanje razrednog odelenju
     @PostMapping("/{odelenjeId}/razredni/{nastavnikId}")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -83,14 +75,14 @@ public class OdelenjeController {
         odelenjeService.setRazredniStaresina(odelenjeId, nastavnikId);
         return ResponseEntity.ok().build();
     }
-    //Prikaz razrednog nekog odelenja
+    
     @GetMapping("/{odelenjeId}/razredni")
     @JsonView(Views.Private.class)
     public ResponseEntity<NastavnikDTO> getRazredniStaresina(@PathVariable Integer odelenjeId) {
         NastavnikDTO razredniStaresina = odelenjeService.getRazredniStaresinaOdOdelenja(odelenjeId);
         return ResponseEntity.ok(razredniStaresina);
     }
- // Dodavanje učenika u odelenje
+    
     @PostMapping("/{odelenjeId}/dodeli-ucenika")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -98,7 +90,7 @@ public class OdelenjeController {
         UcenikDTO ucenikDTO = odelenjeService.dodeliUcenikaOdelenju(ucenikId, odelenjeId);
         return ResponseEntity.ok(ucenikDTO);
     }
-    //Uklanjanje ucenika iz odelenja
+    
     @DeleteMapping("/ukloni-ucenika-iz-odelenja")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -106,14 +98,14 @@ public class OdelenjeController {
         UcenikDTO ucenikDTO = odelenjeService.ukloniUcenikaIzOdelenja(ucenikId);
         return ResponseEntity.ok(ucenikDTO);
     }
- // Prikaz svih učenika u odelenju
+    
     @GetMapping("/{odelenjeId}/ucenici")
     @JsonView(Views.Private.class)
     public ResponseEntity<List<UcenikDTO>> findAllUceniciInOdelenje(@PathVariable Integer odelenjeId) {
         List<UcenikDTO> ucenici = odelenjeService.findAllUceniciInOdelenje(odelenjeId);
         return ResponseEntity.ok(ucenici);
     }
-    //Dodaj nastvnika predmetu u odelenju
+    
     @PostMapping("/dodajNastavnikaPredmetu")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -126,7 +118,7 @@ public class OdelenjeController {
             return ResponseEntity.ok("Nastavnik je uspešno dodat predmetu u odabrano odeljenje.");
         
     }
-    //svi nastavnici i predmeti koje predaju u nekom odelenju
+    
     @GetMapping("/{odeljenjeId}/nastavnici-predmeti")
     @JsonView(Views.Private.class)
     public ResponseEntity<List<NastavnikPredmetDTO>> getPredmetiINastavniciZaOdelenje(@PathVariable Integer odeljenjeId) {

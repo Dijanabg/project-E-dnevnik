@@ -23,14 +23,12 @@ public class NastavnikPredmetMapper {
         dto.setNastavnikPrezime(nastavnikPredmet.getNastavnik().getPrezime());
         dto.setPredmetId(nastavnikPredmet.getPredmet().getId());
         dto.setPredmetNaziv(nastavnikPredmet.getPredmet().getNazivPredmeta()); 
-        //dto.setPredmetRazred(Predmet.getPredmet().getRazred());
+        
         if (nastavnikPredmet.getPredmet().getRazred() != null) {
             
             Integer razredNaziv = nastavnikPredmet.getPredmet().getRazred().getRazred();
             dto.setPredmetRazred(razredNaziv);
-
             
-            // dto.setRazred(predmetMapper.toRazredDto(nastavnikPredmet.getPredmet().getRazred()));
         }
         return dto;
     }

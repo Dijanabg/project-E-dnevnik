@@ -21,7 +21,6 @@ public class SkolskaGodinaServiceImpl implements SkolskaGodinaService{
     @Autowired
     private SkolskaGodinaMapper skolskaGodinaMapper;
 
-    // Prikaz svih školskih godina
     @Override
     public List<SkolskaGodinaDTO> findAll() {
         List<SkolskaGodinaEntity> skolskeGodine = (List<SkolskaGodinaEntity>) skolskaGodinaRepository.findAll();
@@ -32,21 +31,20 @@ public class SkolskaGodinaServiceImpl implements SkolskaGodinaService{
         return skolskaGodinaDTOs;
     }
 
-    // Dodavanje nove školske godine
     @Override
     public SkolskaGodinaDTO save(SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaMapper.toEntity(skolskaGodinaDTO);
         skolskaGodinaEntity = skolskaGodinaRepository.save(skolskaGodinaEntity);
         return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
     }
- // Prikaz detalja o određenoj školskoj godini
+    
     @Override
     public SkolskaGodinaDTO findById(Integer id) {
         SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Školska godina sa ID-om " + id + " nije pronađena."));
         return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
     }
-    // Ažuriranje postojeće školske godine
+    
     @Override
     public SkolskaGodinaDTO update(Integer id, SkolskaGodinaDTO skolskaGodinaDTO) {
         SkolskaGodinaEntity skolskaGodinaEntity = skolskaGodinaRepository.findById(id)
@@ -56,7 +54,6 @@ public class SkolskaGodinaServiceImpl implements SkolskaGodinaService{
         return skolskaGodinaMapper.toDto(skolskaGodinaEntity);
     }
 
-    // Brisanje školske godine
     @Override
     public void deleteById(Integer id) {
         skolskaGodinaRepository.deleteById(id);

@@ -59,7 +59,6 @@ public class NastavnikServiceImpl implements NastavnikService{
     public NastavnikDTO save(NastavnikDTO nastavnikDTO) {
         log.info("Čuvanje novog nastavnika");
 
-        // Pretpostavka je da NastavnikDTO sadrži korisnikId
         KorisnikEntity korisnik = korisnikRepository.findById(nastavnikDTO.getKorisnikId())
                 .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa ID " + nastavnikDTO.getKorisnikId() + " nije pronađen."));
 

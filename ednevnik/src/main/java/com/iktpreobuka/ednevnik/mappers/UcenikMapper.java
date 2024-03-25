@@ -43,18 +43,15 @@ public class UcenikMapper {
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());
         
-//        if (entity.getKorisnikUcenik() != null) {
-//            dto.setKorisnikId(entity.getKorisnikUcenik().getId());
-//        }
         if (entity.getOdelenje() != null) {
             dto.setOdelenje(entity.getOdelenje().getOdelenje());
-         // Dodajemo informaciju o razredu 
+     
 	        if (entity.getOdelenje().getRazred() != null) {
-	            dto.setRazred(entity.getOdelenje().getRazred().getRazred()); // Pretpostavljam da želite broj razreda
+	            dto.setRazred(entity.getOdelenje().getRazred().getRazred()); 
 	        }
         }
         if (entity.getRoditelj() != null) {
-            dto.setRoditelj(roditeljMapper.toDto(entity.getRoditelj())); // Dodavanje informacija o roditelju
+            dto.setRoditelj(roditeljMapper.toDto(entity.getRoditelj())); 
         }
         
         return dto;

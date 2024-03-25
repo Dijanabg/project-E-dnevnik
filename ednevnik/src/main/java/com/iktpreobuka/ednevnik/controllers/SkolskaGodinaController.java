@@ -30,7 +30,6 @@ public class SkolskaGodinaController {
 	@Autowired
     private SkolskaGodinaService skolskaGodinaService;
 
-    // Dohvatanje svih školskih godina
     @GetMapping
     @JsonView(Views.Public.class)
     public ResponseEntity<List<SkolskaGodinaDTO>> getAllSkolskeGodine() {
@@ -38,7 +37,6 @@ public class SkolskaGodinaController {
         return new ResponseEntity<>(skolskeGodine, HttpStatus.OK);
     }
 
-    // Dohvatanje školske godine po ID
     @GetMapping("/{id}")
     @JsonView(Views.Private.class)
     public ResponseEntity<SkolskaGodinaDTO> getSkolskaGodinaById(@PathVariable Integer id) {
@@ -46,7 +44,6 @@ public class SkolskaGodinaController {
         return new ResponseEntity<>(skolskaGodinaDTO, HttpStatus.OK);
     }
 
-    // Dodavanje nove školske godine
     @PostMapping
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -55,7 +52,6 @@ public class SkolskaGodinaController {
         return new ResponseEntity<>(novaSkolskaGodina, HttpStatus.CREATED);
     }
 
-    // Ažuriranje postojeće školske godine
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)
@@ -64,7 +60,6 @@ public class SkolskaGodinaController {
         return new ResponseEntity<>(azuriranaSkolskaGodina, HttpStatus.OK);
     }
 
-    // Brisanje školske godine
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)

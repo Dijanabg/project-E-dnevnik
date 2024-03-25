@@ -77,7 +77,4 @@ public class RazredServiceImpl implements RazredService{
         razredRepository.deleteById(id);
     }
     
-    //dodaj predmete razredu
-    
-    //prikazi sve predmete po razredu
 }

@@ -1,972 +1,440 @@
-2024-03-19 07:43:57 - Starting EdnevnikApplication using Java 17.0.9 with PID 11796 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 07:43:57 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 07:43:57 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 07:43:57 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 07:43:58 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 07:43:58 - Finished Spring Data repository scanning in 127 ms. Found 13 JPA repository interfaces.
-2024-03-19 07:43:59 - Tomcat initialized with port 8080 (http)
-2024-03-19 07:43:59 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 07:43:59 - Starting service [Tomcat]
-2024-03-19 07:43:59 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 07:43:59 - Initializing Spring embedded WebApplicationContext
-2024-03-19 07:43:59 - Root WebApplicationContext: initialization completed in 2117 ms
-2024-03-19 07:43:59 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 07:43:59 - HikariPool-1 - Starting...
-2024-03-19 07:44:00 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a6b6216
-2024-03-19 07:44:00 - HikariPool-1 - Start completed.
-2024-03-19 07:44:02 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 07:44:03 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76dc050f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a6a4752, org.springframework.security.web.context.SecurityContextHolderFilter@b366af3, org.springframework.security.web.header.HeaderWriterFilter@4f64f3fa, org.springframework.web.filter.CorsFilter@2ff40843, org.springframework.security.web.authentication.logout.LogoutFilter@63ac8120, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@28d7ab8f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ece5d79, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46a53dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44dad6c5, org.springframework.security.web.access.ExceptionTranslationFilter@4ad2cf23, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@52cd4f98]
-2024-03-19 07:44:04 - LiveReload server is running on port 35729
-2024-03-19 07:44:04 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 07:44:04 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 07:44:04 - Started EdnevnikApplication in 7.963 seconds (process running for 9.161)
-2024-03-19 07:44:07 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-03-19 07:44:07 - Initializing Servlet 'dispatcherServlet'
-2024-03-19 07:44:07 - Completed initialization in 2 ms
-2024-03-19 07:46:30 - Application shutdown requested.
-2024-03-19 07:46:30 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 07:46:30 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 07:46:30 - HikariPool-1 - Shutdown initiated...
-2024-03-19 07:46:30 - HikariPool-1 - Shutdown completed.
-2024-03-19 07:46:33 - Starting EdnevnikApplication using Java 17.0.9 with PID 7352 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 07:46:33 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 07:46:33 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 07:46:33 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 07:46:34 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 07:46:35 - Finished Spring Data repository scanning in 134 ms. Found 13 JPA repository interfaces.
-2024-03-19 07:46:35 - Tomcat initialized with port 8080 (http)
-2024-03-19 07:46:35 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 07:46:35 - Starting service [Tomcat]
-2024-03-19 07:46:35 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 07:46:36 - Initializing Spring embedded WebApplicationContext
-2024-03-19 07:46:36 - Root WebApplicationContext: initialization completed in 2034 ms
-2024-03-19 07:46:36 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 07:46:36 - HikariPool-1 - Starting...
-2024-03-19 07:46:37 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d3b38d7
-2024-03-19 07:46:37 - HikariPool-1 - Start completed.
-2024-03-19 07:46:39 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 07:46:40 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@26a622a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@180f79d6, org.springframework.security.web.context.SecurityContextHolderFilter@10b3b5f0, org.springframework.security.web.header.HeaderWriterFilter@26a617eb, org.springframework.web.filter.CorsFilter@2c07a3ec, org.springframework.security.web.authentication.logout.LogoutFilter@18e84f6f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@201285ce, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a1b96f1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5eeb3ce7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3a70bdee, org.springframework.security.web.access.ExceptionTranslationFilter@36dd4a29, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@e432970]
-2024-03-19 07:46:41 - LiveReload server is running on port 35729
-2024-03-19 07:46:41 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 07:46:41 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 07:46:41 - Started EdnevnikApplication in 7.975 seconds (process running for 8.966)
-2024-03-19 07:46:48 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-03-19 07:46:48 - Initializing Servlet 'dispatcherServlet'
-2024-03-19 07:46:48 - Completed initialization in 1 ms
-2024-03-19 07:49:37 - Resolved [com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException: Korisnik sa ID 47 nije pronađena.]
-2024-03-19 08:21:52 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-03-19 08:21:52 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:21:52 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:21:52 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:21:52 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:21:52 - Starting EdnevnikApplication using Java 17.0.9 with PID 7352 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:21:52 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:21:52 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:21:52 - Finished Spring Data repository scanning in 47 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:21:53 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:21:53 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:21:53 - Starting service [Tomcat]
-2024-03-19 08:21:53 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:21:53 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:21:53 - Root WebApplicationContext: initialization completed in 635 ms
-2024-03-19 08:21:53 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:21:53 - HikariPool-2 - Starting...
-2024-03-19 08:21:53 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b9e105e
-2024-03-19 08:21:53 - HikariPool-2 - Start completed.
-2024-03-19 08:21:53 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:21:54 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@394d0278, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71695bca, org.springframework.security.web.context.SecurityContextHolderFilter@39804c6d, org.springframework.security.web.header.HeaderWriterFilter@3c66260d, org.springframework.web.filter.CorsFilter@159a49d6, org.springframework.security.web.authentication.logout.LogoutFilter@27370b3a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@15ba4529, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15890b67, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cbb3b88, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52ced541, org.springframework.security.web.access.ExceptionTranslationFilter@42636107, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@164e4b2a]
-2024-03-19 08:21:54 - LiveReload server is running on port 35729
-2024-03-19 08:21:54 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:21:54 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 08:21:54 - Started EdnevnikApplication in 2.333 seconds (process running for 2122.354)
-2024-03-19 08:21:54 - Condition evaluation unchanged
-2024-03-19 08:21:58 - Application shutdown requested.
-2024-03-19 08:21:58 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:21:58 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:21:58 - HikariPool-2 - Shutdown initiated...
-2024-03-19 08:21:58 - HikariPool-2 - Shutdown completed.
-2024-03-19 08:22:01 - Starting EdnevnikApplication using Java 17.0.9 with PID 9788 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:22:01 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:22:01 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:22:01 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:22:02 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:22:03 - Finished Spring Data repository scanning in 125 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:22:03 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:22:03 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:22:03 - Starting service [Tomcat]
-2024-03-19 08:22:03 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:22:03 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:22:03 - Root WebApplicationContext: initialization completed in 2062 ms
-2024-03-19 08:22:04 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:22:04 - HikariPool-1 - Starting...
-2024-03-19 08:22:04 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@10768819
-2024-03-19 08:22:04 - HikariPool-1 - Start completed.
-2024-03-19 08:22:06 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:22:08 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5af6f64f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d3570f5, org.springframework.security.web.context.SecurityContextHolderFilter@7bddb31e, org.springframework.security.web.header.HeaderWriterFilter@2fa3a8b0, org.springframework.web.filter.CorsFilter@5d2545b7, org.springframework.security.web.authentication.logout.LogoutFilter@61cdbd3c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1be77aee, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e27e627, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bb4cb2b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7265248f, org.springframework.security.web.access.ExceptionTranslationFilter@a6430dc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5da50052]
-2024-03-19 08:22:08 - LiveReload server is running on port 35729
-2024-03-19 08:22:08 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:22:08 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 08:22:08 - Started EdnevnikApplication in 7.724 seconds (process running for 8.663)
-2024-03-19 08:23:07 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-03-19 08:23:07 - Initializing Servlet 'dispatcherServlet'
-2024-03-19 08:23:07 - Completed initialization in 2 ms
-2024-03-19 08:23:40 - Resolved [com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException: Ucenik not found with id 19]
-2024-03-19 08:27:09 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-03-19 08:27:09 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:27:09 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:27:09 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:27:09 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:27:09 - Starting EdnevnikApplication using Java 17.0.9 with PID 9788 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:27:09 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:27:10 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:27:10 - Finished Spring Data repository scanning in 48 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:27:10 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:27:10 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:27:10 - Starting service [Tomcat]
-2024-03-19 08:27:10 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:27:10 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:27:10 - Root WebApplicationContext: initialization completed in 631 ms
-2024-03-19 08:27:10 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:27:10 - HikariPool-2 - Starting...
-2024-03-19 08:27:10 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@487e1746
-2024-03-19 08:27:10 - HikariPool-2 - Start completed.
-2024-03-19 08:27:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:27:11 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'roditeljController': Unsatisfied dependency expressed through field 'roditeljService': Error creating bean with name 'roditeljServiceImpl': Unsatisfied dependency expressed through field 'roditeljRepository': Error creating bean with name 'roditeljRepository' defined in com.iktpreobuka.ednevnik.repositories.RoditeljRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-2024-03-19 08:27:11 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:27:11 - HikariPool-2 - Shutdown initiated...
-2024-03-19 08:27:11 - HikariPool-2 - Shutdown completed.
-2024-03-19 08:27:11 - Stopping service [Tomcat]
-2024-03-19 08:27:11 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:27:11 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'roditeljController': Unsatisfied dependency expressed through field 'roditeljService': Error creating bean with name 'roditeljServiceImpl': Unsatisfied dependency expressed through field 'roditeljRepository': Error creating bean with name 'roditeljRepository' defined in com.iktpreobuka.ednevnik.repositories.RoditeljRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'roditeljServiceImpl': Unsatisfied dependency expressed through field 'roditeljRepository': Error creating bean with name 'roditeljRepository' defined in com.iktpreobuka.ednevnik.repositories.RoditeljRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'roditeljRepository' defined in com.iktpreobuka.ednevnik.repositories.RoditeljRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.RoditeljRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'korisnikId' found for type 'RoditeljEntity'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:443)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:419)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:372)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:354)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:259)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:260)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:389)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:390)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:103)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:100)
-	... 65 common frames omitted
-2024-03-19 08:28:11 - Starting EdnevnikApplication using Java 17.0.9 with PID 6760 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:28:11 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:28:11 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:28:11 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:28:12 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:28:12 - Finished Spring Data repository scanning in 130 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:28:13 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:28:13 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:28:13 - Starting service [Tomcat]
-2024-03-19 08:28:13 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:28:13 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:28:13 - Root WebApplicationContext: initialization completed in 2130 ms
-2024-03-19 08:28:14 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:28:14 - HikariPool-1 - Starting...
-2024-03-19 08:28:15 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47c89b64
-2024-03-19 08:28:15 - HikariPool-1 - Start completed.
-2024-03-19 08:28:16 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:28:17 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-2024-03-19 08:28:17 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:28:17 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:28:17 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:28:17 - Stopping service [Tomcat]
-2024-03-19 08:28:17 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:28:17 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:443)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:419)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:372)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:354)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:259)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:260)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:389)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:390)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:103)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:100)
-	... 65 common frames omitted
-2024-03-19 08:31:05 - Starting EdnevnikApplication using Java 17.0.9 with PID 9348 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:31:05 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:31:05 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:31:05 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:31:06 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:31:06 - Finished Spring Data repository scanning in 124 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:31:07 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:31:07 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:31:07 - Starting service [Tomcat]
-2024-03-19 08:31:07 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:31:07 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:31:07 - Root WebApplicationContext: initialization completed in 2047 ms
-2024-03-19 08:31:07 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:31:07 - HikariPool-1 - Starting...
-2024-03-19 08:31:08 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ddbe29b
-2024-03-19 08:31:08 - HikariPool-1 - Start completed.
-2024-03-19 08:31:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:31:10 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-2024-03-19 08:31:10 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:31:10 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:31:10 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:31:10 - Stopping service [Tomcat]
-2024-03-19 08:31:10 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:31:10 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:443)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:419)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:372)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:354)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:259)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:260)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:389)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:390)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:103)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:100)
-	... 65 common frames omitted
-2024-03-19 08:32:12 - Starting EdnevnikApplication using Java 17.0.9 with PID 8868 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:32:12 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:32:12 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:32:12 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:32:13 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:32:13 - Finished Spring Data repository scanning in 129 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:32:14 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:32:14 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:32:14 - Starting service [Tomcat]
-2024-03-19 08:32:14 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:32:14 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:32:14 - Root WebApplicationContext: initialization completed in 2044 ms
-2024-03-19 08:32:15 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:32:15 - HikariPool-1 - Starting...
-2024-03-19 08:32:15 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@70b806d9
-2024-03-19 08:32:15 - HikariPool-1 - Start completed.
-2024-03-19 08:32:17 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:32:17 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-2024-03-19 08:32:17 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:32:17 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:32:17 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:32:17 - Stopping service [Tomcat]
-2024-03-19 08:32:17 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:32:17 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikId(java.lang.Integer); No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.springframework.data.mapping.PropertyReferenceException: No property 'korisnikId' found for type 'AdminEntity'
-	at org.springframework.data.mapping.PropertyPath.<init>(PropertyPath.java:90)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:443)
-	at org.springframework.data.mapping.PropertyPath.create(PropertyPath.java:419)
-	at org.springframework.data.mapping.PropertyPath.lambda$from$0(PropertyPath.java:372)
-	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:354)
-	at org.springframework.data.mapping.PropertyPath.from(PropertyPath.java:332)
-	at org.springframework.data.repository.query.parser.Part.<init>(Part.java:81)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.lambda$new$0(PartTree.java:259)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$OrPart.<init>(PartTree.java:260)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.lambda$new$0(PartTree.java:389)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
-	at org.springframework.data.repository.query.parser.PartTree$Predicate.<init>(PartTree.java:390)
-	at org.springframework.data.repository.query.parser.PartTree.<init>(PartTree.java:103)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:100)
-	... 65 common frames omitted
-2024-03-19 08:33:17 - Starting EdnevnikApplication using Java 17.0.9 with PID 2452 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:33:17 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:33:17 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:33:17 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:33:18 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:33:19 - Finished Spring Data repository scanning in 157 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:33:19 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:33:19 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:33:19 - Starting service [Tomcat]
-2024-03-19 08:33:19 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:33:20 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:33:20 - Root WebApplicationContext: initialization completed in 2074 ms
-2024-03-19 08:33:20 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:33:20 - HikariPool-1 - Starting...
-2024-03-19 08:33:21 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46ffaec6
-2024-03-19 08:33:21 - HikariPool-1 - Start completed.
-2024-03-19 08:33:23 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:33:23 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-2024-03-19 08:33:23 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:33:23 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:33:23 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:33:23 - Stopping service [Tomcat]
-2024-03-19 08:33:23 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:33:23 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.hibernate.query.SemanticException: Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.hibernate.query.sqm.internal.TypecheckUtil.assertComparable(TypecheckUtil.java:358)
-	at org.hibernate.query.sqm.tree.predicate.SqmComparisonPredicate.<init>(SqmComparisonPredicate.java:48)
-	at org.hibernate.query.sqm.tree.predicate.SqmComparisonPredicate.<init>(SqmComparisonPredicate.java:34)
-	at org.hibernate.query.sqm.internal.SqmCriteriaNodeBuilder.equal(SqmCriteriaNodeBuilder.java:2121)
-	at org.hibernate.query.sqm.internal.SqmCriteriaNodeBuilder.equal(SqmCriteriaNodeBuilder.java:192)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator$PredicateBuilder.build(JpaQueryCreator.java:312)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.toPredicate(JpaQueryCreator.java:210)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.create(JpaQueryCreator.java:121)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.create(JpaQueryCreator.java:1)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createCriteria(AbstractQueryCreator.java:119)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:95)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:81)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.<init>(PartTreeJpaQuery.java:218)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$CountQueryPreparer.<init>(PartTreeJpaQuery.java:361)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:102)
-	... 65 common frames omitted
-2024-03-19 08:37:41 - Starting EdnevnikApplication using Java 17.0.9 with PID 7448 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 08:37:41 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 08:37:41 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 08:37:41 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 08:37:42 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 08:37:42 - Finished Spring Data repository scanning in 133 ms. Found 13 JPA repository interfaces.
-2024-03-19 08:37:43 - Tomcat initialized with port 8080 (http)
-2024-03-19 08:37:43 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 08:37:43 - Starting service [Tomcat]
-2024-03-19 08:37:43 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 08:37:43 - Initializing Spring embedded WebApplicationContext
-2024-03-19 08:37:43 - Root WebApplicationContext: initialization completed in 2039 ms
-2024-03-19 08:37:43 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 08:37:44 - HikariPool-1 - Starting...
-2024-03-19 08:37:44 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d356997
-2024-03-19 08:37:44 - HikariPool-1 - Start completed.
-2024-03-19 08:37:46 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:37:46 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-2024-03-19 08:37:46 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 08:37:46 - HikariPool-1 - Shutdown initiated...
-2024-03-19 08:37:46 - HikariPool-1 - Shutdown completed.
-2024-03-19 08:37:46 - Stopping service [Tomcat]
-2024-03-19 08:37:46 - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-03-19 08:37:46 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminController': Unsatisfied dependency expressed through field 'adminService': Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at com.iktpreobuka.ednevnik.EdnevnikApplication.main(EdnevnikApplication.java:10)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'adminServiceImpl': Unsatisfied dependency expressed through field 'adminRepository': Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1418)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 25 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'adminRepository' defined in com.iktpreobuka.ednevnik.repositories.AdminRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
-	... 39 common frames omitted
-Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Reason: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:115)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:99)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:88)
-	at java.base/java.util.Optional.map(Optional.java:260)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:88)
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:357)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:279)
-	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
-	at org.springframework.data.util.Lazy.get(Lazy.java:113)
-	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:285)
-	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
-	... 49 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Failed to create query for method public abstract boolean com.iktpreobuka.ednevnik.repositories.AdminRepository.existsByKorisnikAdmin(java.lang.Integer); Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:106)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:124)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:258)
-	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:95)
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:111)
-	... 61 common frames omitted
-Caused by: org.hibernate.query.SemanticException: Cannot compare left expression of type 'com.iktpreobuka.ednevnik.entities.KorisnikEntity' with right expression of type 'java.lang.Integer'
-	at org.hibernate.query.sqm.internal.TypecheckUtil.assertComparable(TypecheckUtil.java:358)
-	at org.hibernate.query.sqm.tree.predicate.SqmComparisonPredicate.<init>(SqmComparisonPredicate.java:48)
-	at org.hibernate.query.sqm.tree.predicate.SqmComparisonPredicate.<init>(SqmComparisonPredicate.java:34)
-	at org.hibernate.query.sqm.internal.SqmCriteriaNodeBuilder.equal(SqmCriteriaNodeBuilder.java:2121)
-	at org.hibernate.query.sqm.internal.SqmCriteriaNodeBuilder.equal(SqmCriteriaNodeBuilder.java:192)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator$PredicateBuilder.build(JpaQueryCreator.java:312)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.toPredicate(JpaQueryCreator.java:210)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.create(JpaQueryCreator.java:121)
-	at org.springframework.data.jpa.repository.query.JpaQueryCreator.create(JpaQueryCreator.java:1)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createCriteria(AbstractQueryCreator.java:119)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:95)
-	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:81)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$QueryPreparer.<init>(PartTreeJpaQuery.java:218)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery$CountQueryPreparer.<init>(PartTreeJpaQuery.java:361)
-	at org.springframework.data.jpa.repository.query.PartTreeJpaQuery.<init>(PartTreeJpaQuery.java:102)
-	... 65 common frames omitted
-2024-03-19 09:02:21 - Starting EdnevnikApplication using Java 17.0.9 with PID 7940 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 09:02:21 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 09:02:21 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 09:02:21 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 09:02:22 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 09:02:23 - Finished Spring Data repository scanning in 132 ms. Found 13 JPA repository interfaces.
-2024-03-19 09:02:23 - Tomcat initialized with port 8080 (http)
-2024-03-19 09:02:23 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:02:23 - Starting service [Tomcat]
-2024-03-19 09:02:23 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 09:02:24 - Initializing Spring embedded WebApplicationContext
-2024-03-19 09:02:24 - Root WebApplicationContext: initialization completed in 2063 ms
-2024-03-19 09:02:24 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 09:02:24 - HikariPool-1 - Starting...
-2024-03-19 09:02:25 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ec63355
-2024-03-19 09:02:25 - HikariPool-1 - Start completed.
-2024-03-19 09:02:27 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 09:02:28 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@68015ffb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bdcd02a, org.springframework.security.web.context.SecurityContextHolderFilter@677e30fd, org.springframework.security.web.header.HeaderWriterFilter@143aadb8, org.springframework.web.filter.CorsFilter@4a64f9fe, org.springframework.security.web.authentication.logout.LogoutFilter@7cdb6535, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@c75ad92, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11083659, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b254704, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@405dcb0a, org.springframework.security.web.access.ExceptionTranslationFilter@5bcc7ddc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14ea1bff]
-2024-03-19 09:02:29 - LiveReload server is running on port 35729
-2024-03-19 09:02:29 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:02:29 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 09:02:29 - Started EdnevnikApplication in 7.849 seconds (process running for 8.893)
-2024-03-19 09:02:46 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-03-19 09:02:46 - Initializing Servlet 'dispatcherServlet'
-2024-03-19 09:02:46 - Completed initialization in 1 ms
-2024-03-19 09:02:46 - Resolved [java.lang.IllegalStateException: Korisnik sa ID 40 već postoji u drugoj ulozi.]
-2024-03-19 09:03:44 - Application shutdown requested.
-2024-03-19 09:03:44 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:03:44 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 09:03:44 - HikariPool-1 - Shutdown initiated...
-2024-03-19 09:03:44 - HikariPool-1 - Shutdown completed.
-2024-03-19 09:14:56 - Starting EdnevnikApplication using Java 17.0.9 with PID 5864 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
-2024-03-19 09:14:56 - No active profile set, falling back to 1 default profile: "default"
-2024-03-19 09:14:56 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-03-19 09:14:56 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-03-19 09:14:57 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-03-19 09:14:57 - Finished Spring Data repository scanning in 127 ms. Found 13 JPA repository interfaces.
-2024-03-19 09:14:58 - Tomcat initialized with port 8080 (http)
-2024-03-19 09:14:58 - Initializing ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:14:58 - Starting service [Tomcat]
-2024-03-19 09:14:58 - Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-03-19 09:14:58 - Initializing Spring embedded WebApplicationContext
-2024-03-19 09:14:58 - Root WebApplicationContext: initialization completed in 2045 ms
-2024-03-19 09:14:59 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-03-19 09:14:59 - HikariPool-1 - Starting...
-2024-03-19 09:14:59 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@337a8d
-2024-03-19 09:14:59 - HikariPool-1 - Start completed.
-2024-03-19 09:15:01 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 09:15:03 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@637ae4e4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@733c02f8, org.springframework.security.web.context.SecurityContextHolderFilter@332fbc9f, org.springframework.security.web.header.HeaderWriterFilter@2c23a7bf, org.springframework.web.filter.CorsFilter@4b325626, org.springframework.security.web.authentication.logout.LogoutFilter@2fb1cacc, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3a9054c5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@496be6d2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64a2dc5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a7466d5, org.springframework.security.web.access.ExceptionTranslationFilter@2e0f799a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f4f3afd]
-2024-03-19 09:15:03 - LiveReload server is running on port 35729
-2024-03-19 09:15:03 - Starting ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:15:03 - Tomcat started on port 8080 (http) with context path ''
-2024-03-19 09:15:03 - Started EdnevnikApplication in 7.763 seconds (process running for 8.708)
-2024-03-19 09:25:39 - Application shutdown requested.
-2024-03-19 09:25:39 - Stopping ProtocolHandler ["http-nio-8080"]
-2024-03-19 09:25:39 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-03-19 09:25:39 - HikariPool-1 - Shutdown initiated...
-2024-03-19 09:25:39 - HikariPool-1 - Shutdown completed.
+2024-03-25 07:31:49 - Starting EdnevnikApplication using Java 17.0.9 with PID 7532 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 07:31:49 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 07:31:49 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 07:31:49 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 07:31:50 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 07:31:50 - Finished Spring Data repository scanning in 145 ms. Found 13 JPA repository interfaces.
+2024-03-25 07:31:51 - Tomcat initialized with port 8080 (http)
+2024-03-25 07:31:51 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:31:51 - Starting service [Tomcat]
+2024-03-25 07:31:51 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 07:31:52 - Initializing Spring embedded WebApplicationContext
+2024-03-25 07:31:52 - Root WebApplicationContext: initialization completed in 2582 ms
+2024-03-25 07:31:52 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 07:31:53 - HikariPool-1 - Starting...
+2024-03-25 07:31:53 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3cc425ff
+2024-03-25 07:31:53 - HikariPool-1 - Start completed.
+2024-03-25 07:31:55 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:31:59 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2dc7a538, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@295f8692, org.springframework.security.web.context.SecurityContextHolderFilter@5480b7ee, org.springframework.security.web.header.HeaderWriterFilter@568b2fb5, org.springframework.web.filter.CorsFilter@29a7a6cc, org.springframework.security.web.authentication.logout.LogoutFilter@3ef0d87a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@28950db8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@410e42, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ba88df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6262e51b, org.springframework.security.web.access.ExceptionTranslationFilter@41d6bcfd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@320caf27]
+2024-03-25 07:32:00 - LiveReload server is running on port 35729
+2024-03-25 07:32:00 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:32:00 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 07:32:00 - Started EdnevnikApplication in 11.586 seconds (process running for 12.56)
+2024-03-25 07:32:45 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 07:32:45 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 07:32:45 - Completed initialization in 2 ms
+2024-03-25 07:32:45 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.iktpreobuka.ednevnik.entities.dto.UcenikDTO` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (2)]
+2024-03-25 07:32:55 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.iktpreobuka.ednevnik.entities.dto.UcenikDTO` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (2)]
+2024-03-25 07:33:20 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO) with 2 errors: [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 07:33:39 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `com.iktpreobuka.ednevnik.entities.dto.UcenikDTO` (although at least one Creator exists): no int/Int-argument constructor/factory method to deserialize from Number value (2)]
+2024-03-25 07:37:36 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO) with 2 errors: [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] ]
+2024-03-25 07:38:16 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO) with 2 errors: [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 07:39:10 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO) with 2 errors: [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] ]
+2024-03-25 07:40:02 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO) with 2 errors: [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 07:40:35 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.com.iktpreobuka.ednevnik.entities.dto.UcenikDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] ]
+2024-03-25 07:40:46 - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [UcenikDTO [id=2, ime=Marija, prezime=Babic, email=babicm@gmail.com, korisnikId=null]] did not match expected type [SqmBasicValuedSimplePath(com.iktpreobuka.ednevnik.entities.UcenikEntity(790901090297400).id)]]
+2024-03-25 07:42:43 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-03-25 07:42:43 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:42:43 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:42:43 - HikariPool-1 - Shutdown initiated...
+2024-03-25 07:42:43 - HikariPool-1 - Shutdown completed.
+2024-03-25 07:42:43 - Starting EdnevnikApplication using Java 17.0.9 with PID 7532 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 07:42:43 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 07:42:44 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 07:42:44 - Finished Spring Data repository scanning in 49 ms. Found 13 JPA repository interfaces.
+2024-03-25 07:42:44 - Tomcat initialized with port 8080 (http)
+2024-03-25 07:42:44 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:42:44 - Starting service [Tomcat]
+2024-03-25 07:42:44 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 07:42:44 - Initializing Spring embedded WebApplicationContext
+2024-03-25 07:42:44 - Root WebApplicationContext: initialization completed in 742 ms
+2024-03-25 07:42:44 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 07:42:44 - HikariPool-2 - Starting...
+2024-03-25 07:42:44 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b953052
+2024-03-25 07:42:44 - HikariPool-2 - Start completed.
+2024-03-25 07:42:45 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:42:46 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a867836, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23839c8f, org.springframework.security.web.context.SecurityContextHolderFilter@65a02942, org.springframework.security.web.header.HeaderWriterFilter@1cfd828c, org.springframework.web.filter.CorsFilter@4ea57837, org.springframework.security.web.authentication.logout.LogoutFilter@7a0bfe95, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@63ade01e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@df43a9e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4210d807, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4204cced, org.springframework.security.web.access.ExceptionTranslationFilter@2aacb0ef, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68d0b363]
+2024-03-25 07:42:46 - LiveReload server is running on port 35729
+2024-03-25 07:42:46 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:42:46 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 07:42:46 - Started EdnevnikApplication in 2.543 seconds (process running for 658.635)
+2024-03-25 07:42:46 - Condition evaluation unchanged
+2024-03-25 07:42:47 - Application shutdown requested.
+2024-03-25 07:42:47 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:42:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:42:47 - HikariPool-2 - Shutdown initiated...
+2024-03-25 07:42:47 - HikariPool-2 - Shutdown completed.
+2024-03-25 07:45:04 - Starting EdnevnikApplication using Java 17.0.9 with PID 5612 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 07:45:04 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 07:45:04 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 07:45:04 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 07:45:05 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 07:45:05 - Finished Spring Data repository scanning in 124 ms. Found 13 JPA repository interfaces.
+2024-03-25 07:45:06 - Tomcat initialized with port 8080 (http)
+2024-03-25 07:45:06 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:45:06 - Starting service [Tomcat]
+2024-03-25 07:45:06 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 07:45:06 - Initializing Spring embedded WebApplicationContext
+2024-03-25 07:45:06 - Root WebApplicationContext: initialization completed in 2228 ms
+2024-03-25 07:45:07 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 07:45:07 - HikariPool-1 - Starting...
+2024-03-25 07:45:07 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a9b894c
+2024-03-25 07:45:07 - HikariPool-1 - Start completed.
+2024-03-25 07:45:09 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:45:11 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@22598493, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b78ac18, org.springframework.security.web.context.SecurityContextHolderFilter@143e75b0, org.springframework.security.web.header.HeaderWriterFilter@433231bc, org.springframework.web.filter.CorsFilter@48e3f022, org.springframework.security.web.authentication.logout.LogoutFilter@2c950a42, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6ff39376, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@229ee9f0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cef9e4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@184989fa, org.springframework.security.web.access.ExceptionTranslationFilter@52b76ce, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@eb70bd8]
+2024-03-25 07:45:11 - LiveReload server is running on port 35729
+2024-03-25 07:45:11 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:45:11 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 07:45:11 - Started EdnevnikApplication in 8.099 seconds (process running for 9.169)
+2024-03-25 07:45:34 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 07:45:34 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 07:45:34 - Completed initialization in 2 ms
+2024-03-25 07:45:35 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ucenikId': rejected value [null]; codes [NotNull.ocenaDTO.ucenikId,NotNull.ucenikId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ucenikId,ucenikId]; arguments []; default message [ucenikId]]; default message [Ucenik je obavezno polje]] ]
+2024-03-25 07:45:41 - Čuva se nova ocena: OcenaDTO [id=null, vrednostOcene=3, datum=null, aktivnost=DOMACI, polugodiste=PRVO, ocenjivacId=2, ucenikId=2, predmetId=28, predmetNaziv=null, zakljucnaOcena=null]
+2024-03-25 07:45:53 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 07:52:47 - Application shutdown requested.
+2024-03-25 07:52:47 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 07:52:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 07:52:47 - HikariPool-1 - Shutdown initiated...
+2024-03-25 07:52:47 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:14:20 - Starting EdnevnikApplication using Java 17.0.9 with PID 3220 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:14:20 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:14:20 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:14:20 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:14:21 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:14:21 - Finished Spring Data repository scanning in 134 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:14:22 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:14:22 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:14:22 - Starting service [Tomcat]
+2024-03-25 08:14:22 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:14:22 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:14:22 - Root WebApplicationContext: initialization completed in 2209 ms
+2024-03-25 08:14:23 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:14:23 - HikariPool-1 - Starting...
+2024-03-25 08:14:24 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d7aa781
+2024-03-25 08:14:24 - HikariPool-1 - Start completed.
+2024-03-25 08:14:26 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:14:27 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@fe840b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@40d048d1, org.springframework.security.web.context.SecurityContextHolderFilter@416d77c4, org.springframework.security.web.header.HeaderWriterFilter@59177ebd, org.springframework.web.filter.CorsFilter@1011683d, org.springframework.security.web.authentication.logout.LogoutFilter@60dcacd2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2e9fd1df, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@777a84dd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17ccb055, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@37b6fafb, org.springframework.security.web.access.ExceptionTranslationFilter@676e51f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a5e9cb2]
+2024-03-25 08:14:28 - LiveReload server is running on port 35729
+2024-03-25 08:14:28 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:14:28 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:14:28 - Started EdnevnikApplication in 8.436 seconds (process running for 9.457)
+2024-03-25 08:14:33 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:14:33 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:14:33 - Completed initialization in 2 ms
+2024-03-25 08:14:34 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'aktivnost': rejected value [null]; codes [NotNull.ocenaDTO.aktivnost,NotNull.aktivnost,NotNull.com.iktpreobuka.ednevnik.entities.enums.EAktivnostEntity,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.aktivnost,aktivnost]; arguments []; default message [aktivnost]]; default message [Morate uneti aktivnost!]] ]
+2024-03-25 08:14:47 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'vrednostOcene': rejected value [6]; codes [Max.ocenaDTO.vrednostOcene,Max.vrednostOcene,Max.java.lang.Integer,Max]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.vrednostOcene,vrednostOcene]; arguments []; default message [vrednostOcene],5]; default message [Vrednost ocene mora biti između 1 i 5.]] ]
+2024-03-25 08:14:57 - Resolved [com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException: Predmet nije pronađen.]
+2024-03-25 08:17:48 - Application shutdown requested.
+2024-03-25 08:17:48 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:17:48 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:17:48 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:17:48 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:17:52 - Starting EdnevnikApplication using Java 17.0.9 with PID 1116 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:17:52 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:17:52 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:17:52 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:17:53 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:17:53 - Finished Spring Data repository scanning in 141 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:17:54 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:17:54 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:17:54 - Starting service [Tomcat]
+2024-03-25 08:17:54 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:17:54 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:17:54 - Root WebApplicationContext: initialization completed in 2208 ms
+2024-03-25 08:17:55 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:17:55 - HikariPool-1 - Starting...
+2024-03-25 08:17:55 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cd79541
+2024-03-25 08:17:55 - HikariPool-1 - Start completed.
+2024-03-25 08:17:58 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:17:59 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@40a9954b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bafd2d9, org.springframework.security.web.context.SecurityContextHolderFilter@2eb5add3, org.springframework.security.web.header.HeaderWriterFilter@1ca37d75, org.springframework.web.filter.CorsFilter@453f28aa, org.springframework.security.web.authentication.logout.LogoutFilter@189d06f8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1331a7e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@753fc1df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b828767, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43a1e947, org.springframework.security.web.access.ExceptionTranslationFilter@7139c0aa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@44a2d62b]
+2024-03-25 08:18:00 - LiveReload server is running on port 35729
+2024-03-25 08:18:00 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:18:00 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:18:00 - Started EdnevnikApplication in 8.499 seconds (process running for 9.593)
+2024-03-25 08:18:17 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:18:17 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:18:17 - Completed initialization in 2 ms
+2024-03-25 08:18:18 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:18:28 - Čuva se nova ocena: OcenaDTO [id=null, vrednostOcene=5, datum=null, aktivnost=DOMACI, polugodiste=PRVO, ocenjivacId=2, ucenikId=2, predmetId=28, predmetNaziv=null, zakljucnaOcena=null]
+2024-03-25 08:19:24 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-03-25 08:19:24 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:19:24 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:19:24 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:19:24 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:19:24 - Starting EdnevnikApplication using Java 17.0.9 with PID 1116 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:19:24 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:19:24 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:19:24 - Finished Spring Data repository scanning in 52 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:19:25 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:19:25 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:19:25 - Starting service [Tomcat]
+2024-03-25 08:19:25 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:19:25 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:19:25 - Root WebApplicationContext: initialization completed in 684 ms
+2024-03-25 08:19:25 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:19:25 - HikariPool-2 - Starting...
+2024-03-25 08:19:25 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6aa23ce2
+2024-03-25 08:19:25 - HikariPool-2 - Start completed.
+2024-03-25 08:19:25 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:19:26 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@8021001, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5655c013, org.springframework.security.web.context.SecurityContextHolderFilter@198541d6, org.springframework.security.web.header.HeaderWriterFilter@633f687b, org.springframework.web.filter.CorsFilter@7b6bf4c8, org.springframework.security.web.authentication.logout.LogoutFilter@75211da2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2e88a06e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25190f19, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5efdb852, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@100ba01b, org.springframework.security.web.access.ExceptionTranslationFilter@33f90cc4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b7eddac]
+2024-03-25 08:19:26 - LiveReload server is running on port 35729
+2024-03-25 08:19:26 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:19:26 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:19:26 - Started EdnevnikApplication in 2.59 seconds (process running for 96.17)
+2024-03-25 08:19:26 - Condition evaluation unchanged
+2024-03-25 08:20:13 - Application shutdown requested.
+2024-03-25 08:20:13 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:20:13 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:20:13 - HikariPool-2 - Shutdown initiated...
+2024-03-25 08:20:13 - HikariPool-2 - Shutdown completed.
+2024-03-25 08:20:46 - Starting EdnevnikApplication using Java 17.0.9 with PID 9632 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:20:46 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:20:46 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:20:46 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:20:47 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:20:47 - Finished Spring Data repository scanning in 132 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:20:48 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:20:48 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:20:48 - Starting service [Tomcat]
+2024-03-25 08:20:48 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:20:48 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:20:48 - Root WebApplicationContext: initialization completed in 2137 ms
+2024-03-25 08:20:49 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:20:49 - HikariPool-1 - Starting...
+2024-03-25 08:20:49 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b2b4b43
+2024-03-25 08:20:49 - HikariPool-1 - Start completed.
+2024-03-25 08:20:51 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:20:53 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@208e0d8e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f3ccaa2, org.springframework.security.web.context.SecurityContextHolderFilter@2cf67184, org.springframework.security.web.header.HeaderWriterFilter@4d337908, org.springframework.web.filter.CorsFilter@12cd47ad, org.springframework.security.web.authentication.logout.LogoutFilter@31d0c436, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@60e9a6be, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@479a9458, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32f072b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43b131ad, org.springframework.security.web.access.ExceptionTranslationFilter@4f33eed3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7269aa1d]
+2024-03-25 08:20:53 - LiveReload server is running on port 35729
+2024-03-25 08:20:53 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:20:53 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:20:53 - Started EdnevnikApplication in 8.152 seconds (process running for 9.127)
+2024-03-25 08:21:05 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:21:05 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:21:05 - Completed initialization in 1 ms
+2024-03-25 08:21:06 - Čuva se nova ocena: [FAILED toString()]
+2024-03-25 08:21:06 - Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.Error: Unresolved compilation problem: <EOL>?ocenjivacId cannot be resolved to a variable<EOL>]
+2024-03-25 08:21:15 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unresolved compilation problem: <EOL>?ocenjivacId cannot be resolved or is not a field<EOL>]
+2024-03-25 08:21:45 - Application shutdown requested.
+2024-03-25 08:21:45 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:21:45 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:21:45 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:21:45 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:21:48 - Starting EdnevnikApplication using Java 17.0.9 with PID 2408 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:21:48 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:21:48 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:21:48 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:21:49 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:21:50 - Finished Spring Data repository scanning in 129 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:21:50 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:21:50 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:21:50 - Starting service [Tomcat]
+2024-03-25 08:21:50 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:21:50 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:21:50 - Root WebApplicationContext: initialization completed in 2058 ms
+2024-03-25 08:21:51 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:21:51 - HikariPool-1 - Starting...
+2024-03-25 08:21:52 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@97c0129
+2024-03-25 08:21:52 - HikariPool-1 - Start completed.
+2024-03-25 08:21:54 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:21:55 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44341f56, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5dd56ea6, org.springframework.security.web.context.SecurityContextHolderFilter@7a130fe4, org.springframework.security.web.header.HeaderWriterFilter@4da42fe7, org.springframework.web.filter.CorsFilter@7e337f7f, org.springframework.security.web.authentication.logout.LogoutFilter@6a3f231e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@62383fbc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36c59442, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51452ae8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5e24d4cf, org.springframework.security.web.access.ExceptionTranslationFilter@299ca8f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@62fe09d]
+2024-03-25 08:21:56 - LiveReload server is running on port 35729
+2024-03-25 08:21:56 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:21:56 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:21:56 - Started EdnevnikApplication in 8.068 seconds (process running for 9.226)
+2024-03-25 08:22:04 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:22:04 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:22:04 - Completed initialization in 2 ms
+2024-03-25 08:22:04 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:22:22 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-03-25 08:22:22 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:22:22 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:22:22 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:22:22 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:22:22 - Starting EdnevnikApplication using Java 17.0.9 with PID 2408 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:22:22 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:22:22 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:22:22 - Finished Spring Data repository scanning in 55 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:22:22 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:22:22 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:22:22 - Starting service [Tomcat]
+2024-03-25 08:22:22 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:22:22 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:22:22 - Root WebApplicationContext: initialization completed in 663 ms
+2024-03-25 08:22:22 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:22:22 - HikariPool-2 - Starting...
+2024-03-25 08:22:23 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@435c9a83
+2024-03-25 08:22:23 - HikariPool-2 - Start completed.
+2024-03-25 08:22:23 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:22:24 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d4b1eb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2f43d4d5, org.springframework.security.web.context.SecurityContextHolderFilter@2d5b8e14, org.springframework.security.web.header.HeaderWriterFilter@67d352aa, org.springframework.web.filter.CorsFilter@6961bb5a, org.springframework.security.web.authentication.logout.LogoutFilter@29cc9aa8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@32499438, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76dd32bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@252dd49d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17f70a1a, org.springframework.security.web.access.ExceptionTranslationFilter@17a4b30, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c5356f9]
+2024-03-25 08:22:24 - LiveReload server is running on port 35729
+2024-03-25 08:22:24 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:22:24 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:22:24 - Started EdnevnikApplication in 2.469 seconds (process running for 37.574)
+2024-03-25 08:22:24 - Condition evaluation unchanged
+2024-03-25 08:22:24 - Application shutdown requested.
+2024-03-25 08:22:24 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:22:24 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:22:24 - HikariPool-2 - Shutdown initiated...
+2024-03-25 08:22:24 - HikariPool-2 - Shutdown completed.
+2024-03-25 08:39:49 - Starting EdnevnikApplication using Java 17.0.9 with PID 10484 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:39:49 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:39:49 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:39:49 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:39:50 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:39:50 - Finished Spring Data repository scanning in 134 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:39:51 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:39:51 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:39:51 - Starting service [Tomcat]
+2024-03-25 08:39:51 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:39:51 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:39:51 - Root WebApplicationContext: initialization completed in 2215 ms
+2024-03-25 08:39:52 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:39:52 - HikariPool-1 - Starting...
+2024-03-25 08:39:52 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@337a8d
+2024-03-25 08:39:52 - HikariPool-1 - Start completed.
+2024-03-25 08:39:54 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:39:56 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@394106cb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@637ae4e4, org.springframework.security.web.context.SecurityContextHolderFilter@569f6f77, org.springframework.security.web.header.HeaderWriterFilter@44f42427, org.springframework.web.filter.CorsFilter@733c02f8, org.springframework.security.web.authentication.logout.LogoutFilter@4bcdc738, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@32f4444f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@280eb1a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@496be6d2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b325626, org.springframework.security.web.access.ExceptionTranslationFilter@2d9052bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4763aa15]
+2024-03-25 08:39:56 - LiveReload server is running on port 35729
+2024-03-25 08:39:56 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:39:56 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:39:56 - Started EdnevnikApplication in 8.198 seconds (process running for 9.174)
+2024-03-25 08:40:03 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:40:03 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:40:03 - Completed initialization in 2 ms
+2024-03-25 08:40:04 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:42:20 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:42:28 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:43:56 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-03-25 08:43:56 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:43:56 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:43:56 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:43:56 - HikariPool-1 - Shutdown completed.
+2024-03-25 08:43:56 - Starting EdnevnikApplication using Java 17.0.9 with PID 10484 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:43:56 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:43:57 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:43:57 - Finished Spring Data repository scanning in 48 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:43:57 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:43:57 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:43:57 - Starting service [Tomcat]
+2024-03-25 08:43:57 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:43:57 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:43:57 - Root WebApplicationContext: initialization completed in 652 ms
+2024-03-25 08:43:57 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:43:57 - HikariPool-2 - Starting...
+2024-03-25 08:43:57 - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@96b57d1
+2024-03-25 08:43:57 - HikariPool-2 - Start completed.
+2024-03-25 08:43:58 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:43:58 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@250fbe3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@598d61b6, org.springframework.security.web.context.SecurityContextHolderFilter@5b78da47, org.springframework.security.web.header.HeaderWriterFilter@4a490f54, org.springframework.web.filter.CorsFilter@43609bbb, org.springframework.security.web.authentication.logout.LogoutFilter@735a4805, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@314855d7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3cecb946, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35233696, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@307598ed, org.springframework.security.web.access.ExceptionTranslationFilter@1ff2d683, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c46d63a]
+2024-03-25 08:43:59 - LiveReload server is running on port 35729
+2024-03-25 08:43:59 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:43:59 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:43:59 - Started EdnevnikApplication in 2.388 seconds (process running for 251.779)
+2024-03-25 08:43:59 - Condition evaluation unchanged
+2024-03-25 08:44:20 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:44:20 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:44:20 - Completed initialization in 1 ms
+2024-03-25 08:44:20 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:44:31 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:52:20 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:54:23 - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.iktpreobuka.ednevnik.entities.dto.OcenaDTO> com.iktpreobuka.ednevnik.controllers.OcenaController.dodajOcenu(com.iktpreobuka.ednevnik.entities.dto.OcenaDTO,com.iktpreobuka.ednevnik.entities.dto.DeteDTO): [Field error in object 'ocenaDTO' on field 'ocenjivacId': rejected value [null]; codes [NotNull.ocenaDTO.ocenjivacId,NotNull.ocenjivacId,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [ocenaDTO.ocenjivacId,ocenjivacId]; arguments []; default message [ocenjivacId]]; default message [Ocenu može uneti samo odgovarajući nastavnik.]] ]
+2024-03-25 08:57:12 - Application shutdown requested.
+2024-03-25 08:57:12 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:57:12 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:57:12 - HikariPool-2 - Shutdown initiated...
+2024-03-25 08:57:12 - HikariPool-2 - Shutdown completed.
+2024-03-25 08:57:15 - Starting EdnevnikApplication using Java 17.0.9 with PID 9964 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 08:57:15 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 08:57:15 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 08:57:15 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 08:57:17 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 08:57:17 - Finished Spring Data repository scanning in 145 ms. Found 13 JPA repository interfaces.
+2024-03-25 08:57:18 - Tomcat initialized with port 8080 (http)
+2024-03-25 08:57:18 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:57:18 - Starting service [Tomcat]
+2024-03-25 08:57:18 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 08:57:18 - Initializing Spring embedded WebApplicationContext
+2024-03-25 08:57:18 - Root WebApplicationContext: initialization completed in 2382 ms
+2024-03-25 08:57:19 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 08:57:19 - HikariPool-1 - Starting...
+2024-03-25 08:57:19 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d7aa781
+2024-03-25 08:57:19 - HikariPool-1 - Start completed.
+2024-03-25 08:57:21 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:57:23 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@fe840b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@40d048d1, org.springframework.security.web.context.SecurityContextHolderFilter@416d77c4, org.springframework.security.web.header.HeaderWriterFilter@59177ebd, org.springframework.web.filter.CorsFilter@1011683d, org.springframework.security.web.authentication.logout.LogoutFilter@60dcacd2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2e9fd1df, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@777a84dd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17ccb055, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@37b6fafb, org.springframework.security.web.access.ExceptionTranslationFilter@676e51f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a5e9cb2]
+2024-03-25 08:57:23 - LiveReload server is running on port 35729
+2024-03-25 08:57:24 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:57:24 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 08:57:24 - Started EdnevnikApplication in 8.875 seconds (process running for 10.039)
+2024-03-25 08:57:47 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 08:57:47 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 08:57:47 - Completed initialization in 1 ms
+2024-03-25 08:57:48 - Čuva se nova ocena: OcenaDTO [id=null, vrednostOcene=1, datum=null, aktivnost=DOMACI, polugodiste=PRVO, ocenjivacId=null, ucenikId=2, predmetId=8, predmetNaziv=null, zakljucnaOcena=null]
+2024-03-25 08:58:56 - Resolved [org.springframework.security.access.AccessDeniedException: Nastavnik ne predaje dati predmet u odeljenju učenika.]
+2024-03-25 08:59:27 - Application shutdown requested.
+2024-03-25 08:59:27 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 08:59:27 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 08:59:27 - HikariPool-1 - Shutdown initiated...
+2024-03-25 08:59:27 - HikariPool-1 - Shutdown completed.
+2024-03-25 09:06:21 - Starting EdnevnikApplication using Java 17.0.9 with PID 8496 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 09:06:21 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 09:06:21 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 09:06:21 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 09:06:22 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 09:06:22 - Finished Spring Data repository scanning in 128 ms. Found 13 JPA repository interfaces.
+2024-03-25 09:06:23 - Tomcat initialized with port 8080 (http)
+2024-03-25 09:06:23 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:06:23 - Starting service [Tomcat]
+2024-03-25 09:06:23 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 09:06:23 - Initializing Spring embedded WebApplicationContext
+2024-03-25 09:06:23 - Root WebApplicationContext: initialization completed in 2150 ms
+2024-03-25 09:06:23 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 09:06:24 - HikariPool-1 - Starting...
+2024-03-25 09:06:24 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@337a8d
+2024-03-25 09:06:24 - HikariPool-1 - Start completed.
+2024-03-25 09:06:26 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 09:06:28 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@394106cb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@637ae4e4, org.springframework.security.web.context.SecurityContextHolderFilter@569f6f77, org.springframework.security.web.header.HeaderWriterFilter@44f42427, org.springframework.web.filter.CorsFilter@733c02f8, org.springframework.security.web.authentication.logout.LogoutFilter@4bcdc738, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@32f4444f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@280eb1a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@496be6d2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b325626, org.springframework.security.web.access.ExceptionTranslationFilter@2d9052bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4763aa15]
+2024-03-25 09:06:28 - LiveReload server is running on port 35729
+2024-03-25 09:06:28 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:06:28 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 09:06:28 - Started EdnevnikApplication in 8.269 seconds (process running for 9.209)
+2024-03-25 09:06:41 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 09:06:41 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 09:06:41 - Completed initialization in 1 ms
+2024-03-25 09:06:42 - Čuva se nova ocena: OcenaDTO [id=null, vrednostOcene=4, datum=null, aktivnost=PISMENI, polugodiste=PRVO, ocenjivacId=null, ucenikId=2, predmetId=8, predmetNaziv=null, zakljucnaOcena=null]
+2024-03-25 09:07:11 - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-03-25 09:07:11 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:07:11 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 09:07:11 - HikariPool-1 - Shutdown initiated...
+2024-03-25 09:07:11 - HikariPool-1 - Shutdown completed.
+2024-03-25 09:18:15 - Starting EdnevnikApplication using Java 17.0.9 with PID 9772 (C:\Users\dijan\git\finalbackend\ednevnik\target\classes started by Dijana in C:\Users\dijan\git\finalbackend\ednevnik)
+2024-03-25 09:18:15 - No active profile set, falling back to 1 default profile: "default"
+2024-03-25 09:18:15 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-25 09:18:15 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-25 09:18:16 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25 09:18:17 - Finished Spring Data repository scanning in 132 ms. Found 13 JPA repository interfaces.
+2024-03-25 09:18:17 - Tomcat initialized with port 8080 (http)
+2024-03-25 09:18:17 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:18:17 - Starting service [Tomcat]
+2024-03-25 09:18:17 - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25 09:18:17 - Initializing Spring embedded WebApplicationContext
+2024-03-25 09:18:17 - Root WebApplicationContext: initialization completed in 2089 ms
+2024-03-25 09:18:18 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25 09:18:18 - HikariPool-1 - Starting...
+2024-03-25 09:18:19 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@503b9927
+2024-03-25 09:18:19 - HikariPool-1 - Start completed.
+2024-03-25 09:18:21 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 09:18:22 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@738074f8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6038a10b, org.springframework.security.web.context.SecurityContextHolderFilter@1ac5dff2, org.springframework.security.web.header.HeaderWriterFilter@6cc7ab5f, org.springframework.web.filter.CorsFilter@2e93313c, org.springframework.security.web.authentication.logout.LogoutFilter@2e27e627, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@376f3149, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d1cf1a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@191e3422, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14ea1bff, org.springframework.security.web.access.ExceptionTranslationFilter@7f893c7a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1aa8bf5c]
+2024-03-25 09:18:23 - LiveReload server is running on port 35729
+2024-03-25 09:18:23 - Starting ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:18:23 - Tomcat started on port 8080 (http) with context path ''
+2024-03-25 09:18:23 - Started EdnevnikApplication in 8.237 seconds (process running for 9.184)
+2024-03-25 09:18:27 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25 09:18:27 - Initializing Servlet 'dispatcherServlet'
+2024-03-25 09:18:27 - Completed initialization in 1 ms
+2024-03-25 09:18:28 - Čuva se nova ocena: OcenaDTO [id=null, vrednostOcene=5, datum=null, aktivnost=PISMENI, polugodiste=PRVO, ocenjivacId=null, ucenikId=2, predmetId=8, predmetNaziv=null, zakljucnaOcena=null]
+2024-03-25 09:35:18 - Application shutdown requested.
+2024-03-25 09:35:18 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-03-25 09:35:18 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25 09:35:18 - HikariPool-1 - Shutdown initiated...
+2024-03-25 09:35:18 - HikariPool-1 - Shutdown completed.

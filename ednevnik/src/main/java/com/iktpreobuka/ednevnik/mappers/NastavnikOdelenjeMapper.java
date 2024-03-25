@@ -55,7 +55,7 @@ public class NastavnikOdelenjeMapper {
         dto.setNastavnikIme(nastavnikOdelenje.getPredavac().getIme());
         dto.setNastavnikPrezime(nastavnikOdelenje.getPredavac().getPrezime());
         dto.setOdeljenjeId(nastavnikOdelenje.getOdelenje().getId());
-        // dodavanje informacija o predmetu
+        
         if (nastavnikOdelenje.getPredmet() != null) {
             dto.setPredmetId(nastavnikOdelenje.getPredmet().getId());
             dto.setPredmetNaziv(nastavnikOdelenje.getPredmet().getNazivPredmeta());

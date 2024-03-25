@@ -34,6 +34,7 @@ import com.iktpreobuka.ednevnik.repositories.OdelenjeRepository;
 import com.iktpreobuka.ednevnik.repositories.PredmetRepository;
 import com.iktpreobuka.ednevnik.repositories.UcenikRepository;
 
+
 @Service
 public class OcenaServiceImpl implements OcenaService{
 	private static final Logger log = LoggerFactory.getLogger(OcenaServiceImpl.class);
@@ -74,6 +75,7 @@ public class OcenaServiceImpl implements OcenaService{
 	    
 	    UcenikEntity ucenik = ucenikRepository.findById(ocenaDTO.getUcenikId())
 	            .orElseThrow(() -> new ResourceNotFoundException("Učenik nije pronađen."));
+	    
 	    PredmetEntity predmet = predmetRepository.findById(ocenaDTO.getPredmetId())
 	            .orElseThrow(() -> new ResourceNotFoundException("Predmet nije pronađen."));
 	    OdelenjeEntity odelenje = odelenjeRepository.findById(ucenik.getOdelenje().getId())
@@ -93,7 +95,7 @@ public class OcenaServiceImpl implements OcenaService{
 	    }
 	    log.info("Čuva se nova ocena: {}", ocenaDTO);
 	    // Kreiranje nove ocene
-	    OcenaEntity novaOcena = ocenaMapper.toEntity(ocenaDTO);
+	    OcenaEntity novaOcena = ocenaMapper.toEntity(ocenaDTO, ulogovaniNastavnik);
 	    novaOcena.setVrednostOcene(ocenaDTO.getVrednostOcene());
 	    EAktivnostEntity aktivnostEnum = ocenaDTO.getAktivnost();
 	    novaOcena.setAktivnost(aktivnostEnum);
@@ -109,12 +111,8 @@ public class OcenaServiceImpl implements OcenaService{
 	    novaOcena = ocenaRepository.save(novaOcena);
 	    try {
 	        emailService.posaljiMejlRoditelju(novaOcena);
-//	    } catch (MailException e) {
-//	        // Specifična obrada za greške prilikom slanja email-a
-//	        logger.error("Greška prilikom slanja email-a: " + e.getMessage());
 	    } catch (Exception e) {
-//	        // Opšta obrada za ostale moguće greške
-//	        logger.error("Nepredviđena greška: " + e.getMessage());
+	        log.error("Nepredviđena greška: " + e.getMessage());
     }
 	    return ocenaMapper.toDto(novaOcena);
 	}	
@@ -210,10 +208,6 @@ public class OcenaServiceImpl implements OcenaService{
         rezultat.put("zakljucneOcene", zakljucneOcene);
 
         return rezultat;
-        //odustala od bilo kog drugacijeg ispisa jer nismo radili 
-        //ni mape ni mapiranje objekata ni ko zna sta sto bi ovde trebalo primeniti
-        
-        
     }
     
     @Override

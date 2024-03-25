@@ -25,7 +25,6 @@ public class KorisnikMapper {
 		entity.setId(dto.getId());
         entity.setKorisnickoIme(dto.getKorisnickoIme());
         
-     // Enkriptujte lozinku pre nego što je postavite
         String encryptedPass = Encryption.getPassEncoded(dto.getSifra());
         entity.setSifra(encryptedPass);
         

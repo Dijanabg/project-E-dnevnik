@@ -28,11 +28,15 @@ public class OcenaDTO {
     @JsonView(Views.Private.class)
     private String polugodiste;
     @JsonView(Views.Admin.class)
-    @NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
+    //@NotNull(message = "Ocenu može uneti samo odgovarajući nastavnik.")
     private Integer ocenjivacId;
     @NotNull(message = "Ucenik je obavezno polje")
     @JsonView(Views.Admin.class)
     private Integer ucenikId; 
+    @JsonView(Views.Private.class)
+    private String ucenikImePrezime;
+    @JsonView(Views.Private.class)
+    private String nastavnikImePrezime;
     @NotNull(message = "Predmet je obavezno polje")
     private Integer predmetId;
     @JsonView(Views.Private.class)
@@ -126,7 +130,22 @@ public class OcenaDTO {
 	public void setUcenikId(Integer ucenikId) {
 		this.ucenikId = ucenikId;
 	}
+	public String getUcenikImePrezime() {
+        return ucenikImePrezime;
+    }
 
+    public void setUcenikImePrezime(String ucenikImePrezime) {
+        this.ucenikImePrezime = ucenikImePrezime;
+    }
+
+    public String getNastavnikImePrezime() {
+        return nastavnikImePrezime;
+    }
+
+    public void setNastavnikImePrezime(String nastavnikImePrezime) {
+        this.nastavnikImePrezime = nastavnikImePrezime;
+    }
+    
 	public Integer getPredmetId() {
 		return predmetId;
 	}

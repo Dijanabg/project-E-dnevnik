@@ -90,6 +90,10 @@ public class RoditeljServiceImpl implements RoditeljService{
         if(roditeljDTO.getDeteIds() != null && !roditeljDTO.getDeteIds().isEmpty()) {
             for(Integer deteId : roditeljDTO.getDeteIds()) {
                 UcenikEntity dete = ucenikRepository.findById(deteId).orElseThrow(() -> new ResourceNotFoundException("Dete sa ID-em " + deteId + " nije pronađeno."));
+             // Provera da li učenik već ima dodeljenog roditelja
+                if(dete.getRoditelj() != null) {
+                    throw new IllegalStateException("Učenik sa ID-em " + deteId + " već ima dodeljenog roditelja.");
+                }
                 dete.setRoditelj(roditeljEntity);
                 deca.add(dete);
                 ucenikRepository.save(dete);
@@ -119,7 +123,7 @@ public class RoditeljServiceImpl implements RoditeljService{
         roditeljEntity = roditeljRepository.save(roditeljEntity);
         for (Integer deteId : roditeljDTO.getDeteIds()) {
             UcenikEntity dete = ucenikRepository.findById(deteId)
-                    .orElseThrow(() -> new RuntimeException("Dete not found!")); // Promenite RuntimeException u odgovarajući exception
+                    .orElseThrow(() -> new RuntimeException("Dete not found!")); 
             dete.setRoditelj(roditeljEntity);
             ucenikRepository.save(dete); // Ovo će ažurirati roditeljId u Ucenik entitetima
         }

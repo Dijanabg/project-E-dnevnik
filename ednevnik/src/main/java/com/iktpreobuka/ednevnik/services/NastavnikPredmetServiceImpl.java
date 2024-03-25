@@ -32,7 +32,7 @@ public class NastavnikPredmetServiceImpl implements NastavnikPredmetServise{
     @Autowired
     private NastavnikPredmetMapper nastavnikPredmetMapper;
 
-    //dodaj nastavnika predmetu
+    
     @Override
     @Transactional
     public NastavnikPredmetDTO dodeliNastavnikaPredmetu(Integer nastavnikId, Integer predmetId) {
@@ -69,9 +69,9 @@ public class NastavnikPredmetServiceImpl implements NastavnikPredmetServise{
         Optional<NastavnikPredmetEntity> nastavnikPredmetOpt = nastavnikPredmetRepository.findByNastavnikIdAndPredmetId(nastavnikId, predmetId);
         if (nastavnikPredmetOpt.isPresent()) {
             nastavnikPredmetRepository.delete(nastavnikPredmetOpt.get());
-            return true; // Uspesno uklonjeno
+            return true; 
         } else {
-            return false; // Zapis nije pronađen
+            return false;
         }
     }
 }

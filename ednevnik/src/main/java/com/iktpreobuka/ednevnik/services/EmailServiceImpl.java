@@ -33,17 +33,36 @@ public class EmailServiceImpl implements EmailService{
 		//helper.setTo(ocena.getUcenik().getRoditelj().getEmail());
 		helper.setSubject("Nova ocena");
 		
-		String text = "<!DOCTYPE html><html><body>" + "<style>table {\r\n" + "  font-family: arial, sans-serif;\r\n"
-				+ "  border-collapse: collapse;\r\n" + "  width: 100%;\r\n" + "}\r\n" + "\r\n" + "td, th {\r\n"
-				+ "  border: 1px solid #dddddd;\r\n" + "  text-align: left;\r\n" + "  padding: 8px;\r\n" + "}\r\n"
-				+ "\r\n" + "tr:nth-child(even) {\r\n" + "  background-color: #dddddd;\r\n" + "}\r\n" + "</style>\r\n"
-				+ "</head>" + "<body>\r\n" + "\r\n" + "<h2>Nova ocena</h2>\r\n" + "\r\n" + "<table>\r\n" + "  <tr>"
-				+ "<th>Učenik</th>" + "<th>Predmet</th>" + "<th>Ocena</th>" + "<th>Nastavnik</th>\r\n" + "  </tr>"
-				+ "<tr><td>" + ocena.getUcenik().getIme() + " " + ocena.getUcenik().getPrezime()
-				+ "</td><td>" + ocena.getPredmet().getNazivPredmeta() + "</td><td>" + ocena.getVrednostOcene() + "</td><td>"
-				+ ocena.getAktivnost() + " " + ocena.getOcenjivac() + "</td></tr>" + "</table></body></html>";
-		helper.setText(text, true);
-		emailSender.send(mail);
+		String imePrezimeUcenika = ocena.getUcenik().getIme() + " " + ocena.getUcenik().getPrezime();
+	    String imePrezimeNastavnika = ocena.getOcenjivac().getIme() + " " + ocena.getOcenjivac().getPrezime(); // Pretpostavljam da imate metode getIme() i getPrezime()
+
+	    String text = "<!DOCTYPE html>"
+	            + "<html>"
+	            + "<head>"
+	            + "<style>"
+	            + "body {font-family: 'Arial', sans-serif; line-height: 1.6; margin: 0; padding: 20px; color: #333;}"
+	            + "h2 {color: #0056b3;}"
+	            + "table {width: 100%; border-collapse: collapse;}"
+	            + "th, td {border: 1px solid #dddddd; text-align: left; padding: 8px;}"
+	            + "th {background-color: #f2f2f2;}"
+	            + "tr:nth-child(even) {background-color: #f9f9f9;}"
+	            + "</style>"
+	            + "</head>"
+	            + "<body>"
+	            + "<h2>Nova ocena za vaše dete</h2>"
+	            + "<table>"
+	            + "<tr><th>Učenik</th><th>Predmet</th><th>Ocena</th><th>Aktivnost</th><th>Nastavnik</th></tr>"
+	            + "<tr><td>" + imePrezimeUcenika + "</td>"
+	            + "<td>" + ocena.getPredmet().getNazivPredmeta() + "</td>"
+	            + "<td>" + ocena.getVrednostOcene() + "</td>"
+	            + "<td>" + ocena.getAktivnost() + "</td>"
+	            + "<td>" + imePrezimeNastavnika + "</td></tr>"
+	            + "</table>"
+	            + "</body>"
+	            + "</html>";
+
+	    helper.setText(text, true);
+	    emailSender.send(mail);
 	}
 
 }
