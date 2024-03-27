@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.PromenaSifreDTO;
 import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.KorisnikService;
 
@@ -79,5 +80,16 @@ public class KorisnikController {
     public ResponseEntity<KorisnikDTO> getKorisnikByKorisnickoIme(@PathVariable String korisnickoIme) {
         KorisnikDTO korisnikDTO = korisnikService.findByKorisickoIme(korisnickoIme);
         return ResponseEntity.ok(korisnikDTO);
+    }
+    
+    @PutMapping("/{korisnikId}/promeni-sifru")
+    @Secured("ROLE_ADMIN")
+    @JsonView(Views.Admin.class)
+    public ResponseEntity<?> promeniSifru(@PathVariable Integer korisnikId, @RequestBody PromenaSifreDTO promenaSifreDTO) {
+        boolean promenjeno = korisnikService.promeniSifru(korisnikId, promenaSifreDTO);
+        if (promenjeno) {
+            return ResponseEntity.ok().body("Šifra je uspešno promenjena.");
+        }
+        return ResponseEntity.badRequest().body("Promena šifre nije uspela. Proverite unete podatke.");
     }
 }

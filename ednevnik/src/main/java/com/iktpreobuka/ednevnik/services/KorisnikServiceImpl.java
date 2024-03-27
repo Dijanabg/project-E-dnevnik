@@ -9,8 +9,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iktpreobuka.ednevnik.controllers.util.Encryption;
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.PromenaSifreDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
 import com.iktpreobuka.ednevnik.mappers.KorisnikMapper;
 import com.iktpreobuka.ednevnik.repositories.KorisnikRepository;
@@ -71,4 +73,18 @@ public class KorisnikServiceImpl implements KorisnikService{
 	            .map(korisnikMapper::toDto)
 	            .orElseThrow(() -> new ResourceNotFoundException("Korisnik sa korisnickim imenom " + korisnickoIme + " nije pronađen."));
 	}
+	
+	@Override
+	public boolean promeniSifru(Integer korisnikId, PromenaSifreDTO promenaSifreDTO) {
+        Optional<KorisnikEntity> korisnikOpt = korisnikRepository.findById(korisnikId);
+        if (korisnikOpt.isPresent()) {
+            KorisnikEntity korisnik = korisnikOpt.get();
+            if (Encryption.validatePassword(promenaSifreDTO.getStaraSifra(), korisnik.getSifra())) {
+                korisnik.setSifra(Encryption.getPassEncoded(promenaSifreDTO.getNovaSifra()));
+                korisnikRepository.save(korisnik);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -3,6 +3,7 @@ package com.iktpreobuka.ednevnik.services;
 import java.util.List;
 
 import com.iktpreobuka.ednevnik.entities.dto.KorisnikDTO;
+import com.iktpreobuka.ednevnik.entities.dto.PromenaSifreDTO;
 
 public interface KorisnikService {
 
@@ -17,4 +18,6 @@ public interface KorisnikService {
 	void deleteById(Integer id);
 
 	KorisnikDTO findByKorisickoIme(String korisnickoIme);
+
+	boolean promeniSifru(Integer korisnikId, PromenaSifreDTO promenaSifreDTO);
 }
