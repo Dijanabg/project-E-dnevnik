@@ -29,7 +29,7 @@ public class RoditeljController {
 
 
 	@GetMapping
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 	@JsonView(Views.Admin.class)
     public ResponseEntity<List<RoditeljDTO>> getAllRoditelji() {
         List<RoditeljDTO> roditelji = roditeljService.findAll();
@@ -77,7 +77,7 @@ public class RoditeljController {
     }
     
     @GetMapping("/{roditeljId}/ucenici")
-    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_RODITELJ"})
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
     public ResponseEntity<RoditeljDTO> dohvatiDecuZaRoditelja(@PathVariable Integer roditeljId) {
         RoditeljDTO roditelj = roditeljService.findDecaByRoditeljId(roditeljId);

@@ -77,6 +77,7 @@ public class OdelenjeController {
     }
     
     @GetMapping("/{odelenjeId}/razredni")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Private.class)
     public ResponseEntity<NastavnikDTO> getRazredniStaresina(@PathVariable Integer odelenjeId) {
         NastavnikDTO razredniStaresina = odelenjeService.getRazredniStaresinaOdOdelenja(odelenjeId);
@@ -100,6 +101,7 @@ public class OdelenjeController {
     }
     
     @GetMapping("/{odelenjeId}/ucenici")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     @JsonView(Views.Private.class)
     public ResponseEntity<List<UcenikDTO>> findAllUceniciInOdelenje(@PathVariable Integer odelenjeId) {
         List<UcenikDTO> ucenici = odelenjeService.findAllUceniciInOdelenje(odelenjeId);
@@ -120,6 +122,7 @@ public class OdelenjeController {
     }
     
     @GetMapping("/{odeljenjeId}/nastavnici-predmeti")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Private.class)
     public ResponseEntity<List<NastavnikPredmetDTO>> getPredmetiINastavniciZaOdelenje(@PathVariable Integer odeljenjeId) {
             List<NastavnikPredmetDTO> predmetiNastavniciList = odelenjeService.getPredmetiINastavniciZaOdelenje(odeljenjeId);   

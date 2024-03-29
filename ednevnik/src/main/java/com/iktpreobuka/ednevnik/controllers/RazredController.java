@@ -29,6 +29,7 @@ public class RazredController {
     private RazredService razredService;
 	
     @GetMapping
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Public.class)
     public ResponseEntity<List<RazredDTO>> getAllRazredi() {
         List<RazredDTO> razredi = razredService.findAll();
@@ -44,6 +45,7 @@ public class RazredController {
     }
 
     @GetMapping("/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Public.class)
     public ResponseEntity<RazredDTO> getRazredById(@PathVariable Integer id) {
         RazredDTO razredDTO = razredService.findById(id);

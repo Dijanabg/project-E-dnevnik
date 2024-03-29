@@ -38,7 +38,7 @@ public class UcenikController {
     }
 
     @GetMapping
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     @JsonView(Views.Admin.class)
     public ResponseEntity<List<UcenikDTO>> getAllUcenici() {
         return ResponseEntity.ok(ucenikService.findAllUcenici());

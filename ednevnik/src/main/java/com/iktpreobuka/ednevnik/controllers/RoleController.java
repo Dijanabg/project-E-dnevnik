@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
-//import com.fasterxml.jackson.annotation.JsonView;
 import com.iktpreobuka.ednevnik.entities.dto.RoleDTO;
 import com.iktpreobuka.ednevnik.security.Views;
-//import com.iktpreobuka.ednevnik.security.Views;
 import com.iktpreobuka.ednevnik.services.RoleService;
 
 @RestController

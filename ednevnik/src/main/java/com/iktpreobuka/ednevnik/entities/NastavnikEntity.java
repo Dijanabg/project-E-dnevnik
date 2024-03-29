@@ -34,7 +34,6 @@ public class NastavnikEntity {
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "korisnik_id", unique = true)
-	
     private KorisnikEntity korisnikNastavnik;
     
     @Column(name = "ime")

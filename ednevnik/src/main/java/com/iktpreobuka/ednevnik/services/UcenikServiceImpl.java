@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iktpreobuka.ednevnik.entities.KorisnikEntity;
-import com.iktpreobuka.ednevnik.entities.OdelenjeEntity;
-import com.iktpreobuka.ednevnik.entities.RazredEntity;
 import com.iktpreobuka.ednevnik.entities.UcenikEntity;
 import com.iktpreobuka.ednevnik.entities.dto.UcenikDTO;
 import com.iktpreobuka.ednevnik.exeptions.ResourceNotFoundException;
@@ -113,18 +111,8 @@ public class UcenikServiceImpl implements UcenikService{
         if (ucenik.getOdelenje() == null) {
             throw new IllegalStateException("Učenik nije dodeljen ni jednom odelenju.");
         }
-        
-        OdelenjeEntity odelenje = ucenik.getOdelenje();
-        RazredEntity razred = odelenje.getRazred();
 
-        UcenikDTO ucenikDTO = new UcenikDTO();
-        ucenikDTO.setId(ucenik.getId());
-        ucenikDTO.setIme(ucenik.getIme());
-        ucenikDTO.setPrezime(ucenik.getPrezime());
-        ucenikDTO.setEmail(ucenik.getEmail());
-        ucenikDTO.setOdelenje(odelenje.getOdelenje()); // Pretpostavka je da odelenje ima polje 'oznaka'
-        ucenikDTO.setRazred(razred.getRazred()); // 'razred' u RazredEntity je tipa Integer
-
+        UcenikDTO ucenikDTO = ucenikMapper.toDto(ucenik);
         return ucenikDTO;
     }
 }

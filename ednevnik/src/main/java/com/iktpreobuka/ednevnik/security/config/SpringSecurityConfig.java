@@ -37,18 +37,19 @@ public class SpringSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws
 	Exception {
-		http.csrf().disable()
-		.authorizeRequests().anyRequest().authenticated().and()
-		.httpBasic().authenticationEntryPoint(authEntryPoint);
+        http.csrf(csrf -> csrf.disable())
+                .authorizeRequests(requests -> requests.anyRequest().authenticated())
+                .httpBasic(basic -> basic.authenticationEntryPoint(authEntryPoint));
 		return http.build();
+   
 	}
 
 	@Bean
-	AuthenticationManager authenticationManagerBean(HttpSecurity http) throws
+	public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws
 	Exception {
 		AuthenticationManagerBuilder auth =
 		http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -63,4 +64,5 @@ public class SpringSecurityConfig {
 //			);
 		return auth.build();
 	}
+
 }

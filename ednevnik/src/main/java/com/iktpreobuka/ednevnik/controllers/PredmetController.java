@@ -43,6 +43,7 @@ public class PredmetController {
     }
 
     @GetMapping("/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Private.class)
     public ResponseEntity<PredmetDTO> pronadjiPredmet(@PathVariable Integer id) {
         PredmetDTO predmetDTO = predmetService.findById(id);
@@ -75,6 +76,7 @@ public class PredmetController {
 	}
     
     @GetMapping("/nastavnici-predmeti")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Private.class)
     public ResponseEntity<List<NastavnikPredmetDTO>> getNastavniciIPredmetiKojePredaju() {
         List<NastavnikPredmetDTO> dtoList = nastavnikPredmetService.getNastavniciIPredmetiKojePredaju();
@@ -82,6 +84,7 @@ public class PredmetController {
     }
     
     @GetMapping("/razred/{razredId}/predmeti")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     @JsonView(Views.Public.class)
     public ResponseEntity<List<PredmetDTO>> getPredmetiByRazredId(@PathVariable Integer razredId) {
         List<PredmetDTO> predmetiDTO = predmetService.findPredmetiByRazredId(razredId);

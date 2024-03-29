@@ -92,8 +92,6 @@ public class OdelenjeServiceImpl implements OdelenjeService{
                 .orElseThrow(() -> new ResourceNotFoundException("Odelenje not found"));
 
         odelenje.setOdelenje(odelenjeDTO.getOdelenje());
-        // Postavljanje razreda i razrednog starešine može se ažurirati slično kao kod dodavanja novog odelenja
-
         odelenje = odelenjeRepository.save(odelenje);
         return odelenjeMapper.toDto(odelenje);
     }
@@ -234,11 +232,8 @@ public class OdelenjeServiceImpl implements OdelenjeService{
     	        PredmetEntity predmet = nastavnikOdelenje.getPredmet(); 
     	        if (nastavnik != null && predmet != null) {
     	            NastavnikPredmetDTO dto = new NastavnikPredmetDTO();
-    	            //dto.setId(nastavnikOdelenje.getId());
-    	            //dto.setNastavnikId(nastavnik.getId());
     	            dto.setNastavnikIme(nastavnik.getIme());
     	            dto.setNastavnikPrezime(nastavnik.getPrezime());
-    	            //dto.setPredmetId(predmet.getId());
     	            dto.setPredmetNaziv(predmet.getNazivPredmeta());
     	            dto.setPredmetRazred(predmet.getRazred().getRazred());
     	            predmetiNastavniciList.add(dto);

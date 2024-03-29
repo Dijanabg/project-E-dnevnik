@@ -19,6 +19,8 @@ public interface OcenaService {
 
 	Double izracunajProsekZakljucnihOcenaZaUcenika(Integer ucenikId);
 
+	OcenaDTO dodajOcenuKaoAdmin(OcenaDTO ocenaDTO);
+
 	
 
 }

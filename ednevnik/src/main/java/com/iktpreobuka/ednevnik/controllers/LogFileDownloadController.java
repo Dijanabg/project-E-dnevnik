@@ -5,6 +5,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -22,12 +23,14 @@ public class LogFileDownloadController {
     
     @JsonView(Views.Admin.class)
     @GetMapping("/ednevnik/show-download-page")
+    @Secured("ROLE_ADMIN")
     public String showDownloadPage() {
         return "downloadLog"; // ime HTML fajla bez .html ekstenzije
     }
     
     @GetMapping("ednevnik/download-log")
     @JsonView(Views.Admin.class)
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Resource> downloadLogFile() throws FileNotFoundException {
         File file = new File(LOG_FILE_PATH);
         HttpHeaders headers = new HttpHeaders();

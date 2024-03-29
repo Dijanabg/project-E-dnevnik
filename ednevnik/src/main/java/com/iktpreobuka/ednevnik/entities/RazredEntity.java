@@ -38,13 +38,14 @@ public class RazredEntity {
 	@Column(name = "razred")
 	@JsonView(Views.Public.class)
 	private Integer razred;
+	
 	@ManyToOne
 	@JoinColumn(name = "skolska_godina_id") 
 	@JsonView(Views.Public.class)
 	private SkolskaGodinaEntity skolskaGodina;
 	
 	@Version
-	protected Integer version;
+	protected Integer version; 
 	
 	@JsonBackReference
 	@OneToMany(mappedBy = "razred", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })

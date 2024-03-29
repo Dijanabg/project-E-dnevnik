@@ -61,9 +61,6 @@ public class PredmetEntity {
     @OneToMany(mappedBy = "predmet", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonView(Views.Public.class)
 	private List<NastavnikOdelenjeEntity> nastavnikOdelenje = new ArrayList<>();
-	//private Set<NastavnikOdelenjeEntity> nastavnikOdelenje = new HashSet<>();
-	//set kolekcija koja ne dozvoljava duplikate
-	
 	
 	public List<NastavnikPredmetEntity> getNastavnici() {
 		return nastavnici;
