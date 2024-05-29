@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class PredmetDTO {
+	@JsonView(Views.Private.class)
 	private Integer id;
     
 	@NotBlank(message = "Naziv predmeta mora biti unet.")

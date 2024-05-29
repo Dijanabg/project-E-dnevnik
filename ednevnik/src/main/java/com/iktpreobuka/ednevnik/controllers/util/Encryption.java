@@ -15,6 +15,6 @@ public class Encryption {
 		return bCryptPasswordEncoder.matches(pass, encodedPass);
 	}
 //	public static void main(String[] args) {
-//		System.out.println(getPassEncoded("dijana"));
+//		System.out.println(getPassEncoded("admin"));
 //		}
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.iktpreobuka.ednevnik.services.PredmetService;
 
 @RestController
 @RequestMapping("/ednevnik/predmeti")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PredmetController {
 	
 	@Autowired
@@ -33,7 +35,14 @@ public class PredmetController {
 
     @Autowired
     private NastavnikPredmetServise nastavnikPredmetService;
-
+    @GetMapping
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
+    @JsonView(Views.Private.class)
+    public ResponseEntity<List<PredmetDTO>> sviPredmeti() {
+    	List<PredmetDTO> toDtoList = predmetService.getAllPredmeti();
+        return ResponseEntity.ok(toDtoList);
+    }
+    
     @PostMapping
     @Secured("ROLE_ADMIN")
     @JsonView(Views.Admin.class)

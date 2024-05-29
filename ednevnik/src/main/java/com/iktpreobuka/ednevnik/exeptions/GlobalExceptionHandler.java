@@ -36,11 +36,11 @@ public class GlobalExceptionHandler {
 	public ErrorMessage handleAccessDeniedException(AccessDeniedException ex) {
 	    return new ErrorMessage(HttpStatus.FORBIDDEN.value(), ex.getMessage());
 	}
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public ErrorMessage handleAllExceptions(Exception ex) {
-	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
-	}
+//	@ExceptionHandler(Exception.class)
+//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//	public ErrorMessage handleAllExceptions(Exception ex) {
+//	    return new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Došlo je do greške. Molimo pokušajte kasnije.");
+//	}
 
 	@ExceptionHandler(DataAccessException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

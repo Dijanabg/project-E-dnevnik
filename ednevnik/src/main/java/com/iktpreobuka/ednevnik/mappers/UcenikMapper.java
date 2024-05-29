@@ -38,7 +38,7 @@ public class UcenikMapper {
 	
 	public  UcenikDTO toDto(UcenikEntity entity) {
 		UcenikDTO dto = new UcenikDTO();
-		//dto.setId(entity.getId());
+		dto.setId(entity.getId());
         dto.setIme(entity.getIme());
         dto.setPrezime(entity.getPrezime());
         dto.setEmail(entity.getEmail());

@@ -39,13 +39,14 @@ public class SpringSecurityConfig {
     }
 
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws
-	Exception {
-        http.csrf(csrf -> csrf.disable())
-                .authorizeRequests(requests -> requests.anyRequest().authenticated())
-                .httpBasic(basic -> basic.authenticationEntryPoint(authEntryPoint));
-		return http.build();
-   
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	    http.csrf(csrf -> csrf.disable())
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/ednevnik/login").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .httpBasic(basic -> basic.authenticationEntryPoint(authEntryPoint));
+	    return http.build();
 	}
 
 	@Bean

@@ -48,7 +48,7 @@ public class KorisnikEntity {
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id") 
-	@JsonView(Views.Admin.class)
+	@JsonIgnore
 	private RoleEntity role;
 	
 	@OneToMany(mappedBy = "korisnikUcenik", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

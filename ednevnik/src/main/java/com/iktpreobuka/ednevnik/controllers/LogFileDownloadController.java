@@ -23,14 +23,14 @@ public class LogFileDownloadController {
     
     @JsonView(Views.Admin.class)
     @GetMapping("/ednevnik/show-download-page")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     public String showDownloadPage() {
         return "downloadLog"; // ime HTML fajla bez .html ekstenzije
     }
     
     @GetMapping("ednevnik/download-log")
     @JsonView(Views.Admin.class)
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_UCENIK", "ROLE_RODITELJ"})
     public ResponseEntity<Resource> downloadLogFile() throws FileNotFoundException {
         File file = new File(LOG_FILE_PATH);
         HttpHeaders headers = new HttpHeaders();
